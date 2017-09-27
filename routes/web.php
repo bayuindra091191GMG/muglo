@@ -14,12 +14,13 @@
 //Build in Routes for Auth
 Auth::routes();
 
+// HOMEPAGE
+Route::get('/', 'Frontend\HomeController@index')->name('landing');
+
 // Login Frontend
 Route::get('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/signin', 'Auth\LoginController@authenticate')->name('signin');
 
-// Frontend Routing
-Route::get('/', 'Frontend\HomeController@home')->name('landing');
 
 /*
 

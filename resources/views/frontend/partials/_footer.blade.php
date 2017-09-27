@@ -1,81 +1,70 @@
-
-<!-- FOOTER -->
 <footer>
+    <div class="container">
+        <div class="text-center"> <a href="#."><img src="{{ asset('frontend_images/logo.png') }}" alt=""></a><br>
+            <img class="margin-t-40" src="{{ asset('frontend_images/hammer.png') }}" alt="">
+            <p class="intro-small margin-t-40">Multipurpose E-Commerce Theme is suitable for furniture store, fashion shop, accessories, electric shop. We have included multiple layouts for home page to give you best selections in customization.</p>
+        </div>
 
-    <!-- CONTAINER -->
-    <div class="container" data-animated='fadeInUp'>
+        <!--  Footer Links -->
+        <div class="footer-link row">
+            <div class="col-md-6">
+                <ul>
 
-        <!-- ROW -->
-        <div class="row">
+                    <!--  INFOMATION -->
+                    <li class="col-sm-6">
+                        <h5>INFOMATION</h5>
+                        <ul class="f-links">
+                            <li><a href="#.">ABOUT US</a></li>
+                            <li><a href="#."> DELIVERY INFOMATION</a></li>
+                            <li><a href="#."> PRIVACY & POLICY</a></li>
+                            <li><a href="#."> TEMRS & CONDITIONS</a></li>
+                            <li><a href="#."> MANUFACTURES</a></li>
+                        </ul>
+                    </li>
 
-            <div class="col-lg-3 col-md-3 col-sm-6 padbot10 text-center">
-                <a href="{{ route('landing') }}" style="width: 100%;">
-                    <img class="foot_logo_img" src="{{ asset('frontend_images/lowids-logo.png') }}" alt="" />
-                </a>
+                    <!-- MY ACCOUNT -->
+                    <li class="col-sm-6">
+                        <h5>MY ACCOUNT</h5>
+                        <ul class="f-links">
+                            <li><a href="#.">MY ACCOUNT</a></li>
+                            <li><a href="#."> LOGIN</a></li>
+                            <li><a href="#."> MY CART</a></li>
+                            <li><a href="#."> WISHLIST</a></li>
+                            <li><a href="#."> CHECKOUT</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
 
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-ss-12 padbot10">
-                <h4>Contacts</h4>
-                <div class="foot_address"><span>Lowids</span>Kawasan Niaga Bintaro Jaya, Pd. Pucung, Pd. Aren, Kota Tangerang Selatan, Banten 15224</div>
-                {{--<div class="foot_live_chat"><a href="javascript:void(0);" ><i class="fa fa-comment-o"></i> Live chat</a></div>--}}
+            <!-- Second Row -->
+            <div class="col-md-6">
+                <ul class="row">
+
+                    <!-- TWITTER -->
+                    <li class="col-sm-6">
+                        <h5>TWITTER</h5>
+                        <p>Check out new work on my @Behance portfolio: "BCreative_Multipurpose Theme" http://on.be.net/1zOOfBQ </p>
+                    </li>
+
+                    <!-- FLICKR PHOTO -->
+                    <li class="col-sm-6">
+                        <h5>FLICKR PHOTO</h5>
+                        <ul class="flicker">
+                            <li><a href="#."><img src="{{ asset('frontend_images/flicker-1.jpg') }}" alt=""></a></li>
+                            <li><a href="#."><img src="{{ asset('frontend_images/flicker-2.jpg') }}" alt=""></a></li>
+                            <li><a href="#."><img src="{{ asset('frontend_images/flicker-3.jpg') }}" alt=""></a></li>
+                            <li><a href="#."><img src="{{ asset('frontend_images/flicker-4.jpg') }}" alt=""></a></li>
+                            <li><a href="#."><img src="{{ asset('frontend_images/flicker-5.jpg') }}" alt=""></a></li>
+                            <li><a href="#."><img src="{{ asset('frontend_images/flicker-6.jpg') }}" alt=""></a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
+        </div>
 
-            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 col-ss-12 padbot10">
-                <div class="foot_phone"><span>1 800 888 2828</span></div>
-                <div class="foot_mail"><a href="mailto:info@glamyshop.com" >support@lowids.com</a></div>
-                {{--<h4>Information</h4>--}}
-                {{--<ul class="foot_menu">--}}
-                    {{--<li><a href="about.html" >About Us</a></li>--}}
-                    {{--<li><a href="gallery.html" >Gallery<span>new</span></a></li>--}}
-                    {{--<li><a href="javascript:void(0);" >Delivery</a></li>--}}
-                    {{--<li><a href="javascript:void(0);" >Privacy police</a></li>--}}
-                    {{--<li><a href="blog.html" >Blog</a></li>--}}
-                    {{--<li><a href="faq.html" >Faqs</a></li>--}}
-                    {{--<li><a href="contacts.html" >countact us</a></li>--}}
-                {{--</ul>--}}
-            </div>
-
-            <div class="respond_clear_480"></div>
-
-            {{--<div class="col-lg-4 col-md-4 col-sm-6 padbot30">--}}
-                {{--<h4>About shop</h4>--}}
-                {{--<p>We ask for your name, telephone number, home address, email address and age for competitions, prize draws or newsletter sign ups. When a purchase is made on our site, in addition to the above, we also ask for delivery address, and payment method details.</p>--}}
-                {{--<p>We may obtain information about your usage of our website to help us develop and improve it further through online surveys and other requests.</p>--}}
-            {{--</div>--}}
-
-            <div class="respond_clear_768"></div>
-
-            <div class="col-lg-4 col-md-4 padbot10">
-                {{--<h4>Newsletter</h4>--}}
-                {{--<form class="newsletter_form clearfix" action="javascript:void(0);" method="get">--}}
-                    {{--<input type="text" name="newsletter" value="Enter E-mail & Get 10% off" onFocus="if (this.value == 'Enter E-mail & Get 10% off') this.value = '';" onBlur="if (this.value == '') this.value = 'Enter E-mail & Get 10% off';" />--}}
-                    {{--<input class="btn newsletter_btn" type="submit" value="SIGN UP">--}}
-                {{--</form>--}}
-
-                <h4>we are in social networks</h4>
-                <div class="social">
-                    <a href="javascript:void(0);" ><i class="fa fa-twitter"></i></a>
-                    <a href="javascript:void(0);" ><i class="fa fa-facebook"></i></a>
-                    <a href="javascript:void(0);" ><i class="fa fa-google-plus"></i></a>
-                    <a href="javascript:void(0);" ><i class="fa fa-pinterest-square"></i></a>
-                    <a href="javascript:void(0);" ><i class="fa fa-tumblr"></i></a>
-                    <a href="javascript:void(0);" ><i class="fa fa-instagram"></i></a>
-                </div>
-            </div>
-        </div><!-- //ROW -->
-    </div><!-- //CONTAINER -->
-
-    <!-- COPYRIGHT -->
-    <div class="copyright">
-
-        <!-- CONTAINER -->
-        <div class="container clearfix">
-            {{--<div class="foot_logo"><a href="index.html" ><img src="{{ asset('frontend_images/lowids-logo.png') }}" alt="" /></a></div>--}}
-
-            <div class="copyright_inf">
-                <span>Lowids© 2017</span>
-                <a class="back_top" href="javascript:void(0);" >Back to Top <i class="fa fa-angle-up"></i></a>
-            </div>
-        </div><!-- //CONTAINER -->
-    </div><!-- //COPYRIGHT -->
-</footer><!-- //FOOTER -->
+        <!-- Rights -->
+        <div class="rights">
+            <p>© 2015 HTML5 TEMPLATE SEBIAN. All Rights Reserved. Powered By WPELITE</p>
+        </div>
+    </div>
+</footer>
