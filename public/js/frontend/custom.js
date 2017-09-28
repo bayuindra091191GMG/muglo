@@ -139,3 +139,39 @@ function addCommas(nStr) {
     }
     return "Rp " + x1 + x2;
 }
+
+// NOUISLIDER
+//  Price Filter ( noUiSlider Plugin)
+if($("#price-range").length){
+    $("#price-range").noUiSlider({
+        range: {
+            'min': [ 0 ],
+            'max': [ 1000 ]
+        },
+        start: [40, 940],
+        connect:true,
+        serialization:{
+            lower: [
+                $.Link({
+                    target: $("#price-min")
+                })
+            ],
+            upper: [
+                $.Link({
+                    target: $("#price-max")
+                })
+            ],
+            format: {
+                // Set formatting
+                decimals: 2,
+                prefix: '$'
+            }
+        }
+    })
+}
+
+//ELEVATEZOOM
+$(".zoom_05").elevateZoom({
+    zoomType	: "inner",
+    cursor		: "crosshair"
+});

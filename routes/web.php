@@ -31,10 +31,12 @@ Route::post('/register', 'Auth\RegisterController@create');
 
 Route::get('/', 'Frontend\HomeController@Home')->name('home');*/
 
-//product
-Route::get('product/category/{categoryId}-{categoryName}', 'Frontend\ProductsController@products')->name('products');
-Route::get('product-detail/{id}', 'Frontend\ProductsController@ProductShow')->name('product-detail');
-Route::get('search/{key}', 'Frontend\ProductsController@search')->name('product-search');
+// Product
+Route::get('product/category/{categoryId}-{categoryName}', 'Frontend\ProductController@products')->name('products');
+Route::get('product-detail/{id}', 'Frontend\ProductController@ProductShow')->name('product-detail');
+Route::get('search/{key}', 'Frontend\ProductController@search')->name('product-search');
+Route::get('example/product/list', 'Frontend\ProductController@exampleProductList');
+Route::get('example/product/detail', 'Frontend\ProductController@exampleProductDetail');
 
 // Cart
 Route::get('cart', 'Frontend\CartController@CartShowAll')->name('cart-list');

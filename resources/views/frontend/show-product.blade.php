@@ -1,151 +1,295 @@
 @extends('layouts.frontend')
 
 @section('body-content')
+    <!-- CONTENT START -->
+    <div class="content">
 
-    <section class="breadcrumb margbot10"></section>
+        <!--======= SUB BANNER =========-->
+        <section class="sub-banner animate fadeInUp" data-wow-delay="0.4s">
+            <div class="container">
+                <h4>DRAEY TRENCH COAT</h4>
+                <!-- Breadcrumb -->
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">SHOP</a></li>
+                    <li class="active">DRAEY TRENCH COAT</li>
+                </ol>
+            </div>
+        </section>
 
-    <!-- TOVAR DETAILS -->
-    <section class="tovar_details padbot70">
+        <!--======= PAGES INNER =========-->
+        <section class="section-p-30px pages-in item-detail-page">
+            <div class="container">
+                <div class="row">
 
-        <!-- CONTAINER -->
-        <div class="container">
-
-            <!-- ROW -->
-            <div class="row">
-
-                <!-- SIDEBAR TOVAR DETAILS -->
-                <div class="col-lg-3 col-md-3 sidebar_tovar_details">
-                    <h3><b>other {{$product->category->name}}</b></h3>
-
-                    <ul class="tovar_items_small clearfix">
-                        @foreach($recommendedProducts as $recommendedProduct)
-                            <li class="clearfix">
-                                <img class="tovar_item_small_img" src="{{ URL::asset('frontend_images/tovar/women/1.jpg') }}" alt="" />
-                                <a href="{{ route('product-detail', ['id' => $recommendedProduct->id]) }}" class="tovar_item_small_title">{{$recommendedProduct->name}}</a>
-                                <span class="tovar_item_small_price">Rp {{$recommendedProduct->price}}</span>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div><!-- //SIDEBAR TOVAR DETAILS -->
-
-                <!-- TOVAR DETAILS WRAPPER -->
-                <div class="col-lg-9 col-md-9 tovar_details_wrapper clearfix">
-                    <div class="tovar_details_header clearfix margbot35">
-                        <h3 class="pull-left"><b>{{$product->category->name}}</b></h3>
-
-                        <div class="tovar_details_pagination pull-right">
+                    <!--======= IMAGES SLIDER =========-->
+                    <div class="col-sm-6 large-detail animate fadeInLeft" data-wow-delay="0.4s">
+                        <div class="images-slider">
+                            <ul class="slides">
+                                <li data-thumb="{{ asset('frontend_images/item-detail-img-1.jpg') }}"> <img class="img-responsive" src="{{ asset('frontend_images/item-detail-img-1.jpg') }}"  alt=""> </li>
+                                <li data-thumb="{{ asset('frontend_images/item-detail-img-2.jpg') }}"> <img class="img-responsive" src="{{ asset('frontend_images/item-detail-img-2.jpg') }}"  alt=""> </li>
+                                <li data-thumb="{{ asset('frontend_images/item-detail-img-3.jpg') }}"> <img class="img-responsive" src="{{ asset('frontend_images/item-detail-img-3.jpg') }}"  alt=""> </li>
+                                <li data-thumb="{{ asset('frontend_images/item-detail-img-4.jpg') }}"> <img class="img-responsive" src="{{ asset('frontend_images/item-detail-img-4.jpg') }}"  alt=""> </li>
+                                <li data-thumb="{{ asset('frontend_images/item-detail-img-5.jpg') }}"> <img class="img-responsive" src="{{ asset('frontend_images/item-detail-img-5.jpg') }}"  alt=""> </li>
+                            </ul>
                         </div>
                     </div>
 
-                    <!-- CLEARFIX -->
-                    <div class="clearfix padbot40">
-                        <div class="tovar_view_fotos clearfix">
-                            <div id="slider2" class="flexslider">
-                                <ul class="slides">
-                                    <li><a href="javascript:void(0);" ><img src="{{ asset('storage\product\\'. $product->product_image()->where('featured', 1)->first()->path) }}" alt="" /></a></li>
-                                    @if($photos->count() > 0 )
-                                        @foreach($photos as $photo)
-                                            <li><a href="javascript:void(0);" ><img src="{{ asset('storage\product\\'. $photo->path) }}" alt="" /></a></li>
-                                        @endforeach
-                                    @endif
-                                </ul>
+                    <!--======= ITEM DETAILS =========-->
+                    <div class="col-sm-6 animate fadeInRight" data-wow-delay="0.4s">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h5>DRAEY TRENCH COAT</h5>
+                                <span class="price">129.00 USD</span> </div>
+                            <div class="col-sm-12"> <span class="code">PRODUCT CODE: SKU: PDID-BC-01.</span>
+                                <div class="some-info no-border"> <br>
+                                    <div class="in-stoke"> <i class="fa fa-check-circle"></i> IN STOCK</div>
+                                    <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div>
+                                    <a href="#review"  class="review">(3) Review</a> &nbsp;&nbsp;&nbsp; <a href="#review-form" class="review">Add Your Review</a></div>
+                                <hr>
                             </div>
-                            <div id="carousel2" class="flexslider">
-                                <ul class="slides">
-                                    <li><a href="javascript:void(0);" ><img src="{{ asset('storage\product\\'. $product->product_image()->where('featured', 1)->first()->path) }}" alt="" /></a></li>
-                                    @if($photos->count() > 0 )
-                                        @foreach($photos as $photo)
-                                            <li><a href="javascript:void(0);" ><img src="{{ asset('storage\product\\'. $photo->path) }}" alt="" /></a></li>
-                                        @endforeach
-                                    @endif
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco,Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectusLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco,Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectusLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="item-select">
+                                    <!-- COLOR -->
+                                    <p>*COLOR</p>
+                                    <select class="selectpicker">
+                                        <option>PLEASE SELETCT</option>
+                                        <option>RED</option>
+                                        <option>BLUE</option>
+                                        <option>GREEN</option>
+                                        <option>YELLOW</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="item-select">
+                                    <!--  SIZE -->
+                                    <p>*SIZE</p>
+                                    <select class="selectpicker">
+                                        <option>PLEASE SELETCT</option>
+                                        <option>Small</option>
+                                        <option>Large </option>
+                                        <option>X Large</option>
+                                        <option>XX Large</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- QUIENTY -->
+                            <div class="col-sm-12">
+                                <div class="fun-share">
+                                    <input type="text" value="1">
+                                    <a href="#." class="btn btn-small btn-dark">ADD TO CART</a> <a href="#." class="share-sec"><i class="ion-shuffle"></i></a> <a class="share-sec" href="#."><i class="fa fa-heart-o"></i></a> </div>
+                            </div>
+                            <!-- SHARE -->
+                            <div class="col-sm-12">
+                                <ul class="share-with">
+                                    <li>
+                                        <p>SHARE WITH</p>
+                                    </li>
+                                    <li><a href="#."><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#."><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#."><i class="fa fa-dribbble"></i></a></li>
+                                    <li><a href="#."><i class="fa fa-pinterest"></i></a></li>
                                 </ul>
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="tovar_view_description">
-                            <div class="tovar_view_title">{{$product->name}}</div>
-                            <div class="tovar_article">&nbsp;</div>
-                            <div class="clearfix tovar_brend_price">
-                                <div class="pull-left tovar_brend">&nbsp;</div>
-                                @if(!empty($product->discount) || !empty($product->discount_flat))
-                                    <div class="pull-right" style="font-size: 20px;">
-                                        <span style="text-decoration: line-through;">Rp {{ $product->price }}</span><br/>
-                                        <p style="color:orange;"><b>Rp {{ $product->price_discounted }}</b> <span style="font-size:12px; color:red;">( -{{ $product->discount ? $product->discount. '%' : 'Rp '. $product->discount_flat }} )</span></p>
-                                    </div>
-                                @else
-                                    <div class="pull-right tovar_view_price">Rp {{ $product->price }}</div>
-                                @endif
-                            </div>
-                            <div class="tovar_view_btn">
-                                <div class="add_bag" onclick="addToCart('{{ $product->id }}')" style="cursor: pointer;"><i class="fa fa-shopping-cart"></i><span>Add to cart</span></div>
-                            </div>
-                        </div>
-                    </div><!-- //CLEARFIX -->
-
-                    <!-- TOVAR INFORMATION -->
-                    <div class="tovar_information">
-                        <ul class="tabs clearfix">
-                            <li class="current">Details</li>
-                            <li>Information</li>
+                <!--======= PRODUCT DESCRIPTION =========-->
+                <div class="item-decribe animate fadeInUp" data-wow-delay="0.4s">
+                    <div class="text-center">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation"><a href="#descr" aria-controls="men" role="tab" data-toggle="tab">DESCRIPTION</a></li>
+                            <li role="presentation" class="active"><a href="#review" aria-controls="women" role="tab" data-toggle="tab">REVIEW (03)</a></li>
+                            <li role="presentation"><a href="#tags" aria-controls="access" role="tab" data-toggle="tab">TAGS</a></li>
                         </ul>
-                        <div class="box visible">
-                            <p>{!! nl2br($product->description) !!}</p>
+                    </div>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <!-- DESCRIPTION -->
+                        <div role="tabpanel" class="tab-pane fade" id="descr">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco,Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectusLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco,Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectusLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.<br>
+                                <br>
+                                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. </p>
                         </div>
-                        <div class="box">
-                            @php( $weightVal = floatval($product->weight / 1000) )
-                            Weight: {{ number_format((float) $weightVal, 2, ',', '') }} Kg
+
+                        <!-- REVIEW -->
+                        <div role="tabpanel" class="tab-pane fade  in active" id="review">
+                            <h6>3 REVIEWS FOR SHIP YOUR IDEA</h6>
+
+                            <!-- REVIEW PEOPLE 1 -->
+                            <div class="media">
+                                <div class="media-left">
+                                    <!--  Image -->
+                                    <div class="avatar"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/avatar-1.jpg') }}" alt=""> </a> </div>
+                                </div>
+                                <!--  Details -->
+                                <div class="media-body">
+                                    <p class="font-playfair">“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                                        labore et dolore magna aliqua.”</p>
+                                    <h6>TYRION LANNISTER <span class="pull-right">June 7, 2013</span> </h6>
+                                </div>
+                            </div>
+
+                            <!-- REVIEW PEOPLE 1 -->
+
+                            <div class="media">
+                                <div class="media-left">
+                                    <!--  Image -->
+                                    <div class="avatar"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/avatar-2.jpg') }}" alt=""> </a> </div>
+                                </div>
+                                <!--  Details -->
+                                <div class="media-body">
+                                    <p class="font-playfair">“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                                        labore et dolore magna aliqua.”</p>
+                                    <h6>TYRION LANNISTER <span class="pull-right">June 7, 2013</span> </h6>
+                                </div>
+                            </div>
+
+                            <!-- ADD REVIEW -->
+                            <h6 class="margin-t-40">ADD REVIEW</h6>
+                            <form id="review-form">
+                                <ul class="row">
+                                    <li class="col-sm-6">
+                                        <label> *NAME
+                                            <input type="text" value="" placeholder="">
+                                        </label>
+                                    </li>
+                                    <li class="col-sm-6">
+                                        <label> *EMAIL
+                                            <input type="email" value="" placeholder="">
+                                        </label>
+                                    </li>
+                                    <li class="col-sm-12">
+                                        <label> *YOUR REVIEW
+                                            <textarea></textarea>
+                                        </label>
+                                    </li>
+                                    <li class="col-sm-6">
+                                        <!-- Rating Stars -->
+                                        <div class="stars"> <span>YOUR RATING</span> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                                    </li>
+                                    <li class="col-sm-6">
+                                        <button type="submit" class="btn btn-dark btn-small pull-right no-margin">POST REVIEW</button>
+                                    </li>
+                                </ul>
+                            </form>
                         </div>
-                    </div><!-- //TOVAR INFORMATION -->
-                </div><!-- //TOVAR DETAILS WRAPPER -->
-            </div><!-- //ROW -->
-        </div><!-- //CONTAINER -->
-    </section><!-- //TOVAR DETAILS -->
 
-    <!-- NEW ARRIVALS -->
-    {{--<section class="new_arrivals padbot50">--}}
+                        <!-- TAGS -->
+                        <div role="tabpanel" class="tab-pane fade" id="tags"> </div>
+                    </div>
+                </div>
+            </div>
 
-        {{--<!-- CONTAINER -->--}}
-        {{--<div class="container">--}}
-            {{--<h2>Recent Products</h2>--}}
+            <!--======= RELATED PRODUCTS =========-->
+            <section class="section-p-60px new-arrival new-arri-w-slide">
+                <div class="container">
 
-            {{--<!-- JCAROUSEL -->--}}
-            {{--<div class="jcarousel-wrapper">--}}
+                    <!--  Tittle -->
+                    <div class="tittle tittle-2 animate fadeInUp" data-wow-delay="0.4s">
+                        <h5>RELATED PRODUCTS</h5>
+                        <p class="font-playfair">Most haver in your Shop </p>
+                    </div>
 
-                {{--<!-- NAVIGATION -->--}}
-                {{--<div class="jCarousel_pagination">--}}
-                    {{--<a href="javascript:void(0);" class="jcarousel-control-prev" ><i class="fa fa-angle-left"></i></a>--}}
-                    {{--<a href="javascript:void(0);" class="jcarousel-control-next" ><i class="fa fa-angle-right"></i></a>--}}
-                {{--</div><!-- //NAVIGATION -->--}}
+                    <!--  New Arrival Tabs Products  -->
+                    <div class="popurlar_product client-slide animate fadeInUp" data-wow-delay="0.4s">
 
-                {{--<div class="jcarousel">--}}
-                    {{--<ul>--}}
+                        <!--  New Arrival  -->
 
-                        {{--@foreach($recentProducts as $recentProduct)--}}
-                            {{--<li>--}}
-                                {{--<!-- TOVAR -->--}}
-                                {{--<div class="tovar_item_new">--}}
-                                    {{--<div class="tovar_img">--}}
-                                        {{--<img src="{{ URL::asset('frontend_images/tovar/women/new/1.jpg') }}" alt="" />--}}
-                                        {{--<div class="open-project-link"><a class="open-project tovar_view" href="javascript:void(0);" data-url="!projects/women/1.html" >quick view</a></div>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="tovar_description clearfix">--}}
-                                        {{--<a class="tovar_title" href="{{ route('product-detail', ['id' => $recentProduct->id]) }}" >{{$recentProduct->name}}</a>--}}
-                                        {{--<span class="tovar_price">Rp. {{$recentProduct->price}}</span>--}}
-                                    {{--</div>--}}
-                                {{--</div><!-- //TOVAR -->--}}
-                            {{--</li>--}}
-                        {{--@endforeach--}}
-                    {{--</ul>--}}
-                {{--</div>--}}
-            {{--</div><!-- //JCAROUSEL -->--}}
-        {{--</div><!-- //CONTAINER -->--}}
-    {{--</section><!-- //NEW ARRIVALS -->--}}
+                        <div class="items-in">
+                            <!-- Image -->
+                            <img src="{{ asset('frontend_images/new-item-1.jpg') }}" alt="">
+                            <!-- Hover Details -->
+                            <div class="over-item">
+                                <ul class="animated fadeIn">
+                                    <li> <a href="{{ asset('frontend_images/new-item-1.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+                                    <li> <a href="#."><i class="ion-shuffle"></i></a></li>
+                                    <li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
+                                    <li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
+                                    <!-- Rating Stars -->
+                                    <li class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></li>
+                                </ul>
+                            </div>
+                            <!-- Item Name -->
+                            <div class="details-sec"> <a href="#.">LOOSE-FIT TRENCH COAT</a> <span class="font-montserrat">129.00 USD</span> </div>
+                        </div>
 
-    <hr class="container">
-    <script>
-        var urlLink = '{{route('addCart')}}';
-    </script>
-    @include('frontend.partials._modal')
+                        <!--  New Arrival  -->
+                        <div class="items-in">
+                            <!-- Image -->
+                            <img src="{{ asset('frontend_images/new-item-2.jpg') }}" alt="">
+                            <!-- Hover Details -->
+                            <div class="over-item">
+                                <ul class="animated fadeIn">
+                                    <li> <a href="{{ asset('frontend_images/new-item-2.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+                                    <li> <a href="#."><i class="ion-shuffle"></i></a></li>
+                                    <li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
+                                    <li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
+                                    <!-- Rating Stars -->
+                                    <li class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></li>
+                                </ul>
+                            </div>
+                            <!-- Item Name -->
+                            <div class="details-sec"> <a href="#.">LOOSE-FIT TRENCH COAT</a> <span class="font-montserrat">129.00 USD</span> </div>
+                        </div>
+
+                        <!--  New Arrival  -->
+                        <div class="items-in">
+                            <!--  Tags  -->
+                            <div class="new-tag"> NEW </div>
+
+                            <!-- Image -->
+                            <img src="{{ asset('frontend_images/new-item-3.jpg') }}" alt="">
+                            <!-- Hover Details -->
+                            <div class="over-item">
+                                <ul class="animated fadeIn">
+                                    <li> <a href="{{ asset('frontend_images/new-item-3.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+                                    <li> <a href="#."><i class="ion-shuffle"></i></a></li>
+                                    <li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
+                                    <li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
+                                    <!-- Rating Stars -->
+                                    <li class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></li>
+                                </ul>
+                            </div>
+                            <!-- Item Name -->
+                            <div class="details-sec"> <a href="#.">LOOSE-FIT TRENCH COAT</a> <span class="font-montserrat">129.00 USD</span> </div>
+                        </div>
+
+                        <!--  New Arrival  -->
+                        <div class="items-in">
+                            <!--  Tags  -->
+                            <div class="hot-tag"> HOT </div>
+                            <!-- Image -->
+                            <img src="{{ asset('frontend_images/new-item-4.jpg') }}" alt="">
+                            <!-- Hover Details -->
+                            <div class="over-item">
+                                <ul class="animated fadeIn">
+                                    <li> <a href="{{ asset('frontend_images/new-item-4.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+                                    <li> <a href="#."><i class="ion-shuffle"></i></a></li>
+                                    <li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
+                                    <li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
+                                    <!-- Rating Stars -->
+                                    <li class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></li>
+                                </ul>
+                            </div>
+                            <!-- Item Name -->
+                            <div class="details-sec"> <a href="#.">LOOSE-FIT TRENCH COAT</a> <span class="font-montserrat">129.00 USD</span> </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+
 @endsection
 
 

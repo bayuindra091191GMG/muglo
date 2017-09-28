@@ -1,36 +1,18 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: yanse
- * Date: 8/31/2017
- * Time: 11:29 AM
+ * User: hellb
+ * Date: 9/9/2017
+ * Time: 1:32 PM
  */
 
 namespace App\Http\Controllers\Frontend;
 
-use App\libs\Midtrans;
-use App\libs\RajaOngkir;
-use App\libs\Utilities;
+
 use App\Http\Controllers\Controller;
-use App\Mail\NewOrderAdmin;
-use App\Mail\NewOrderCustomer;
-use App\Models\Address;
-use App\Models\Courier;
 use App\Models\Transaction;
-use App\Models\TransactionDetail;
-use App\Models\User;
-use App\Models\Cart;
-use App\Models\DeliveryType;
-use App\Notifications\TransactionNotify;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Redirect;
-use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
-use Webpatser\Uuid\Uuid;
 
 class TransactionController extends Controller
 {
@@ -39,187 +21,144 @@ class TransactionController extends Controller
         $this->middleware('auth');
     }
 
-    //set address for shipping
-    public function CheckoutProcess1(){
-//        if (!Auth::check())
-//        {
-//            return redirect()->route('landing');
-//        }
+    public function payment(){
         $id = Auth::user()->id;
-        if(!Cart::where('user_id', $id)->exists()){
-            return Redirect::route('cart-list');
+
+        $start = Carbon::today('Asia/Jakarta')->subMonth(3);
+        $end = Carbon::today('Asia/Jakarta')->addMonths(3);
+
+        if(!empty(request()->start) && !empty(request()->end)){
+            $start = Carbon::createFromFormat('d/m/Y', request()->start, 'Asia/Jakarta');
+            $end = Carbon::createFromFormat('d/m/Y', request()->end, 'Asia/Jakarta');
+
+            if(!empty(request()->search)){
+                $transactions = Transaction::where('user_id', $id)
+                    ->where(function($query){
+                        $query->where('status_id', 3)
+                            ->orWhere('status_id', 4);
+                    })
+                    ->whereBetween('created_on', [$start->toDateString(),$end->toDateString()])
+                    ->where('invoice','LIKE','%'. request()->search. '%')
+                    ->orderByDesc('created_on')->get();
+            }else{
+                $transactions = Transaction::where('user_id', $id)
+                    ->where(function($query){
+                        $query->where('status_id', 3)
+                            ->orWhere('status_id', 4);
+                    })
+                    ->whereBetween('created_on', [$start->toDateString(),$end->toDateString()])
+                    ->orderByDesc('created_on')->get();
+            }
+        }
+        else{
+            $transactions = Transaction::where('user_id', $id)
+                ->where(function($query){
+                    $query->where('status_id', 3)
+                        ->orWhere('status_id', 4);
+                })
+                ->whereBetween('created_on', [$start->toDateString(),$end->toDateString()])
+                ->orderByDesc('created_on')->get();
         }
 
-        $Addressdata = Address::where('user_id', $id)->first();
+        $data = [
+            'transactions'  => $transactions,
+            'date_start'    => $start->format('d/m/Y'),
+            'date_end'      => $end->format('d/m/Y')
+        ];
 
-        return View('frontend.checkout-step1', compact('Addressdata'));
+        return View('frontend.show-payments')->with($data);
     }
 
+    public function invoice($id){
+        $trx = Transaction::find($id);
 
-    //show shipping list
-    public function CheckoutProcess2(){
-        $couriers = Courier::all();
-        $deliveryTypes = DeliveryType::all();
+        return View('frontend.show-invoice', compact('trx'));
+    }
 
-        $courierThrow = "";
-        $temp = 1;
-        //get courier code ex jne:tiki:pos
-        foreach($couriers as $courier){
-            if($temp < $couriers->count()){
-                $courierThrow = $courierThrow.$courier->code.":";
-            }
-            else{
-                $courierThrow = $courierThrow.$courier->code;
-            }
-            $temp++;
-        }
-        //address login user
+    public function order(){
         $id = Auth::user()->id;
-        $Addressdata = Address::where('user_id', $id)->first();
 
-        //get product total weight
-        $totalWeight = 0;
-        $carts = Cart::where('user_id', 'like', $id)->get();
-        foreach($carts as $cart){
-            $totalWeight += ($cart->product->weight * $cart->quantity);
-        }
+        $start = Carbon::today('Asia/Jakarta')->subMonth(3);
+        $end = Carbon::today('Asia/Jakarta')->addMonths(3);
 
-        //rajaongkir process
-        $collect = RajaOngkir::getCost('151', 'city', $Addressdata->city_id, 'city', (string)$totalWeight, $courierThrow);
-        $results = $collect->rajaongkir->results;
+        if(!empty(request()->start) && !empty(request()->end)){
+            $start = Carbon::createFromFormat('d/m/Y', request()->start, 'Asia/Jakarta');
+            $end = Carbon::createFromFormat('d/m/Y', request()->end, 'Asia/Jakarta');
 
-        $resultCollection = collect();
-        foreach ($deliveryTypes as $deliveryType){
-            $resultCollection->put($deliveryType->courier->code."-".$deliveryType->code, $deliveryType->courier->code."-".$deliveryType->code);
-        }
-
-        foreach($results as $result){
-            foreach ($result->costs as $cost){
-                if($resultCollection->contains($result->code."-".$cost->service)){
-                    $resultCollection[$result->code."-".$cost->service] = $cost->cost[0]->value;
-                }
-
+            if(!empty(request()->search)){
+                $transactions = Transaction::where('user_id', $id)
+                    ->where('status_id', '!=', 3)
+                    ->where('status_id', '!=', 9)
+                    ->where('status_id', '!=', 10)
+                    ->whereBetween('created_on', [$start->toDateString(),$end->toDateString()])
+                    ->where('invoice','LIKE','%'. request()->search. '%')
+                    ->orderByDesc('created_on')->get();
+            }else{
+                $transactions = Transaction::where('user_id', $id)
+                    ->where('status_id', '!=', 3)
+                    ->where('status_id', '!=', 9)
+                    ->where('status_id', '!=', 10)
+                    ->whereBetween('created_on', [$start->toDateString(),$end->toDateString()])
+                    ->orderByDesc('created_on')->get();
             }
         }
-        return view('frontend.checkout-step2', compact('resultCollection', 'deliveryTypes'));
-    }
-
-    //submit shipping and add data to DB
-    public function CheckoutProcess2Submit(Request $request){
-        if(empty(Input::get('shippingRadio'))){
-            return redirect()->route('checkout2');
+        else{
+            $transactions = Transaction::where('user_id', $id)
+                ->where('status_id', '!=', 3)
+                ->where('status_id', '!=', 9)
+                ->where('status_id', '!=', 10)
+                ->whereBetween('created_on', [$start->toDateString(),$end->toDateString()])
+                ->orderByDesc('created_on')->get();
         }
 
-        $user = Auth::user();
-        $userId = $user->id;
+        $data = [
+            'transactions'  => $transactions,
+            'date_start'    => $start->format('d/m/Y'),
+            'date_end'      => $end->format('d/m/Y')
+        ];
 
-        $selectedShipping   = $request['shippingRadio'];
-        $splitedShipping = explode('-', $selectedShipping);
-
-        $carts = Cart::where('user_id', 'like', $userId)->get();
-        foreach ($carts as $cart){
-            $cart->courier_id = $splitedShipping[0];
-            $cart->delivery_type_id = $splitedShipping[1];
-            $cart->delivery_fee = $splitedShipping[2];
-
-            $cart->save();
-        }
-        return redirect()->route('checkout3');
+        return View('frontend.show-orders')->with($data);
     }
 
-    //checkout item, address, shipping and courier, price
-    public function CheckoutProcess3(){
-        $user = Auth::user();
-        $userId = $user->id;
+    public function history(){
+        $id = Auth::user()->id;
 
-        //get all item from DB
-        $carts = Cart::where('user_id', 'like', $userId)->get();
-        $userData = User::where('id', 'like', $userId)->first();
-        $userAddress = Address::where('user_id', 'like', $userId)->first();
+        $start = Carbon::today('Asia/Jakarta')->subMonth(3);
+        $end = Carbon::today('Asia/Jakarta')->addMonths(3);
 
-        $totalPrice = 0;
-        $shipping = 0;
-        $grandTotal = 0;
-        foreach($carts as $cart){
-            $totalPriceTem = $cart->getOriginal('total_price');
-            $totalPrice +=  $totalPriceTem;
-            $shipping = $cart->getOriginal('delivery_fee');
+        if(!empty(request()->start) && !empty(request()->end)){
+            $start = Carbon::createFromFormat('d/m/Y', request()->start, 'Asia/Jakarta');
+            $end = Carbon::createFromFormat('d/m/Y', request()->end, 'Asia/Jakarta');
 
+            if(!empty(request()->search)){
+                $transactions = Transaction::where('user_id', $id)
+                    ->where('status_id', '!=', 3)
+                    ->where('status_id', '!=', 4)
+                    ->whereBetween('created_on', [$start->toDateString(),$end->toDateString()])
+                    ->where('invoice','LIKE','%'. request()->search. '%')
+                    ->orderByDesc('created_on')->get();
+            }else{
+                $transactions = Transaction::where('user_id', $id)
+                    ->where('status_id', '!=', 3)
+                    ->where('status_id', '!=', 4)
+                    ->whereBetween('created_on', [$start->toDateString(),$end->toDateString()])
+                    ->orderByDesc('created_on')->get();
+            }
         }
-        $grandTotal = $totalPrice + $shipping;
-
-        $totalPrice = number_format($totalPrice, 0, ",", ".");
-        $shipping = number_format($shipping, 0, ",", ".");
-        $grandTotal = number_format($grandTotal, 0, ",", ".");
-
-        return view('frontend.checkout-step3', compact('carts', 'userData', 'userAddress', 'totalPrice', 'shipping', 'grandTotal'));
-    }
-
-    //select payment method
-    public function CheckoutProcess4(){
-        $user = Auth::user();
-        $userId = $user->id;
-        $carts = Cart::where('user_id', 'like', $userId)->get();
-
-        $totalPrice = 0;
-        $shipping = 0;
-        $grandTotal = 0;
-        foreach($carts as $cart){
-            $totalPriceTem = $cart->getOriginal('total_price');
-            $totalPrice +=  $totalPriceTem;
-            $shipping = $cart->getOriginal('delivery_fee');
-
+        else{
+            $transactions = Transaction::where('user_id', $id)
+                ->where('status_id', '!=', 3)
+                ->where('status_id', '!=', 4)
+                ->whereBetween('created_on', [$start->toDateString(),$end->toDateString()])
+                ->orderByDesc('created_on')->get();
         }
-        $grandTotal = $totalPrice + $shipping;
 
-        $totalPrice = number_format($totalPrice, 0, ",", ".");
-        $shipping = number_format($shipping, 0, ",", ".");
-        $grandTotal = number_format($grandTotal, 0, ",", ".");
-        return view('frontend.checkout-step4', compact('totalPrice', 'shipping', 'grandTotal'));
-    }
+        $data = [
+            'transactions'  => $transactions,
+            'date_start'    => $start->format('d/m/Y'),
+            'date_end'      => $end->format('d/m/Y')
+        ];
 
-//    //bank transfer
-//    public function CheckoutProcessBank(){
-//        return view('frontend.checkout-step4-bank');
-//    }
-//
-//    //bank transfer process
-//    public function CheckoutProcessBankSubmit(Request $request){
-//        $user = Auth::user();
-//        $userId = $user->id;
-//
-//        $validator = Validator::make($request->all(),[
-//            'sender_name'                   => 'required',
-//            'transfer_date'                  => 'required',
-//            'receiver_bank'                 => 'required',
-//            'transfer_amount'                => 'required'
-//        ]);
-//
-//        if ($validator->fails()) {
-//            $this->throwValidationException(
-//                $request, $validator
-//            );
-//        }
-//        else {
-//
-//        }
-//
-//        //return ke page transaction
-//        return redirect()->route('checkout4');
-//    }
-
-    //payment online failed
-    public function CheckoutProcessFailed(){
-
-//        $transactionDB = Transaction::where('order_id', '=', '59ba09dc171c4')->first();
-//        $userMail = $transactionDB->user;
-//
-//        $userMail->notify(new TransactionNotify($transactionDB));
-
-//        $userMail = "yansen626@gmail.com";
-//        $emailBody = new NewOrderCustomer($transactionDB);
-//        Mail::to($userMail)->send($emailBody);
-
-        return view('frontend.checkout-step4-failed');
+        return View('frontend.show-order-histories')->with($data);
     }
 }

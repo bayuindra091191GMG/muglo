@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 
-class ProductsController extends Controller
+class ProductController extends Controller
 {
     //
     public function products($categoryId, $categoryName){
@@ -159,5 +159,13 @@ class ProductsController extends Controller
         ];
 
         return View('frontend.show-search-results')->with($data);
+    }
+
+    public function exampleProductList(){
+        return View('frontend.show-products');
+    }
+
+    public function exampleProductDetail(){
+        return View('frontend.show-product');
     }
 }

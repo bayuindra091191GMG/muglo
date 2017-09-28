@@ -78,6 +78,8 @@
 <script src="{{ URL::asset('js/frontend/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ URL::asset('js/frontend/jquery.flexslider-min.js') }}"></script>
 <script src="{{ URL::asset('js/frontend/jquery.isotope.min.js') }}"></script>
+<script src="{{ URL::asset('js/frontend/jquery.nouislider.min.js') }}"></script>
+<script src="{{ URL::asset('js/frontend/jquery.elevatezoom.js') }}"></script>
 <script src="{{ URL::asset('js/frontend/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
 
 <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
@@ -92,7 +94,7 @@
 <script src="{{ URL::asset('js/frontend/datatable/jquery.dataTables.min.js') }}"></script>
 <script src="{{ URL::asset('js/frontend/datatable/dataTables.bootstrap.min.js') }}"></script>
 
-
+<!-- Custom -->
 <script src="{{ URL::asset('js/frontend/custom.js') }}"></script>
 </body>
 </html>

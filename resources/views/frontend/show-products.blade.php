@@ -1,249 +1,437 @@
-@extends('layouts.frontend-bayu')
+@extends('layouts.frontend')
 
 @section('body-content')
-    <!-- BREADCRUMBS -->
-    <section class="breadcrumb women parallax margbot30">
+    <!-- CONTENT START -->
+    <div class="content">
 
-        <!-- CONTAINER -->
-        <div class="container">
-            <h2>{{$selectedCategory->name}}</h2>
-        </div><!-- //CONTAINER -->
-    </section><!-- //BREADCRUMBS -->
+        <!--======= SUB BANNER =========-->
+        <section class="sub-banner animate fadeInUp" data-wow-delay="0.4s">
+            <div class="container">
+                <h4>SHOP ALL PRODUCTS</h4>
+                <!-- Breadcrumb -->
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">SHOP</li>
+                </ol>
+            </div>
+        </section>
 
+        <!--======= PAGES INNER =========-->
+        <section class="section-p-30px pages-in">
+            <div class="container">
+                <div class="row">
 
-    <!-- SHOP BLOCK -->
-    <section class="shop">
+                    <!--======= SIDE BAR =========-->
+                    <div class="col-sm-3 animate fadeInLeft" data-wow-delay="0.2s">
+                        <div class="side-bar">
+                            <h4>Filter by</h4>
 
-        <!-- CONTAINER -->
-        <div class="container">
+                            <!-- HEADING -->
+                            <div class="heading">
+                                <h6>CATEGORIES</h6>
+                            </div>
 
-            <!-- ROW -->
-            <div class="row">
+                            <!-- CATEGORIES -->
+                            <ul class="cate">
+                                <li><a href="#.">Men’s <span>(32)</span></a></li>
+                                <li><a href="#.">Woman <span>(9)</span></a> </li>
+                                <li><a href="#.">Kid’s <span>(25)</span></a> </li>
+                                <li class="drop-menu"> <a href="#." class="title collapsed" data-toggle="collapse" data-target="#access"> Accessories <span>(15)</span></a>
+                                    <div class="collapse" id="access">
+                                        <div class="well">
+                                            <ul>
+                                                <li><a href="#.">Men</a></li>
+                                                <li><a href="#.">Woman</a></li>
+                                                <li><a href="#.">Kid</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a href="#.">Bag & Shoes <span>(8)</span></a> </li>
+                                <li class="drop-menu"> <a href="#." class="title collapsed" data-toggle="collapse" data-target="#watches"> Watch <span>(15)</span></a>
+                                    <div class="collapse" id="watches">
+                                        <div class="well">
+                                            <ul>
+                                                <li><a href="#.">Men Watch</a></li>
+                                                <li><a href="#.">Woman Watch</a></li>
+                                                <li><a href="#.">Kid Watch</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a href="#.">Sale <span> (11)</span></a> </li>
+                                <li><a href="#.">Top Rate <span>(35)</span></a> </li>
+                                <li><a href="#.">Collections <span>(17)</span></a> </li>
+                                <li><a href="#.">CONTACT US </a> </li>
+                            </ul>
 
-                <!-- SIDEBAR -->
-                <div id="sidebar" class="col-lg-3 col-md-3 col-sm-3 padbot50">
+                            <!-- HEADING -->
+                            <div class="heading">
+                                <h6>COLOUR</h6>
+                            </div>
 
-                    <!-- CATEGORIES -->
-                    <div class="sidepanel widget_categories">
-                        <h3>Product Categories</h3>
-                        <ul>
-                            <li><a href="{{ route('products', ['categoryId' => 0, 'categoryName' => "all"]) }}" >All</a></li>
-                            @foreach($categories as $category)
-                                <li><a href="{{ route('products', ['categoryId' => $category->id, 'categoryName' => $category->name]) }}" >{{$category->name}}</a></li>
-                            @endforeach
+                            <!-- COLORE -->
+                            <ul class="cate">
+                                <li><a href="#.">Purple <span>(32) </span></a></li>
+                                <li><a href="#.">Red (9) <span>(9)</span></a> </li>
+                                <li><a href="#.">Yellow <span>(25)</span></a> </li>
+                                <li class="drop-menu"> <a href="#." class="title collapsed" data-toggle="collapse" data-target="#color"> White/Black <span>(15)</span></a>
+                                    <div class="collapse" id="color">
+                                        <div class="well">
+                                            <ul>
+                                                <li><a href="#.">Red</a></li>
+                                                <li><a href="#.">Purple</a></li>
+                                                <li><a href="#.">Yellow</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <!-- HEADING -->
+                            <div class="heading">
+                                <h6>PRICE</h6>
+                            </div>
+                            <!-- PRICE -->
+                            <div class="cost-price-content">
+                                <div id="price-range" class="price-range"></div>
+                                <span id="price-min" class="price-min">20</span> <span id="price-max" class="price-max">80</span> </div>
+                            <a href="#." class="btn btn-small btn-dark" >FILTER</a>
+
+                            <!-- TAGS -->
+                            <h4 class="margin-t-40">Product Tags</h4>
+                            <ul class="tags">
+                                <li><a href="#.">FASHION</a></li>
+                                <li><a href="#.">BAGS</a></li>
+                                <li><a href="#.">TABLET</a></li>
+                                <li><a href="#.">ELECTRONIC</a></li>
+                                <li><a href="#.">BEAUTY</a></li>
+                                <li><a href="#.">TRtENDING</a></li>
+                                <li><a href="#.">SHOES</a></li>
+                            </ul>
+
+                            <!-- COMPAIR BOX -->
+                            {{--<h4 class="margin-t-40">Compare</h4>--}}
+                            {{--<div class="compair-box">--}}
+                                {{--<div class="position-center-center full-width text-center"> No products to compare </div>--}}
+                            {{--</div>--}}
+                            {{--<a href="#." class="btn btn-small btn-dark" >Compare</a>--}}
+
+                            <!-- ADS-->
+                            {{--<div class="sider-bar-ads"> <img src="{{ asset('frontend_images/side-bar-ad.jpg') }}" alt="" >--}}
+                                {{--<div class="position-center-center full-width text-center"> 1805 <a href="#." class="btn btn-small btn-dark" >SHOP NOW</a> </div>--}}
+                            {{--</div>--}}
+                        </div>
+                    </div>
+
+                    <!--======= ITEMS =========-->
+                    <div class="col-sm-9 animate fadeInUp" data-wow-delay="0.2s">
+                        <div class="items-short-type animate fadeInUp" data-wow-delay="0.4s">
+
+                            <!--======= GRID LIST STYLE =========-->
+                            <div class="grid-list"> <a href="#."><i class="fa fa-th-large"></i></a> <a href="#."><i class="fa fa-th-list"></i></a> </div>
+
+                            <!--======= SHORT BY =========-->
+                            <div class="short-by">
+                                <select class="selectpicker">
+                                    <option>Short by</option>
+                                    <option>Short by</option>
+                                </select>
+                                <p>Showing 1-12 of 30 products</p>
+                            </div>
+
+                            <!--======= VIEW ITEM NUMBER =========-->
+                            <div class="view-num">
+                                <ul>
+                                    <li>View&nbsp;</li>
+                                    <li><a href="#.">9</a>/</li>
+                                    <li><a href="#.">12</a>/</li>
+                                    <li><a href="#.">24</a>/</li>
+                                    <li><a href="#.">All</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!--======= Products =========-->
+                        <div class="popurlar_product">
+                            <ul class="row">
+
+                                <!-- New Products -->
+                                <li class="col-sm-4 animate fadeIn" data-wow-delay="0.4s">
+                                    <div class="items-in">
+                                        <!-- Image -->
+                                        <img src="{{ asset('frontend_images/new-item-1.jpg') }}" alt="">
+                                        <!-- Hover Details -->
+                                        <div class="over-item">
+                                            <ul class="animated fadeIn">
+                                                <li> <a href="{{ asset('frontend_images/new-item-1.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+                                                <li> <a href="#."><i class="ion-shuffle"></i></a></li>
+                                                <li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
+                                                <li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
+                                                <!-- Rating Stars -->
+                                                <li class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item Name -->
+                                        <div class="details-sec"> <a href="#.">LOOSE-FIT TRENCH COAT</a> <span class="font-montserrat">129.00 USD</span> </div>
+                                    </div>
+                                </li>
+
+                                <!-- New Products -->
+                                <li class="col-sm-4 animate fadeIn" data-wow-delay="0.6s">
+                                    <div class="items-in">
+                                        <!-- Image -->
+                                        <img src="{{ asset('frontend_images/new-item-2.jpg') }}" alt="">
+                                        <!-- Hover Details -->
+                                        <div class="over-item">
+                                            <ul class="animated fadeIn">
+                                                <li> <a href="{{ asset('frontend_images/new-item-2.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+                                                <li> <a href="#."><i class="ion-shuffle"></i></a></li>
+                                                <li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
+                                                <li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
+                                                <!-- Rating Stars -->
+                                                <li class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item Name -->
+                                        <div class="details-sec"> <a href="#.">LOOSE-FIT TRENCH COAT</a> <span class="font-montserrat">129.00 USD</span><span class="text-line">129.00 USD</span> </div>
+                                    </div>
+                                </li>
+
+                                <!-- New Products -->
+                                <li class="col-sm-4 animate fadeIn" data-wow-delay="0.8s">
+                                    <div class="items-in">
+                                        <!--  Tags  -->
+                                        <div class="new-tag"> NEW </div>
+
+                                        <!-- Image -->
+                                        <img src="{{ asset('frontend_images/new-item-3.jpg') }}" alt="">
+                                        <!-- Hover Details -->
+                                        <div class="over-item">
+                                            <ul class="animated fadeIn">
+                                                <li> <a href="{{ asset('frontend_images/new-item-3.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+                                                <li> <a href="#."><i class="ion-shuffle"></i></a></li>
+                                                <li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
+                                                <li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
+                                                <!-- Rating Stars -->
+                                                <li class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item Name -->
+                                        <div class="details-sec"> <a href="#.">LOOSE-FIT TRENCH COAT</a> <span class="font-montserrat">129.00 USD</span> </div>
+                                    </div>
+                                </li>
+
+                                <!-- New Products -->
+                                <li class="col-sm-4 animate fadeIn" data-wow-delay="0.4s">
+                                    <div class="items-in">
+
+                                        <!-- Image -->
+                                        <img src="{{ asset('frontend_images/new-item-4.jpg') }}" alt="">
+                                        <!-- Hover Details -->
+                                        <div class="over-item">
+                                            <ul class="animated fadeIn">
+                                                <li> <a href="{{ asset('frontend_images/new-item-4.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+                                                <li> <a href="#."><i class="ion-shuffle"></i></a></li>
+                                                <li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
+                                                <li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
+                                                <!-- Rating Stars -->
+                                                <li class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item Name -->
+                                        <div class="details-sec"> <a href="#.">LOOSE-FIT TRENCH COAT</a> <span class="font-montserrat">129.00 USD</span><span class="text-line">129.00 USD</span> </div>
+                                    </div>
+                                </li>
+
+                                <!-- New Products -->
+                                <li class="col-sm-4 animate fadeIn" data-wow-delay="0.6s">
+                                    <div class="items-in">
+
+                                        <!-- Image -->
+                                        <img src="{{ asset('frontend_images/new-item-5.jpg') }}" alt="">
+                                        <!-- Hover Details -->
+                                        <div class="over-item">
+                                            <ul class="animated fadeIn">
+                                                <li> <a href="{{ asset('frontend_images/new-item-5.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+                                                <li> <a href="#."><i class="ion-shuffle"></i></a></li>
+                                                <li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
+                                                <li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
+                                                <!-- Rating Stars -->
+                                                <li class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item Name -->
+                                        <div class="details-sec"> <a href="#.">LOOSE-FIT TRENCH COAT</a> <span class="font-montserrat">129.00 USD</span> </div>
+                                    </div>
+                                </li>
+
+                                <!-- New Products -->
+                                <li class="col-sm-4 animate fadeIn" data-wow-delay="0.8s">
+                                    <div class="items-in">
+
+                                        <!-- Image -->
+                                        <img src="{{ asset('frontend_images/new-item-6.jpg') }}" alt="">
+                                        <!-- Hover Details -->
+                                        <div class="over-item">
+                                            <ul class="animated fadeIn">
+                                                <li> <a href="{{ asset('frontend_images/new-item-6.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+                                                <li> <a href="#."><i class="ion-shuffle"></i></a></li>
+                                                <li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
+                                                <li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
+                                                <!-- Rating Stars -->
+                                                <li class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item Name -->
+                                        <div class="details-sec"> <a href="#.">LOOSE-FIT TRENCH COAT</a> <span class="font-montserrat">129.00 USD</span> </div>
+                                    </div>
+                                </li>
+
+                                <!-- New Products -->
+                                <li class="col-sm-4 animate fadeIn" data-wow-delay="0.4s">
+                                    <div class="items-in">
+                                        <!-- Image -->
+                                        <img src="{{ asset('frontend_images/new-item-7.jpg') }}" alt="">
+                                        <!-- Hover Details -->
+                                        <div class="over-item">
+                                            <ul class="animated fadeIn">
+                                                <li> <a href="{{ asset('frontend_images/new-item-7.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+                                                <li> <a href="#."><i class="ion-shuffle"></i></a></li>
+                                                <li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
+                                                <li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
+                                                <!-- Rating Stars -->
+                                                <li class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item Name -->
+                                        <div class="details-sec"> <a href="#.">LOOSE-FIT TRENCH COAT</a> <span class="font-montserrat">129.00 USD</span><span class="text-line">129.00 USD</span> </div>
+                                    </div>
+                                </li>
+
+                                <!-- New Products -->
+                                <li class="col-sm-4 animate fadeIn" data-wow-delay="0.6s">
+                                    <div class="items-in">
+                                        <!-- Image -->
+                                        <img src="{{ asset('frontend_images/new-item-8.jpg') }}" alt="">
+                                        <!-- Hover Details -->
+                                        <div class="over-item">
+                                            <ul class="animated fadeIn">
+                                                <li> <a href="{{ asset('frontend_images/new-item-8.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+                                                <li> <a href="#."><i class="ion-shuffle"></i></a></li>
+                                                <li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
+                                                <li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
+                                                <!-- Rating Stars -->
+                                                <li class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item Name -->
+                                        <div class="details-sec"> <a href="#.">LOOSE-FIT TRENCH COAT</a> <span class="font-montserrat">129.00 USD</span> </div>
+                                    </div>
+                                </li>
+
+                                <!-- New Products -->
+                                <li class="col-sm-4 animate fadeIn" data-wow-delay="0.8s">
+                                    <div class="items-in">
+
+                                        <!--  Tags  -->
+                                        <div class="hot-tag"> HOT </div>
+                                        <!-- Image -->
+                                        <img src="{{ asset('frontend_images/new-item-9.jpg') }}" alt="">
+                                        <!-- Hover Details -->
+                                        <div class="over-item">
+                                            <ul class="animated fadeIn">
+                                                <li> <a href="{{ asset('frontend_images/new-item-9.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+                                                <li> <a href="#."><i class="ion-shuffle"></i></a></li>
+                                                <li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
+                                                <li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
+                                                <!-- Rating Stars -->
+                                                <li class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item Name -->
+                                        <div class="details-sec"> <a href="#.">LOOSE-FIT TRENCH COAT</a> <span class="font-montserrat">129.00 USD</span><span class="text-line">129.00 USD</span> </div>
+                                    </div>
+                                </li>
+
+                                <!-- New Products -->
+                                <li class="col-sm-4 animate fadeIn" data-wow-delay="0.4s">
+                                    <div class="items-in">
+                                        <!-- Image -->
+                                        <img src="{{ asset('frontend_images/new-item-10.jpg') }}" alt="">
+                                        <!-- Hover Details -->
+                                        <div class="over-item">
+                                            <ul class="animated fadeIn">
+                                                <li> <a href="{{ asset('frontend_images/new-item-10.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+                                                <li> <a href="#."><i class="ion-shuffle"></i></a></li>
+                                                <li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
+                                                <li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
+                                                <!-- Rating Stars -->
+                                                <li class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item Name -->
+                                        <div class="details-sec"> <a href="#.">LOOSE-FIT TRENCH COAT</a> <span class="font-montserrat">129.00 USD</span> </div>
+                                    </div>
+                                </li>
+
+                                <!-- New Products -->
+                                <li class="col-sm-4 animate fadeIn" data-wow-delay="0.6s">
+                                    <div class="items-in">
+                                        <!-- Image -->
+                                        <img src="{{ asset('frontend_images/new-item-11.jpg') }}" alt="">
+                                        <!-- Hover Details -->
+                                        <div class="over-item">
+                                            <ul class="animated fadeIn">
+                                                <li> <a href="{{ asset('frontend_images/new-item-11.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+                                                <li> <a href="#."><i class="ion-shuffle"></i></a></li>
+                                                <li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
+                                                <li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
+                                                <!-- Rating Stars -->
+                                                <li class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item Name -->
+                                        <div class="details-sec"> <a href="#.">LOOSE-FIT TRENCH COAT</a> <span class="font-montserrat">129.00 USD</span> <span class="text-line">129.00 USD</span></div>
+                                    </div>
+                                </li>
+
+                                <!-- New Products -->
+                                <li class="col-sm-4 animate fadeIn" data-wow-delay="0.8s">
+                                    <div class="items-in">
+                                        <!-- Image -->
+                                        <img src="{{ asset('frontend_images/new-item-12.jpg') }}" alt="">
+                                        <!-- Hover Details -->
+                                        <div class="over-item">
+                                            <ul class="animated fadeIn">
+                                                <li> <a href="{{ asset('frontend_images/new-item-12.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+                                                <li> <a href="#."><i class="ion-shuffle"></i></a></li>
+                                                <li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
+                                                <li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
+                                                <!-- Rating Stars -->
+                                                <li class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item Name -->
+                                        <div class="details-sec"> <a href="#.">LOOSE-FIT TRENCH COAT</a> <span class="font-montserrat">129.00 USD</span> </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!--======= PAGINATION =========-->
+                        <ul class="pagination animate fadeInUp" data-wow-delay="0.4s">
+                            <li><a href="#.">1</a></li>
+                            <li><a href="#.">2</a></li>
+                            <li><a href="#.">3</a></li>
+                            <li><a href="#.">4</a></li>
+                            <li><a href="#.">5</a></li>
+                            <li><a href="#."><i class="fa fa-angle-right"></i></a></li>
                         </ul>
                     </div>
-                    <!-- //CATEGORIES -->
-
-                    <!-- PRICE RANGE -->
-                    <div class="sidepanel widget_pricefilter">
-                        <h3>Filter by price</h3>
-                        <div class="form-group">
-                            <input type="text" id="max" class="form-control" placeholder="Max" value="{{ $filterMaxPrice ?? '' }}"/>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="min" class="form-control" placeholder="Min" value="{{ $filterMinPrice ?? '' }}"/>
-                        </div>
-                        <div class="form-group">
-                            <a href="javascript:void(0);" class="btn btn-primary" onclick="filterPriceProducts()">Go</a>
-                        </div>
-                    </div>
-                    <!-- //PRICE RANGE -->
-
-                    <!-- BANNERS WIDGET -->
-                    {{--<div class="widget_banners">--}}
-                        {{--<a class="banner nobord margbot10" href="javascript:void(0);" ><img src="{{ URL::asset('frontend_images/tovar/banner10.jpg') }}" alt="" /></a>--}}
-                        {{--<a class="banner nobord margbot10" href="javascript:void(0);" ><img src="{{ URL::asset('frontend_images/tovar/banner9.jpg') }}" alt="" /></a>--}}
-                        {{--<a class="banner nobord margbot10" href="javascript:void(0);" ><img src="{{ URL::asset('frontend_images/tovar/banner8.jpg') }}" alt="" /></a>--}}
-                    {{--</div>--}}
-                    <!-- //BANNERS WIDGET -->
                 </div>
-                <!-- //SIDEBAR -->
+            </div>
+        </section>
+    </div>
 
-                <!-- SHOP PRODUCTS -->
-                <div class="col-lg-9 col-sm-9 col-sm-9 padbot20">
-
-                    <!-- SHOP BANNER -->
-                    <div class="banner_block margbot15">
-                        {{--<a class="banner nobord" href="javascript:void(0);" ><img src="{{ URL::asset('frontend_images/tovar/banner21.jpg') }}" alt="" /></a>--}}
-                    </div><!-- //SHOP BANNER -->
-
-                    <!-- SORTING TOVAR PANEL -->
-                    <div class="sorting_options clearfix">
-
-                        <!-- COUNT TOVAR ITEMS -->
-                        <div class="count_tovar_items">
-                            <p>@if($selectedCategory->count() > 0)
-                                    {{$selectedCategory->name}}
-                                   @else
-                                   All Categories
-                                @endif
-                            </p>
-                            <span>{{$productCount}} Items</span>
-                        </div><!-- //COUNT TOVAR ITEMS -->
-
-                        <!-- TOVAR FILTER -->
-                        <div class="product_sort">
-                            <p>SORT BY</p>
-                            <select id="filter-sort" class="fancy-select" onchange="sortFilterProducts(this)">
-                                @if(!empty($filterSort) && $filterSort == '1')
-                                    <option value="1" selected>Newest</option>
-                                @else
-                                    <option value="1">Newest</option>
-                                @endif
-
-                                @if(!empty($filterSort) && $filterSort == '2')
-                                    <option value="2" selected>Lowest-Highest Price</option>
-                                @else
-                                    <option value="2">Lowest-Highest Price</option>
-                                @endif
-
-                                @if(!empty($filterSort) && $filterSort == '3')
-                                    <option value="3" selected>Highest-Lowest Price</option>
-                                @else
-                                    <option value="3">Highest-Lowest Price</option>
-                                @endif
-
-                                @if(!empty($filterSort) && $filterSort == '4')
-                                    <option value="4" selected>A-Z</option>
-                                @else
-                                    <option value="4">A-Z</option>
-                                @endif
-                            </select>
-                        </div>
-                        <!-- //TOVAR FILTER -->
-
-                        <!-- PRODUC SIZE -->
-                        <div id="toggle-sizes">
-                            <a class="view_box active" href="javascript:void(0);"><i class="fa fa-th-large"></i></a>
-                            <a class="view_full" href="javascript:void(0);"><i class="fa fa-th-list"></i></a>
-                        </div><!-- //PRODUC SIZE -->
-                    </div><!-- //SORTING TOVAR PANEL -->
-
-
-                    <!-- ROW -->
-                    <div class="row shop_block">
-
-                        @foreach($products as $product)
-                            <div class="tovar_wrapper col-lg-4 col-md-4 col-sm-6 col-xs-6 col-ss-12 padbot40">
-                                <div class="tovar_item clearfix">
-                                    <div class="tovar_img">
-                                        <div class="tovar_img_wrapper">
-                                            @if($product->product_image->count() > 0)
-                                                <img class="img" src="{{ asset('storage\product\\'. $product->product_image()->where('featured', 1)->first()->path) }}" alt="" />
-                                                <img class="img_h" src="{{ asset('storage\product\\'. $product->product_image()->where('featured', 1)->first()->path) }}" alt="" />
-                                                {{--<div class="img product-list-image" style="background-image: url('{{ asset('storage/product/'. $product->product_image()->where('featured', 1)->first()->path) }}')"></div>--}}
-                                                {{--<div class="img_h product-list-image" style="background-image: url('{{ asset('storage/product/'. $product->product_image()->where('featured', 1)->first()->path) }}')"></div>--}}
-                                            @else
-                                                <img class="img" src="{{ URL::asset('frontend_images/tovar/women/1.jpg') }}" alt="" />
-                                                <img class="img_h" src="{{ URL::asset('frontend_images/tovar/women/1_2.jpg') }}" alt="" />
-                                            @endif
-                                        </div>
-                                        <div class="tovar_item_btns">
-                                            <a class="add_bag" href="javascript:void(0);" onclick="addToCart('{{ $product->id }}')"><i class="fa fa-shopping-cart"></i></a>
-                                            {{--<a class="add_lovelist" href="javascript:void(0);" ><i class="fa fa-heart"></i></a>--}}
-                                        </div>
-                                    </div>
-                                    <div class="tovar_description clearfix">
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <div class="row">
-                                                <a class="tovar_title" href="{{ route('product-detail', ['id' => $product->id]) }}" >{{ $product->name }}</a>
-                                            </div>
-                                            <div class="row">
-                                                @if(!empty($product->discount) || !empty($product->discount_flat))
-                                                    <span class="tovar_price" style="text-decoration: line-through; font-size: 11px;">Rp {{$product->price}}</span>
-                                                @else
-                                                    <span class="tovar_price" style="color: orange; visibility: hidden;">Rp {{$product->price_discounted}}</span>
-                                                @endif
-                                            </div>
-                                            <div class="row">
-                                                <span class="tovar_price" style="color: orange;">Rp {{$product->price_discounted}}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    <!-- //ROW -->
-
-                    <hr>
-
-                    <div class="clearfix">
-                        <!-- PAGINATION -->
-                        {!! $products->render() !!}
-                        <!-- //PAGINATION -->
-
-                    </div>
-                </div><!-- //SHOP PRODUCTS -->
-            </div><!-- //ROW -->
-        </div><!-- //CONTAINER -->
-    </section><!-- //SHOP -->
-
-    <script>
-        var urlLink = '{{route('addCart')}}';
-
-        function sortFilterProducts(e){
-            // Get existing price filter
-            var max = $("#max").val();
-            var min = $("#min").val();
-
-            // Get category
-            var category = '{{ strval($selectedCategory->id) }}';
-            var categoryName = "All";
-
-            if(!isEmpty(category) && category !== '0') {
-                categoryName = '{{ $selectedCategory->name }}';
-            }else{
-                category = '0';
-            }
-
-            // Get sort filter value
-            var sort = e.value;
-
-            var url = "/product/category/" + category + '-' + categoryName + "?sort=" + sort;
-            if(!isEmpty(max)){
-                url += "&max=" + max;
-            }
-
-            if(!isEmpty(min)){
-                url += "&min=" + min;
-            }
-
-            window.location = url;
-        }
-
-        function filterPriceProducts(){
-            // Get price filter value
-            var max = $("#max").val();
-            var min = $("#min").val();
-
-            // Get existing sort filter value
-            var sort = $("#filter-sort option:selected").val();
-
-            // Get category
-            var category = '{{ strval($selectedCategory->id) }}';
-            var categoryName = "All";
-
-            if(!isEmpty(category) && category !== '0') {
-                categoryName = '{{ $selectedCategory->name }}';
-            }else{
-                category = '0';
-            }
-
-            if(!isEmpty(max) || !isEmpty(min)){
-                var url = "/product/category/" + category + '-' + categoryName + "?sort=" + sort;
-                if(!isEmpty(max)){
-                    url += "&max=" + max;
-                }
-
-                if(!isEmpty(min)){
-                    url += "&min=" + min;
-                }
-
-                window.location = url;
-            }
-        }
-    </script>
-    @include('frontend.partials._modal')
 @endsection
