@@ -51,19 +51,19 @@ Route::post('/edit-cart', [
 ]);
 
 // Payment
-Route::get('checkout-1', 'Frontend\TransactionController@CheckoutProcess1')->name('checkout');
-Route::get('checkout-2', 'Frontend\TransactionController@CheckoutProcess2')->name('checkout2');
+Route::get('checkout-1', 'Frontend\PaymentController@CheckoutProcess1')->name('checkout');
+Route::get('checkout-2', 'Frontend\PaymentController@CheckoutProcess2')->name('checkout2');
 Route::post('/checkout2-submit', [
-    'uses' => 'Frontend\TransactionController@CheckoutProcess2Submit',
+    'uses' => 'Frontend\PaymentController@CheckoutProcess2Submit',
     'as' => 'checkout2Submit'
 ]);
-Route::get('checkout-3', 'Frontend\TransactionController@CheckoutProcess3')->name('checkout3');
-Route::get('checkout-4', 'Frontend\TransactionController@CheckoutProcess4')->name('checkout4');
+Route::get('checkout-3', 'Frontend\PaymentController@CheckoutProcess3')->name('checkout3');
+Route::get('checkout-4', 'Frontend\PaymentController@CheckoutProcess4')->name('checkout4');
 Route::get('checkout-success/{userId}', 'MidtransController@success');
-Route::get('checkout-failed', 'Frontend\TTraransactionController@CheckoutProcessFailed')->name('checkout-failed');
-Route::get('checkout-bank', 'Frontend\TransactionController@CheckoutProcessBank')->name('checkout-bank');
+Route::get('checkout-failed', 'Frontend\PaymentController@CheckoutProcessFailed')->name('checkout-failed');
+Route::get('checkout-bank', 'Frontend\PaymentController@CheckoutProcessBank')->name('checkout-bank');
 Route::post('/checkout-bank-submit', [
-    'uses' => 'Frontend\TransactionController@CheckoutProcessBankSubmit',
+    'uses' => 'Frontend\PaymentController@CheckoutProcessBankSubmit',
     'as' => 'checkoutBankSubmit'
 ]);
 Route::post('/checkout-mid', [
@@ -77,7 +77,7 @@ Route::post('/checkout-notification', [
 Route::get('checkout/success/{paymentMethod}', 'MidtransController@checkoutSuccess')->name('checkout-success');
 // End Frontend Routing
 
-Route::get('/verif-yemail/{token}', 'Auth\RegisterController@verify');
+Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 
 // User Data
 Route::prefix('user')->group(function(){
@@ -98,11 +98,11 @@ Route::prefix('user/address')->group(function(){
 
 // Purchasing
 Route::prefix('purchase')->group(function(){
-   Route::get('/payment', 'Frontend\PurchaseController@payment')->name('user-payment-list');
-    Route::get('/order', 'Frontend\PurchaseController@order')->name('user-order-list');
-    Route::get('/history', 'Frontend\PurchaseController@history')->name('user-order-history-list');
+   Route::get('/payment', 'Frontend\TransactionController@payment')->name('user-payment-list');
+    Route::get('/order', 'Frontend\TransactionController@order')->name('user-order-list');
+    Route::get('/history', 'Frontend\TransactionController@history')->name('user-order-history-list');
 });
-Route::get('invoice/{id}','Frontend\PurchaseController@invoice')->name('invoice-view');
+Route::get('invoice/{id}','Frontend\TransactionController@invoice')->name('invoice-view');
 
 // End Frontend Routing
 
