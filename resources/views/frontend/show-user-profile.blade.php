@@ -1,52 +1,111 @@
 @extends('layouts.frontend')
 
 @section('body-content')
-    <!-- MY ACCOUNT PAGE -->
-    <section class="my_account parallax">
+    <!-- CONTENT START -->
+    <div class="content">
 
-        <!-- CONTAINER -->
-        <div class="container">
-            <div class="my_account_block clearfix">
-                <div>
-                    @if(\Illuminate\Support\Facades\Session::has('message'))
-                        <div class="alert alert-success alert-dismissible fade in" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                            </button>
-                            <strong>{{ \Illuminate\Support\Facades\Session::get('message') }}</strong>
+        <!--======= SUB BANNER =========-->
+        <section class="sub-banner animate fadeInUp" data-wow-delay="0.4s">
+            <div class="container">
+                <h4>FAQ</h4>
+                <!-- Breadcrumb -->
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">FAQ</li>
+                </ol>
+            </div>
+        </section>
+
+        <!--  FAQS -->
+        <section class="section-p-30px">
+            <div class="container">
+                <div class="row animate fadeInUp" data-wow-delay="0.4s">
+                    <div class="col-md-3">
+                        <div class="side-bar">
+
+                            <!--  SEARCH -->
+                            <div class="search">
+                                <form>
+                                    <input type="text" placeholder="SEARCH FAQ">
+                                    <button type="submit"> <i class="fa fa-search"></i></button>
+                                </form>
+                            </div>
+
+                            <!-- FAQS NAV -->
+                            <ul class="cate faq-cate">
+                                <li><a href="#."> General Faqs</a></li>
+                                <li><a href="#."> billing & accounts</a></li>
+                                <li><a href="#."> premissions & workspace</a></li>
+                                <li><a href="#."> security & backup</a></li>
+                                <li><a href="#."> email support team</a></li>
+                            </ul>
                         </div>
-                    @endif
-                </div>
-                <div class="login">
-                    <h2>User Data</h2>
-                    <p>
-                        Name: {{\Illuminate\Support\Facades\Auth::user()->first_name}} {{\Illuminate\Support\Facades\Auth::user()->last_name}}
-                        <br/>
-                        Email: {{\Illuminate\Support\Facades\Auth::user()->email}}
-                        <br/>
-                        Phone: {{\Illuminate\Support\Facades\Auth::user()->phone}}
-                    </p>
-                    <div class="center"><a class="btn" href="{{ route('user-edit') }}" >Edit</a></div>
-                    <div class="center" style="margin-top: 2em;"><a class="btn" href="{{ route('password-edit') }}" >Change Password</a></div>
-                    <br/>
-                </div>
-                <div class="new_customers">
-                    <h2>Address</h2>
+                    </div>
 
-                    @if($address != '' && $address!= null)
-                        <p>
-                            {{ $address->name }}
-                            <br/>
-                            {{ $address->detail }}
-                            <br/>
-                            {{ $address->city_name }}, {{ $address->subdistrict_name }}<br/>
-                            {{ $address->province_name }} {{ $address->postal_code }}
-                        </p>
-                        <div class="center"><a class="btn" href="{{ route('user-address-edit') }}" >Edit Address</a></div>
-                    @else
-                        <div class="center"><a class="btn" href="{{ route('user-address-create') }}" >Add Address</a></div>
-                    @endif
+                    <!--======= FAQS =========-->
+                    <div class="col-md-9">
+                        <div class="faqs">
+
+                            <!-- FAQS NAV -->
+                            <div class="panel-group" id="accordion">
+
+                                <!-- FAQS 1 -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Curabitur eget leo at velit imperdiet varius eu ipsum vitae velit ?</a> </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse in">
+                                        <div class="panel-body"> Nunc euismod lobortis massa, id sollicitudin augue auctor vel. Integer ornare sollicitudin turpis vitae vestibulum. Curabitur faucibus ullamcorper lorem sed egestas. Pellentesque laoreet auctor eros, et consectetur eros auctor eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tortor nisi, egestas eget molestie tincidunt, tempus sed justo. Vestibulum ultricies auctor varius. Fusce consequat tincidunt dui, ac adipiscing turpis adipiscing pulvinar. Aliquam erat volutpat. Vivamus eleifend rhoncus nulla in laoreet. <br>
+                                            <br>
+                                            Aliquam commodo gravida magna eget tincidunt. Fusce nisi augue, malesuada in commodo quis, euismod quis orci. Integer vitae nisl non augue ullamcorper blandit. Donec vitae nibh ipsum, vitae semper orci. Nunc sed elit in nulla auctor imperdiet. Ut a nisl sit amet odio accumsan laoreet. Sed pharetra lectus in arcu pellentesque et iaculis justo pellentesque. Etiam laoreet sodales sapien, id congue magna malesuada ut. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </div>
+                                    </div>
+                                </div>
+
+                                <!-- FAQS 2 -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed"> Curabitur eget leo at velit imperdiet varius eu ipsum vitae velit ?</a> </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="panel-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. </div>
+                                    </div>
+                                </div>
+
+                                <!-- FAQS 3 -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed"> Class aptent taciti sociosqu ad litora torquent per conubia nostra pers.</a> </h4>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse">
+                                        <div class="panel-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. </div>
+                                    </div>
+                                </div>
+
+                                <!-- FAQS 4 -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapsefour" class="collapsed"> Curabitur eget leo at velit imperdiet varius eu ipsum vitae velit ?</a> </h4>
+                                    </div>
+                                    <div id="collapsefour" class="panel-collapse collapse">
+                                        <div class="panel-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. </div>
+                                    </div>
+                                </div>
+
+                                <!-- FAQS 5 -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapsefive" class="collapsed"> Class aptent taciti sociosqu ad litora torquent per conubia nostra pers.</a> </h4>
+                                    </div>
+                                    <div id="collapsefive" class="panel-collapse collapse">
+                                        <div class="panel-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div><!-- //CONTAINER -->
-    </section><!-- //MY ACCOUNT PAGE -->
+        </section>
+    </div>
+
 @endsection
