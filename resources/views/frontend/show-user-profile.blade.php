@@ -7,11 +7,11 @@
         <!--======= SUB BANNER =========-->
         <section class="sub-banner animate fadeInUp" data-wow-delay="0.4s">
             <div class="container">
-                <h4>FAQ</h4>
+                <h4>PROFIL ANDA</h4>
                 <!-- Breadcrumb -->
                 <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li class="active">FAQ</li>
+                    <li><a href="#">Beranda</a></li>
+                    <li class="active">Profil Anda</li>
                 </ol>
             </div>
         </section>
@@ -23,21 +23,178 @@
                     <div class="col-md-3">
                         <div class="side-bar">
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <!--  SEARCH -->
-                            <div class="search">
-                                <form>
-                                    <input type="text" placeholder="SEARCH FAQ">
-                                    <button type="submit"> <i class="fa fa-search"></i></button>
-                                </form>
-                            </div>
+                            {{--<div class="search">--}}
+                                {{--<form>--}}
+                                    {{--<input type="text" placeholder="SEARCH FAQ">--}}
+                                    {{--<button type="submit"> <i class="fa fa-search"></i></button>--}}
+                                {{--</form>--}}
+                            {{--</div>--}}
 
                             <!-- FAQS NAV -->
                             <ul class="cate faq-cate">
-                                <li><a href="#."> General Faqs</a></li>
-                                <li><a href="#."> billing & accounts</a></li>
-                                <li><a href="#."> premissions & workspace</a></li>
-                                <li><a href="#."> security & backup</a></li>
-                                <li><a href="#."> email support team</a></li>
+                                <li><a href="#."> Profil Anda</a></li>
+                                <li><a href="#."> Keamanan dan Kata Sandi</a></li>
+                                <li><a href="#."> Lain-lain</a></li>
                             </ul>
                         </div>
                     </div>
@@ -45,59 +202,44 @@
                     <!--======= FAQS =========-->
                     <div class="col-md-9">
                         <div class="faqs">
-
-                            <!-- FAQS NAV -->
-                            <div class="panel-group" id="accordion">
-
-                                <!-- FAQS 1 -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Curabitur eget leo at velit imperdiet varius eu ipsum vitae velit ?</a> </h4>
+                            <div class="col-lg-12 col-md-12">
+                                <div class="setting-container">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="email">Email:</label>
+                                                <input id="email" type="text" class="form-control" readonly value="bayuindra091191@gmail.com">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div id="collapseOne" class="panel-collapse collapse in">
-                                        <div class="panel-body"> Nunc euismod lobortis massa, id sollicitudin augue auctor vel. Integer ornare sollicitudin turpis vitae vestibulum. Curabitur faucibus ullamcorper lorem sed egestas. Pellentesque laoreet auctor eros, et consectetur eros auctor eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tortor nisi, egestas eget molestie tincidunt, tempus sed justo. Vestibulum ultricies auctor varius. Fusce consequat tincidunt dui, ac adipiscing turpis adipiscing pulvinar. Aliquam erat volutpat. Vivamus eleifend rhoncus nulla in laoreet. <br>
-                                            <br>
-                                            Aliquam commodo gravida magna eget tincidunt. Fusce nisi augue, malesuada in commodo quis, euismod quis orci. Integer vitae nisl non augue ullamcorper blandit. Donec vitae nibh ipsum, vitae semper orci. Nunc sed elit in nulla auctor imperdiet. Ut a nisl sit amet odio accumsan laoreet. Sed pharetra lectus in arcu pellentesque et iaculis justo pellentesque. Etiam laoreet sodales sapien, id congue magna malesuada ut. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="fname">Nama Depan:</label>
+                                                <input id="fname" type="text" class="form-control" readonly value="Bayu">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="lname">Nama Belakang:</label>
+                                                <input id="lname" type="text" class="form-control" readonly value="Indra">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <!-- FAQS 2 -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed"> Curabitur eget leo at velit imperdiet varius eu ipsum vitae velit ?</a> </h4>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="phone">Nomor Telepon:</label>
+                                                <input id="phone" type="text" class="form-control" readonly value="081315908000">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse">
-                                        <div class="panel-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. </div>
-                                    </div>
-                                </div>
-
-                                <!-- FAQS 3 -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed"> Class aptent taciti sociosqu ad litora torquent per conubia nostra pers.</a> </h4>
-                                    </div>
-                                    <div id="collapseThree" class="panel-collapse collapse">
-                                        <div class="panel-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. </div>
-                                    </div>
-                                </div>
-
-                                <!-- FAQS 4 -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapsefour" class="collapsed"> Curabitur eget leo at velit imperdiet varius eu ipsum vitae velit ?</a> </h4>
-                                    </div>
-                                    <div id="collapsefour" class="panel-collapse collapse">
-                                        <div class="panel-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. </div>
-                                    </div>
-                                </div>
-
-                                <!-- FAQS 5 -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapsefive" class="collapsed"> Class aptent taciti sociosqu ad litora torquent per conubia nostra pers.</a> </h4>
-                                    </div>
-                                    <div id="collapsefive" class="panel-collapse collapse">
-                                        <div class="panel-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <a href="#" class="btn btn-small btn-dark">Edit</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -8,3 +8,13 @@
     margin-top: 50px;
     margin-bottom: 50px;
 }
+
+.setting-container{
+    border: 1px solid #ddd;
+    padding: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.faq-cate {
+    margin-top: 0 !important;
+}

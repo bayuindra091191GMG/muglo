@@ -18,16 +18,16 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     //
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
 
     public function index()
     {
-        $address = Address::where('user_id', Auth::id())->first();
+//        $address = Address::where('user_id', Auth::id())->first();
 
-        return view('frontend.show-user-profile', compact('address'));
+        return view('frontend.show-user-profile');
     }
 
     public function edit()
