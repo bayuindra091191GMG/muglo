@@ -5,15 +5,15 @@
     <div class="top-bar">
         <div class="container">
             <!-- Language -->
-            <div class="language"> <a href="#." class="active">EN</a> <a href="#.">FR</a> <a href="#.">GE</a> </div>
+            <div class="language"> <a href="#." class="active">IN</a> <a href="#.">EN</a> </div>
             <div class="top-links">
                 <ul>
-                    <li><a href="#.">MY ACCOUNT</a></li>
-                    <li><a href="#.">MY WISHLIST</a></li>
-                    <li class="font-montserrat">CURRENCY:
+                    <li><a href="#.">AKUN SAYA</a></li>
+                    <li><a href="#.">PEMBELIAN SAYA</a></li>
+                    <li class="font-montserrat">MATA UANG:
                         <select class="selectpicker">
-                            <option>USD</option>
-                            <option>EURO</option>
+                            <option>IDR</option>
+                            {{--<option>EURO</option>--}}
                         </select>
                     </li>
                 </ul>
@@ -40,21 +40,7 @@
                 <!-- MENU BUTTON RESPONSIVE -->
                 <div class="menu-toggle"> <i class="fa fa-bars"> </i> </div>
                 <ul class="ownmenu">
-                    <li class="active"><a href="index.html">HOME</a>
-                        <ul class="dropdown">
-                            <li><a href="index.html">Index Defult</a></li>
-                            <li><a href="index-2.html">Index 2</a></li>
-                            <li><a href="index-3.html">Index 3</a></li>
-                            <li><a href="index-4.html">Index 4</a></li>
-                            <li><a href="index-5.html">Index 5</a></li>
-                            <li><a href="index-6.html">Index 6</a></li>
-                            <li><a href="index-7-construction.html">Index Construction</a></li>
-                            <li><a href="index-8-construction.html">Index Construction 2</a></li>
-                            <li><a href="index-09-furniture.html">Index Furniture</a></li>
-                            <li><a href="index-10-sports.html">Index Sports</a></li>
-                            <li><a href="index-11-beauty.html">Index Beauty</a></li>
-                            <li><a href="index-12-watches.html">Index Watches</a></li>
-                        </ul>
+                    <li><a href="index.html">BERANDA</a>
                     </li>
                     <li><a href="12-contact.html">PAGES</a>
                         <ul class="dropdown">

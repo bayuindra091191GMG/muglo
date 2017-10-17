@@ -19,22 +19,24 @@ use Illuminate\Support\Facades\Auth;
 class CartController
 {
     //
-    public function CartShowAll(){
-        if (Auth::check())
-        {
-            $userId = Auth::user()->id;
+    public function index(){
+//        if (Auth::check())
+//        {
+//            $userId = Auth::user()->id;
+//
+//            $carts = Cart::where('user_id', $userId)->get();
+//
+//            $totalPriceTem = Cart::where('user_id', $userId)->sum('total_price');
+//            $totalPrice = number_format($totalPriceTem, 0, ",", ".");
+//
+//            return view('frontend.carts', compact('carts','totalPrice', 'totalPriceTem'));
+//        }
+//        else
+//        {
+//            return redirect()->route('login');
+//        }
 
-            $carts = Cart::where('user_id', $userId)->get();
-
-            $totalPriceTem = Cart::where('user_id', $userId)->sum('total_price');
-            $totalPrice = number_format($totalPriceTem, 0, ",", ".");
-
-            return view('frontend.carts', compact('carts','totalPrice', 'totalPriceTem'));
-        }
-        else
-        {
-            return redirect()->route('login');
-        }
+        return view('frontend.show-cart');
     }
 
     //

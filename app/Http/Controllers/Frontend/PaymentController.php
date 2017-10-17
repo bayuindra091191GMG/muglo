@@ -34,74 +34,73 @@ use Webpatser\Uuid\Uuid;
 
 class PaymentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
 
     //set address for shipping
-    public function CheckoutProcess1(){
-//        if (!Auth::check())
-//        {
-//            return redirect()->route('landing');
+    public function step1(){
+//        $id = Auth::user()->id;
+//        if(!Cart::where('user_id', $id)->exists()){
+//            return Redirect::route('cart-list');
 //        }
-        $id = Auth::user()->id;
-        if(!Cart::where('user_id', $id)->exists()){
-            return Redirect::route('cart-list');
-        }
-
-        $Addressdata = Address::where('user_id', $id)->first();
-
-        return View('frontend.checkout-step1', compact('Addressdata'));
+//
+//        $Addressdata = Address::where('user_id', $id)->first();
+//
+//        return View('frontend.checkout-step1', compact('Addressdata'));
+        return View('frontend.checkout-step1');
     }
 
 
     //show shipping list
-    public function CheckoutProcess2(){
-        $couriers = Courier::all();
-        $deliveryTypes = DeliveryType::all();
+    public function step2(){
+//        $couriers = Courier::all();
+//        $deliveryTypes = DeliveryType::all();
+//
+//        $courierThrow = "";
+//        $temp = 1;
+//        //get courier code ex jne:tiki:pos
+//        foreach($couriers as $courier){
+//            if($temp < $couriers->count()){
+//                $courierThrow = $courierThrow.$courier->code.":";
+//            }
+//            else{
+//                $courierThrow = $courierThrow.$courier->code;
+//            }
+//            $temp++;
+//        }
+//        //address login user
+//        $id = Auth::user()->id;
+//        $Addressdata = Address::where('user_id', $id)->first();
+//
+//        //get product total weight
+//        $totalWeight = 0;
+//        $carts = Cart::where('user_id', 'like', $id)->get();
+//        foreach($carts as $cart){
+//            $totalWeight += ($cart->product->weight * $cart->quantity);
+//        }
+//
+//        //rajaongkir process
+//        $collect = RajaOngkir::getCost('151', 'city', $Addressdata->city_id, 'city', (string)$totalWeight, $courierThrow);
+//        $results = $collect->rajaongkir->results;
+//
+//        $resultCollection = collect();
+//        foreach ($deliveryTypes as $deliveryType){
+//            $resultCollection->put($deliveryType->courier->code."-".$deliveryType->code, $deliveryType->courier->code."-".$deliveryType->code);
+//        }
+//
+//        foreach($results as $result){
+//            foreach ($result->costs as $cost){
+//                if($resultCollection->contains($result->code."-".$cost->service)){
+//                    $resultCollection[$result->code."-".$cost->service] = $cost->cost[0]->value;
+//                }
+//
+//            }
+//        }
+//        return view('frontend.checkout-step2', compact('resultCollection', 'deliveryTypes'));
 
-        $courierThrow = "";
-        $temp = 1;
-        //get courier code ex jne:tiki:pos
-        foreach($couriers as $courier){
-            if($temp < $couriers->count()){
-                $courierThrow = $courierThrow.$courier->code.":";
-            }
-            else{
-                $courierThrow = $courierThrow.$courier->code;
-            }
-            $temp++;
-        }
-        //address login user
-        $id = Auth::user()->id;
-        $Addressdata = Address::where('user_id', $id)->first();
-
-        //get product total weight
-        $totalWeight = 0;
-        $carts = Cart::where('user_id', 'like', $id)->get();
-        foreach($carts as $cart){
-            $totalWeight += ($cart->product->weight * $cart->quantity);
-        }
-
-        //rajaongkir process
-        $collect = RajaOngkir::getCost('151', 'city', $Addressdata->city_id, 'city', (string)$totalWeight, $courierThrow);
-        $results = $collect->rajaongkir->results;
-
-        $resultCollection = collect();
-        foreach ($deliveryTypes as $deliveryType){
-            $resultCollection->put($deliveryType->courier->code."-".$deliveryType->code, $deliveryType->courier->code."-".$deliveryType->code);
-        }
-
-        foreach($results as $result){
-            foreach ($result->costs as $cost){
-                if($resultCollection->contains($result->code."-".$cost->service)){
-                    $resultCollection[$result->code."-".$cost->service] = $cost->cost[0]->value;
-                }
-
-            }
-        }
-        return view('frontend.checkout-step2', compact('resultCollection', 'deliveryTypes'));
+        return view('frontend.checkout-step2');
     }
 
     //submit shipping and add data to DB

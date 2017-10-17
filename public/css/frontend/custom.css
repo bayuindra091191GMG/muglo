@@ -4,12 +4,23 @@
 	IT WILL BE HELPFUL FOR YOU IN FUTURE UPDATES
 -------------------------------------------------------------------*/
 
+/* OVERRIDE CSS */
 .header-style-2.header-style-3 .logo{
     margin-top: 50px;
     margin-bottom: 50px;
 }
 
-.setting-container{
+.shopping-cart .cart-ship-info{
+    margin-top: 0;
+}
+
+.funkyradio label{
+    margin-bottom: 0 !important;
+}
+
+/* END OF OVERRIDE*/
+
+.custom-container{
     border: 1px solid #ddd;
     padding: 20px;
     font-family: 'Montserrat', sans-serif;
@@ -17,4 +28,48 @@
 
 .faq-cate {
     margin-top: 0 !important;
+}
+
+#accordion {
+    margin:100px auto;
+    padding:0;
+    width:500px;
+}
+#accordion li {
+    list-style:none;
+    width:100%;
+}
+#accordion  li label {
+    padding:10px;
+    display:block;
+    font-family: 'Bree Serif', 'serif';
+    font-size:30px;
+    line-height:30px;
+    color:#FFFFFF;
+    background-color:#3498db;
+    border-bottom: solid 8px #2980b9;
+}
+/* Hide the radio buttons */
+#accordion label + input[type='radio'] {
+    display: none;
+}
+/* hide content by default */
+#accordion .content {
+    display:none;
+    padding:10px;
+    font-family:Constantia, "Lucida Bright", "DejaVu Serif", Georgia, serif;
+    font-size:19px;
+    line-height:26px;
+    background-color:#2ecc71;
+}
+/* Show content boxes when the radio buttons are checked */
+#accordion label + input[type='radio']:checked + .content {
+    display:block;
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 479px){
+    .header-style-2.header-style-3 .logo{
+        margin: 20px 0;
+    }
 }

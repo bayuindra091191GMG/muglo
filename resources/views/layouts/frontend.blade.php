@@ -13,7 +13,7 @@
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
     <!-- CSS -->
-    <link href="{{ URL::asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/frontend/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/frontend/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/frontend/main.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/frontend/style.css') }}" rel="stylesheet">
@@ -25,6 +25,10 @@
 
     <!-- FONTS -->
     <link href="{{ URL::asset('css/font-awesome/font-awesome.min.css') }}" rel="stylesheet" media="all">
+
+
+    <!-- Funkyradio -->
+    <link href="{{ URL::asset('css/frontend/funkyradio.css') }}" rel="stylesheet" media="all">
 
     <!-- Custom CSS -->
     <link href="{{ URL::asset('css/frontend/custom.css') }}" rel="stylesheet" media="all">
@@ -72,7 +76,7 @@
 
 <script src="{{ URL::asset('js/frontend/jquery.min.js') }}"></script>
 <script src="{{ URL::asset('js/frontend/wow.min.js') }}"></script>
-<script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ URL::asset('js/frontend/bootstrap.min.js') }}"></script>
 <script src="{{ URL::asset('js/frontend/own-menu.js') }}"></script>
 <script src="{{ URL::asset('js/frontend/owl.carousel.min.js') }}"></script>
 <script src="{{ URL::asset('js/frontend/jquery.magnific-popup.min.js') }}"></script>

@@ -1,9 +1,9 @@
 <footer>
     <div class="container">
-        <div class="text-center"> <a href="#."><img src="{{ asset('frontend_images/logo.png') }}" alt=""></a><br>
-            <img class="margin-t-40" src="{{ asset('frontend_images/hammer.png') }}" alt="">
-            <p class="intro-small margin-t-40">Multipurpose E-Commerce Theme is suitable for furniture store, fashion shop, accessories, electric shop. We have included multiple layouts for home page to give you best selections in customization.</p>
-        </div>
+        {{--<div class="text-center"> <a href="#."><img src="{{ asset('frontend_images/logo.png') }}" alt=""></a><br>--}}
+            {{--<img class="margin-t-40" src="{{ asset('frontend_images/hammer.png') }}" alt="">--}}
+            {{--<p class="intro-small margin-t-40">Multipurpose E-Commerce Theme is suitable for furniture store, fashion shop, accessories, electric shop. We have included multiple layouts for home page to give you best selections in customization.</p>--}}
+        {{--</div>--}}
 
         <!--  Footer Links -->
         <div class="footer-link row">

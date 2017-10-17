@@ -1,71 +1,143 @@
 @extends('layouts.frontend')
 
 @section('body-content')
-    <!-- BREADCRUMBS -->
-    <section class="breadcrumb parallax margbot30"></section>
-    <!-- //BREADCRUMBS -->
+    <div class="content">
 
+        <!--======= SUB BANNER =========-->
+        <section class="sub-banner">
+            <div class="container">
+                <h4>PENGIRIMAN </h4>
 
-    <!-- PAGE HEADER -->
-    <section class="page_header">
-
-        <!-- CONTAINER -->
-        <div class="container border0 margbot0">
-            <h3 class="pull-left"><b>Checkout</b></h3>
-
-            <div class="pull-right">
-                <a href="{{ route('cart-list') }}" >Back shopping bag<i class="fa fa-angle-right"></i></a>
+                <!-- Breadcrumb -->
+                <ol class="breadcrumb">
+                    <li><a href="#">Beranda</a></li>
+                    <li class="active">Pengiriman</li>
+                </ol>
             </div>
-        </div><!-- //CONTAINER -->
-    </section><!-- //PAGE HEADER -->
+        </section>
 
+        <!--======= PAGES INNER =========-->
+        <section class="section-p-30px pages-in chart-page">
+            <div class="container">
 
-    <!-- CHECKOUT PAGE -->
-    <section class="checkout_page">
+                <!-- Payments Steps -->
+                <div class="payment_steps">
+                    <ul class="row">
+                        <!-- SHOPPING CART -->
+                        <li class="col-sm-4 current"> <i class="fa fa-truck"></i>
+                            <h6>PENGIRIMAN</h6>
+                        </li>
 
-        <!-- CONTAINER -->
-        <div class="container">
+                        <!-- CHECK OUT DETAIL -->
+                        <li class="col-sm-4"> <i class="fa fa-money"></i>
+                            <h6>PEMBAYARAN</h6>
+                        </li>
 
-            <!-- CHECKOUT BLOCK -->
-            <div class="checkout_block">
-                <ul class="checkout_nav">
-                    <li class="active_step">1. Shipping Address</li>
-                    <li>2. Delivery</li>
-                    <li>3. Confirm Order</li>
-                    <li class="last">4. Payment</li>
-                </ul>
+                        <!-- ORDER COMPLETE -->
+                        <li class="col-sm-4"> <i class="fa fa-check"></i>
+                            <h6>ORDER BERHASIL</h6>
+                        </li>
+                    </ul>
+                </div>
 
-                <form class="checkout_form clearfix" action="javascript:void(0);" method="get">
-                    @if( !empty($Addressdata))
+                <!-- Payments Steps -->
+                <div class="shopping-cart">
 
-                        <!-- ROW -->
-                            <div class="row">
-                                <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-12 padbot60 about_us_description" data-appear-top-offset='-100' data-animated='fadeInLeft'>
-                                    <p>{{$Addressdata->name}}</p>
-                                    <span>{{$Addressdata->detail}} <br/>
-                                    Kecamatan {{$Addressdata->subdistrict_name}} <br/> Kota/Kabupaten {{$Addressdata->city_name}},
-                                        <br/>Provinsi {{$Addressdata->province_name}}, {{$Addressdata->postal_code}}</span>
-                                    <a class="btn btn-primary" href="{{Route('user-address-edit')}}" >Edit Address</a>
+                    <!-- SHOPPING INFORMATION -->
+                    <div class="cart-ship-info">
+                        <div class="row">
+
+                            <!-- ESTIMATE SHIPPING & TAX -->
+                            <div class="col-sm-7">
+                                <div class="row margin-b-20">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="custom-container">
+                                            <div>
+                                                <h6>Detail Pembeli</h6>
+                                                Rumah<br/>
+                                                Jl. Barata Tama 1 No. 116 RT 04/07 Karang Tengah<br/>
+                                                Depan rumah ada box telpon umum warna biru<br/>
+                                                Kecamatan Ciledug, Kota Tangerang<br/>
+                                                Banten, 15157<br/>
+                                                081315908000
+                                            </div>
+                                            <div>
+                                                <a href="#" class="btn btn-small btn-dark">Ubah Alamat</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div class="col-lg-6 col-md-6 col-sm-6 padbot30" data-appear-top-offset='-100' data-animated='fadeInRight'>
-                                    <img class="about_img1" src="images/about_img1.jpg" alt="" />
+                                <div class="row margin-b-20">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="custom-container">
+                                            <ul>
+                                                <li>
+                                                    <label> KURIR
+                                                        <select class="selectpicker">
+                                                            <option>JNE - Rp 18.000</option>
+                                                            <option>TIKI - Rp 15.000</option>
+                                                            <option>POS - Rp 10.000</option>
+                                                        </select>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div><!-- //ROW -->
+                            </div>
 
-                            <div class="clear"></div>
-
-                            <a class="btn btn-primary pull-right" href="{{route ('checkout2')}}" >Continue</a>
-                    @else
-                        <div style="text-align: center;">
-                            <h3><b>Add address</b></h3>
-                            <br >
-                            <a class="btn btn-primary" href="{{route ('user-address-create')}}" >Add Address</a>
+                            <!-- SUB TOTAL -->
+                            <div class="col-sm-5">
+                                <div class="order-place">
+                                    <h5>PESANAN ANDA</h5>
+                                    <div class="order-detail">
+                                        <p>PRODUK <span>TOTAL</span></p>
+                                        <div class="item-order">
+                                            <p>DRAEY TRENCH COAT <span class="color"> x1 </span></p>
+                                            <p>COLOR: BLACK </p>
+                                            <p class="text-right">250.00 USD</p>
+                                        </div>
+                                        <p>TOTAL HARGA <span>250.00 USD</span></p>
+                                        <p>ONGKOS KIRIM <span>FREE SHIPPING</span></p>
+                                        <p>TOTAL PESANAN <span>250.00 USD</span></p>
+                                        <a href="#." class="btn btn-small btn-dark pull-right">PILIH METODE PEMBAYARAN</a> </div>
+                                    </div>
+                                    {{--<div class="pay-meth">--}}
+                                        {{--<h5>PAYMENT METHODS</h5>--}}
+                                        {{--<ul>--}}
+                                            {{--<li>--}}
+                                                {{--<div class="checkbox">--}}
+                                                    {{--<input id="checkbox3-1" class="styled" type="checkbox">--}}
+                                                    {{--<label for="checkbox3-1"> DIRECT BANK TRANSFER </label>--}}
+                                                {{--</div>--}}
+                                                {{--<p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                                {{--<div class="checkbox">--}}
+                                                    {{--<input id="checkbox3-2" class="styled" type="checkbox">--}}
+                                                    {{--<label for="checkbox3-2"> CHEQUE PAYMENT </label>--}}
+                                                {{--</div>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                                {{--<div class="checkbox">--}}
+                                                    {{--<input id="checkbox3-3" class="styled" type="checkbox">--}}
+                                                    {{--<label for="checkbox3-3"> PAYPAL </label>--}}
+                                                {{--</div>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                                {{--<div class="checkbox">--}}
+                                                    {{--<input id="checkbox3-4" class="styled" type="checkbox">--}}
+                                                    {{--<label for="checkbox3-4"> I’VE READ AND ACCEPT THE <span class="color"> TERMS & CONDITIONS </span> </label>--}}
+                                                {{--</div>--}}
+                                            {{--</li>--}}
+                                        {{--</ul>--}}
+                                        {{--<a href="#." class="btn btn-small btn-dark pull-right">PLACE ORDER</a> </div>--}}
+                                {{--</div>--}}
+                            </div>
                         </div>
-                    @endif
-
-                </form>
-            </div><!-- //CHECKOUT BLOCK -->
-        </div><!-- //CONTAINER -->
-    </section><!-- //CHECKOUT PAGE -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 @endsection

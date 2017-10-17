@@ -32,11 +32,11 @@ class UserController extends Controller
 
     public function edit()
     {
-        $id = Auth::user()->id;
+//        $id = Auth::user()->id;
+//
+//        $data = User::find($id);
 
-        $data = User::find($id);
-
-        return view('frontend.user-edit-show', compact('data'));
+        return view('frontend.edit-user-profile');
     }
 
     public function update(Request $request)

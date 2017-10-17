@@ -21,189 +21,14 @@
             <div class="container">
                 <div class="row animate fadeInUp" data-wow-delay="0.4s">
                     <div class="col-md-3">
-                        <div class="side-bar">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            <!--  SEARCH -->
-                            {{--<div class="search">--}}
-                                {{--<form>--}}
-                                    {{--<input type="text" placeholder="SEARCH FAQ">--}}
-                                    {{--<button type="submit"> <i class="fa fa-search"></i></button>--}}
-                                {{--</form>--}}
-                            {{--</div>--}}
-
-                            <!-- FAQS NAV -->
-                            <ul class="cate faq-cate">
-                                <li><a href="#."> Profil Anda</a></li>
-                                <li><a href="#."> Keamanan dan Kata Sandi</a></li>
-                                <li><a href="#."> Lain-lain</a></li>
-                            </ul>
-                        </div>
+                        @include('frontend.partials._sidebar-setting')
                     </div>
 
                     <!--======= FAQS =========-->
                     <div class="col-md-9">
                         <div class="faqs">
                             <div class="col-lg-12 col-md-12">
-                                <div class="setting-container">
+                                <div class="custom-container">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
@@ -237,7 +62,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
-                                                <a href="#" class="btn btn-small btn-dark">Edit</a>
+                                                <a href="{{ route('user-profile-edit') }}" class="btn btn-small btn-dark">Ubah</a>
                                             </div>
                                         </div>
                                     </div>

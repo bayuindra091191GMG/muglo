@@ -7,11 +7,12 @@
         <!--======= SUB BANNER =========-->
         <section class="sub-banner animate fadeInUp" data-wow-delay="0.4s">
             <div class="container">
-                <h4>ATUR KATA SANDI</h4>
+                <h4>UBAH PROFIL ANDA</h4>
                 <!-- Breadcrumb -->
                 <ol class="breadcrumb">
                     <li><a href="#">Beranda</a></li>
-                    <li class="active">KATA SANDI</li>
+                    <li>Profil Anda</li>
+                    <li class="active">Ubah</li>
                 </ol>
             </div>
         </section>
@@ -32,31 +33,37 @@
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="current-password">Current Password:</label>
-                                                <input id="current-password" name="current-password" type="password" class="form-control">
+                                                <label for="email">Email:</label>
+                                                <input id="email" type="text" class="form-control" value="bayuindra091191@gmail.com">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="fname">Nama Depan:</label>
+                                                <input id="fname" type="text" class="form-control" value="Bayu">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="lname">Nama Belakang:</label>
+                                                <input id="lname" type="text" class="form-control" value="Indra">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="new-password">New Password:</label>
-                                                <input id="new-password" name="new-password" type="password" class="form-control">
+                                                <label for="phone">Nomor Telepon:</label>
+                                                <input id="phone" type="number" class="form-control" value="081315908000">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="confirm-password">Confirm Password:</label>
-                                                <input id="confirm-password" name="confirm-password" type="password" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12">
-                                            <div class="form-group">
-                                                <a href="#" class="btn btn-small btn-dark">Ubah</a>
+                                                <a href="#" class="btn btn-small btn-dark">Simpan</a>
                                             </div>
                                         </div>
                                     </div>
