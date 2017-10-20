@@ -17,9 +17,13 @@ use Illuminate\Support\Facades\Validator;
 class UserAddressController extends Controller
 {
     //
-    public function __construct()
-    {
-        $this->middleware('auth');
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
+
+    public function index(){
+        return View('frontend.show-user-address');
     }
 
     public function edit()
@@ -98,10 +102,11 @@ class UserAddressController extends Controller
 
     public function create()
     {
-        $provinces = Province::all();
-        $cities = City::all();
-
-        return view('frontend.user-address-create', compact('provinces', 'cities'));
+//        $provinces = Province::all();
+//        $cities = City::all();
+//
+//        return view('frontend.user-address-create', compact('provinces', 'cities'));
+        return View('frontend.user-address-create');
     }
 
     public function store(Request $request)

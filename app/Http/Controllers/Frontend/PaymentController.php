@@ -103,6 +103,10 @@ class PaymentController extends Controller
         return view('frontend.checkout-step2');
     }
 
+    public function step3(){
+        return View('frontend.checkout-success');
+    }
+
     //submit shipping and add data to DB
     public function CheckoutProcess2Submit(Request $request){
         if(empty(Input::get('shippingRadio'))){

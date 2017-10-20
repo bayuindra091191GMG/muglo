@@ -1,96 +1,110 @@
 @extends('layouts.frontend')
 
 @section('body-content')
-    <!-- MY ACCOUNT PAGE -->
-    <section class="my_account parallax">
+    <!-- CONTENT START -->
+    <div class="content">
 
-        <!-- CONTAINER -->
-        <div class="container">
+        <!--======= SUB BANNER =========-->
+        <section class="sub-banner animate fadeInUp" data-wow-delay="0.4s">
+            <div class="container">
+                <h4>TAMBAH ALAMAT BARU</h4>
+                <!-- Breadcrumb -->
+                <ol class="breadcrumb">
+                    <li><a href="#">Beranda</a></li>
+                    <li>Alamat</li>
+                    <li class="active">Tambah Baru</li>
+                </ol>
+            </div>
+        </section>
 
-            <div class="my_account_block clearfix">
-                <div>
-                    <h2>Add Address</h2>
+        <!--  FAQS -->
+        <section class="section-p-30px">
+            <div class="container">
+                <div class="row animate fadeInUp" data-wow-delay="0.4s">
+                    <div class="col-md-3">
+                        @include('frontend.partials._sidebar-setting')
+                    </div>
 
-                    @foreach($errors->all() as $error)
-                        <h5 style="color: red;"> {{ $error }} </h5>
-                    @endforeach
-
-                    @if(\Illuminate\Support\Facades\Session::has('message'))
-                        <div class="alert alert-success alert-dismissible fade in" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                            </button>
-                            <strong>{{ \Illuminate\Support\Facades\Session::get('message') }}</strong>
+                    <!--======= SETTING =========-->
+                    <div class="col-md-9">
+                        <div class="faqs">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="custom-container">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="name">Nama:</label>
+                                                <input id="name" name="name" type="text" class="form-control" value="Bayu Indra" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="province">Provinsi:</label>
+                                                <select id="province" name="province" class="form-control">
+                                                    <option selected>Banten</option>
+                                                    <option>Jawa Barat</option>
+                                                    <option>Jakarta</option>
+                                                    <option>Aceh</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="city">Kota:</label>
+                                                <select id="city" name="city" class="form-control">
+                                                    <option selected>Tangerang</option>
+                                                    <option>Jakarta</option>
+                                                    <option>Bandung</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="subdistrict">Kecamatan:</label>
+                                                <select id="subdistrict" name="subdistrict" class="form-control">
+                                                    <option selected>Karang Tengah</option>
+                                                    <option>Batuceper</option>
+                                                    <option>Ciledug</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="detail">Detil:</label>
+                                                <textarea name="detail" cols="50" rows="5" class="form-control" value="Jl. Barata Tama 1" placeholder="Detil alamat (nama jalan, lantai, dsb)"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="postal">Kode Pos:</label>
+                                                <input id="postal" name="postal" type="text" class="form-control" value="15157" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <a href="#" class="btn btn-small btn-dark">Simpan</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    @endif
-
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('user-address-store') }}">
-                        {{ csrf_field() }}
-
-                        <input type="text" name="name" placeholder="Address Name"/>
-                        <select id="province" name="province_id" onchange="checkCities()">
-                            <option value="-1" selected>Select province</option>
-                            @foreach($provinces as $province)
-                                <option value="{{ $province->id }}">{{ $province->name }}</option>
-                            @endforeach
-                        </select>
-
-                        <select id="city" name="city_id" onchange="getSubdistrict()" style="display: none;">
-                            <option value="-1">Select City</option>
-                            @foreach($cities as $city)
-                                @if($city->province_id == 1)
-                                    <option value="{'city_id': '{{$city->id}}', 'province_id': '{{$city->province_id}}'}">{{$city->name}}</option>
-                                @endif
-                                <option value="{'city_id': '{{$city->id}}', 'province_id': '{{$city->province_id}}'}" hidden>{{$city->name}}</option>
-                            @endforeach
-                        </select>
-                        <select id="subdistrict" name="subdistrict_id" style="display: none;">
-                            <option value="-1">Populating data please wait...</option>
-                        </select>
-                        <textarea name="detail" cols="50" rows="10" placeholder="Address Details"></textarea>
-                        <input type="text" name="postal_code" placeholder="Postal Code"/>
-                        <div class="center"><input type="submit" value="Submit"></div>
-                    </form>
+                    </div>
                 </div>
             </div>
+        </section>
+    </div>
 
-            <div class="my_account_note center">HAVE A QUESTION? <b>1 800 888 02828</b></div>
-        </div><!-- //CONTAINER -->
-    </section><!-- //MY ACCOUNT PAGE -->
-
-    <script type="text/javascript">
-        function checkCities()
-        {
-            var provinceId = $("#province option:selected").val();
-
-            if(provinceId != '-1'){
-                $("#city").show();
-                $('#subdistrict').hide();
-                $("#city > option").each(function()
-                {
-                    // Add $(this).val() to your list
-                    var test = $.parseJSON(this.value.replace(/'/g, '"'));
-                    if(test.province_id != provinceId){
-                        $(this).hide();
-                    }
-                    else if(test.province_id == provinceId){
-                        $(this).show();
-                    }
-                });
-                $('#city').children('option:enabled').eq(0).prop('selected',true);
-            }
-
-        }
-
-        function getSubdistrict(){
-            var cityId = $("#city option:selected").val();
-            var tmp = $.parseJSON(cityId.replace(/'/g, '"'));
-            $('#subdistrict').hide();
-            $.get('/rajaongkir/subdistrict/' + tmp.city_id, function (data) {
-                if(data.success == true) {
-                    $('#subdistrict').html(data.html);
-                    $('#subdistrict').show();
-                }
-            });
-        }
-    </script>
 @endsection

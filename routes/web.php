@@ -54,6 +54,7 @@ Route::post('/edit-cart', [
 Route::prefix('payment/purchase')->group(function(){
     Route::get('/step1', 'Frontend\PaymentController@step1')->name('step1');
     Route::get('/step2', 'Frontend\PaymentController@step2')->name('step2');
+    Route::get('/step3', 'Frontend\PaymentController@step3')->name('step3');
     Route::post('/checkout2-submit', [
         'uses' => 'Frontend\PaymentController@CheckoutProcess2Submit',
         'as' => 'checkout2Submit'
@@ -91,8 +92,9 @@ Route::prefix('user')->group(function(){
     Route::post('/password/save', 'Frontend\UserController@passwordUpdate');
 });
 
-//User Address
+// User Address
 Route::prefix('user/address')->group(function(){
+    Route::get('/', 'Frontend\UserAddressController@index')->name('user-address-show');
     Route::get('/create', 'Frontend\UserAddressController@create')->name('user-address-create');
     Route::post('/create', 'Frontend\UserAddressController@store')->name('user-address-store');
     Route::get('/edit', 'Frontend\UserAddressController@edit')->name('user-address-edit');

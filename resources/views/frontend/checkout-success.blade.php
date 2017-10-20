@@ -29,12 +29,12 @@
                         </li>
 
                         <!-- CHECK OUT DETAIL -->
-                        <li class="col-sm-4 current"> <i class="fa fa-money"></i>
+                        <li class="col-sm-4"> <i class="fa fa-money"></i>
                             <h6>PEMBAYARAN</h6>
                         </li>
 
                         <!-- ORDER COMPLETE -->
-                        <li class="col-sm-4"> <i class="fa fa-check"></i>
+                        <li class="col-sm-4 current"> <i class="fa fa-check"></i>
                             <h6>ORDER BERHASIL</h6>
                         </li>
                     </ul>
@@ -53,50 +53,13 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="custom-container">
                                             <div>
-                                                <h6>Detail Pembeli</h6>
-                                                Rumah<br/>
-                                                Jl. Barata Tama 1 No. 116 RT 04/07 Karang Tengah<br/>
-                                                Depan rumah ada box telpon umum warna biru<br/>
-                                                Kecamatan Ciledug, Kota Tangerang<br/>
-                                                Banten, 15157<br/>
-                                                081315908000
-                                            </div>
-                                            <hr/>
-                                            <div>
-                                                Kurir: JNE YES - Rp 18.000
+                                                <h6>PEMBAYARAN SUKSES</h6>
+                                                Pembayaran kartu kredit anda telah berhasil diverifikasi
                                             </div>
                                             <div>
-                                                <a href="#" class="btn btn-small btn-dark">Ubah Alamat</a>
+                                                <a href="#" class="btn btn-small btn-dark">LIHAT DAFTAR PESANAN</a>
+                                                <a href="#" class="btn btn-small btn-dark">BERANDA</a>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row margin-b-20">
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div class="custom-container">
-                                            <ul>
-                                                <li>
-                                                    <h6 style="margin-bottom: 8px;">Metode Pembayaran</h6>
-                                                    <div class="funkyradio">
-                                                        <div class="funkyradio-primary">
-                                                            <input type="radio" name="radio" id="radio1" value="manual" checked/>
-                                                            <label for="radio1">Transfer Bank</label>
-                                                        </div>
-                                                        <div class="funkyradio-primary">
-                                                            <input type="radio" name="radio" id="radio2" value="credit_card"/>
-                                                            <label for="radio2">Kartu Kredit - Biaya Admin 3%</label>
-                                                        </div>
-                                                        <div class="funkyradio-primary">
-                                                            <input type="radio" name="radio" id="radio3" value="bca_va"/>
-                                                            <label for="radio3">Akun Virtual BCA - Biaya Admin Rp 4.000</label>
-                                                        </div>
-                                                        <div class="funkyradio-primary">
-                                                            <input type="radio" name="radio" id="radio4" value="permata_va"/>
-                                                            <label for="radio4">Akun Virtual Permata - Biaya Admin Rp 4.000</label>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +80,6 @@
                                         <p>ONGKOS KIRIM <span>FREE SHIPPING</span></p>
                                         <p>ADMIN FEE <span id="checkout-admin-fee">Rp 4.000</span></p>
                                         <p>TOTAL PESANAN <span>250.00 USD</span></p>
-                                        <a href="#." class="btn btn-small btn-dark pull-right">BAYAR SEKARANG</a> </div>
                                 </div>
                                 {{--<div class="pay-meth">--}}
                                 {{--<h5>PAYMENT METHODS</h5>--}}
