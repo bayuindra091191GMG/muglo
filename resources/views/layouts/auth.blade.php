@@ -23,6 +23,9 @@
     <!-- FONTS -->
     <link href="{{ URL::asset('css/font-awesome/font-awesome.min.css') }}" rel="stylesheet" media="all">
 
+    <!-- Funkyradio -->
+    <link href="{{ URL::asset('css/frontend/funkyradio.css') }}" rel="stylesheet" media="all">
+
     <!-- Custom CSS -->
     <link href="{{ URL::asset('css/frontend/custom.css') }}" rel="stylesheet" media="all">
 
