@@ -63,14 +63,16 @@ class LoginController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password'], 'status_id' => 1])) {
+        $rememberMe = $request->has('remember') ? true : false;
+
+        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password'], 'status_id' => 1], $rememberMe)) {
             // Authentication passed...
             error_log(Input::get('redirect'));
             if(!empty(Input::get('redirect'))){
                 return redirect(Input::get('redirect'));
             }
             else{
-                return redirect()->action('Frontend\HomeController@home');
+                return redirect()->route('landing');
             }
         }
         else

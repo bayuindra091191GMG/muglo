@@ -11,7 +11,7 @@
                 <!-- Breadcrumb -->
                 <ol class="breadcrumb">
                     <li><a href="#">Beranda</a></li>
-                    <li class="active">KATA SANDI</li>
+                    <li class="active">Kata Sandi</li>
                 </ol>
             </div>
         </section>
@@ -29,37 +29,66 @@
                         <div class="faqs">
                             <div class="col-lg-12 col-md-12">
                                 <div class="custom-container">
+                                    {!! Form::open(array('action' => 'Frontend\UserController@passwordUpdate', 'method' => 'POST', 'role' => 'form')) !!}
+                                    {{ csrf_field() }}
+
+                                    @if(\Illuminate\Support\Facades\Session::has('success'))
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="alert alert-success alert-dismissable">
+                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                    Berhasil ubah kata sandi anda!
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    @if($errors->count() > 0)
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="alert alert-danger alert-dismissable">
+                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                    @foreach($errors->all() as $error)
+                                                        {{ $error }}<br/>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="current-password">Current Password:</label>
-                                                <input id="current-password" name="current-password" type="password" class="form-control">
+                                                <label for="password-current">Current Password:</label>
+                                                <input id="password-current" name="password-current" type="password" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="new-password">New Password:</label>
-                                                <input id="new-password" name="new-password" type="password" class="form-control">
+                                                <label for="password">New Password:</label>
+                                                <input id="password" name="password" type="password" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="confirm-password">Confirm Password:</label>
-                                                <input id="confirm-password" name="confirm-password" type="password" class="form-control">
+                                                <label for="password-confirm">Confirm Password:</label>
+                                                <input id="password-confirm" name="password-confirm" type="password" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
-                                                <a href="#" class="btn btn-small btn-dark">Ubah</a>
+                                                <input type="submit" class="btn btn-small btn-dark" value="Ganti Kata Sandi">
                                             </div>
                                         </div>
                                     </div>
+
+                                    {!! Form::close() !!}
                                 </div>
                             </div>
                         </div>

@@ -23,19 +23,22 @@ class UserAddressController extends Controller
 //    }
 
     public function index(){
-        return View('frontend.show-user-address');
+        $addr = Address::where('user_id', Auth::id())->first();
+
+        return View('frontend.show-user-address', compact('addr'));
     }
 
     public function edit()
     {
         $provinces = Province::all();
-        $cities = City::all();
 
-        $id = Auth::user()->id;
-        $addr = Address::where('user_id', $id)->first();
+        $addr = Address::where('user_id', Auth::id())->first();
 
-        $collect = RajaOngkir::getSubdistrict($addr->city_id);
-        $subdistricts = $collect->rajaongkir->results;
+        $collect1 = RajaOngkir::getSubdistrict($addr->city_id);
+        $subdistricts = $collect1->rajaongkir->results;
+
+        $collect2 = RajaOngkir::getCity($addr->province_id);
+        $cities = $collect2->rajaongkir->results;
 
         $data = [
             'provinces'         => $provinces,
@@ -44,20 +47,25 @@ class UserAddressController extends Controller
             'subdistricts'      => $subdistricts
         ];
 
-        return view('frontend.user-address-edit')->with($data);
+        return view('frontend.edit-user-address')->with($data);
     }
 
     public function update(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'name' => 'required',
-            'province_id' => 'required|option_not_default',
-            'city_id' => 'required|option_not_default',
-            'subdistrict_id' => 'required|option_not_default',
-            'postal_code' => 'required',
-            'detail' => 'required'
+            'name'          => 'required',
+            'province'      => 'required|option_not_default',
+            'city'          => 'required|option_not_default',
+            'subdistrict'   => 'required|option_not_default',
+            'postal'        => 'required',
+            'detail'        => 'required'
         ],[
-            'option_not_default'    => 'Invalid input'
+            'name.required'                     => 'Nama penerima harus diisi',
+            'province.option_not_default'       => 'Provinsi harus diisi',
+            'city.option_not_default'           => 'Kota harus diisi',
+            'subdistrict.option_not_default'    => 'Kecamatan harus diisi',
+            'postal.required'                   => 'Kode pos harus diisi',
+            'detail.required'                   => 'Detil alamat harus diisi'
         ]);
 
         if ($validator->fails()) {
@@ -66,99 +74,100 @@ class UserAddressController extends Controller
             );
         }
 
-        $temp = str_replace("'", "\"", $request['city_id']);
-        $city_id = json_decode($temp, true);
-        $user = Auth::user();
-
-        if($city_id['city_id'] == 0){
-            return redirect('/user/address/create')->withErrors('You Must Select a City!');
-        }
-
-        $provinceName = Province::find($request['province_id']);
-        $cityName = City::find((int)$city_id['city_id']);
-
+        $province = Province::find(Input::get('province'));
+        $city = explode(',', Input::get('city'));
         $subdistrict = explode(',', Input::get('subdistrict'));
 
-        $data = Address::where('user_id', $user->id)->first();
-        $data->city_id = (int)$city_id['city_id'];
-        $data->city_name = $cityName->name;
-        $data->province_id = $request['province_id'];
-        $data->province_name = $provinceName->name;
+        $data = Address::where('user_id', Auth::id())->first();
+        $data->city_id = $city[0];
+        $data->city_name = $city[1];
+        $data->province_id = Input::get('province');
+        $data->province_name = $province->name;
         $data->subdistrict_id = $subdistrict[0];
         $data->subdistrict_name = $subdistrict[1];
-        $data->province_name = $provinceName->name;
-        $data->name = $request['name'];
-        $data->postal_code = $request['postal_code'];
-        $data->detail = $request['detail'];
-        $data->user_id = $user->id;
+        $data->name = Input::get('name');
+        $data->postal_code = Input::get('postal');
+        $data->detail = Input::get('detail');
+        $data->user_id = Auth::id();
         $data->status_id = 1;
 
         $data->save();
 
-        Session::flash('message', 'Success Updating Address!!!');
-
-        return redirect('user');
+        return redirect()->route('user-address-show');
     }
 
     public function create()
     {
-//        $provinces = Province::all();
+        $provinces = Province::all();
 //        $cities = City::all();
 //
 //        return view('frontend.user-address-create', compact('provinces', 'cities'));
-        return View('frontend.user-address-create');
+        return View('frontend.create-user-address', compact('provinces'));
     }
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'name' => 'required',
-            'province_id' => 'required|option_not_default',
-            'city_id' => 'required|option_not_default',
-            'subdistrict_id' => 'required|option_not_default',
-            'postal_code' => 'required',
-            'detail' => 'required'
+            'name'          => 'required',
+            'province'      => 'required|option_not_default',
+            'city'          => 'required|option_not_default',
+            'subdistrict'   => 'required|option_not_default',
+            'postal'        => 'required',
+            'detail'        => 'required'
         ],[
-            'option_not_default'    => 'Invalid input'
+            'name.required'                     => 'Nama penerima harus diisi',
+            'province.option_not_default'       => 'Provinsi harus diisi',
+            'city.option_not_default'           => 'Kota harus diisi',
+            'subdistrict.option_not_default'    => 'Kecamatan harus diisi',
+            'postal.required'                   => 'Kode pos harus diisi',
+            'detail.required'                   => 'Detil alamat harus diisi'
         ]);
 
         if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
+            return back()->withErrors($validator)->withInput();
         }
 
-        $temp = str_replace("'", "\"", $request['city_id']);
-        $city_id = json_decode($temp, true);
-        $user = Auth::user();
-
-        if($city_id['city_id'] == 0){
-            return redirect('/user/address/create')->withErrors('You Must Select a City!');
-        }
-
-        $provinceName = Province::find($request['province_id']);
-        $cityName = City::find((int)$city_id['city_id']);
-
-        $subdistrict = explode(',', Input::get('subdistrict_id'));
+        $province = Province::find(Input::get('province'));
+        $city = explode(',', Input::get('city'));
+        $subdistrict = explode(',', Input::get('subdistrict'));
 
         $data = new Address();
-        $data->city_id = (int)$city_id['city_id'];
-        $data->city_name = $cityName->name;
-        $data->province_id = $request['province_id'];
-        $data->province_name = $provinceName->name;
+        $data->city_id = $city[0];
+        $data->city_name = $city[1];
+        $data->province_id = Input::get('province');
+        $data->province_name = $province->name;
         $data->subdistrict_id = $subdistrict[0];
         $data->subdistrict_name = $subdistrict[1];
-        $data->name = $request['name'];
-        $data->postal_code = $request['postal_code'];
-        $data->detail = $request['detail'];
-        $data->user_id = $user->id;
+        $data->name = Input::get('name');
+        $data->postal_code = Input::get('postal');
+        $data->detail = Input::get('detail');
+        $data->user_id = Auth::id();
         $data->status_id = 1;
 
         $data->save();
 
-        Session::flash('message', 'Success Creating Address!!!');
+        return redirect()->route('user-address-show');
+    }
 
-        return redirect('/user');
+    public function getCity($provinceId){
+        error_log('CHECK');
+
+        $client = new Client([
+            'base_uri' => 'https://pro.rajaongkir.com/api/city?province='. $provinceId,
+            'headers' => [
+                'key' => env('RAJAONGKIR_API_KEY')
+            ],
+        ]);
+
+        $request = $client->request('GET', 'https://pro.rajaongkir.com/api/city?province='. $provinceId);
+
+        if($request->getStatusCode() == 200){
+            $collect = json_decode($request->getBody());
+
+            $returnHtml = View('frontend.partials._city-option',['collect' => $collect])->render();
+
+            return response()->json( array('success' => true, 'html' => $returnHtml) );
+        }
     }
 
     public function getSubdistrict($cityId){

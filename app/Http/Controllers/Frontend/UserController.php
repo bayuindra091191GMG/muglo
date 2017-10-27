@@ -26,26 +26,25 @@ class UserController extends Controller
     public function index()
     {
 //        $address = Address::where('user_id', Auth::id())->first();
+        $user = Auth::user();
 
-        return view('frontend.show-user-profile');
+        return view('frontend.show-user-profile', compact('user'));
     }
 
     public function edit()
     {
-//        $id = Auth::user()->id;
-//
-//        $data = User::find($id);
+        $user = Auth::user();
 
-        return view('frontend.edit-user-profile');
+        return view('frontend.edit-user-profile', compact('user'));
     }
 
     public function update(Request $request)
     {
         $validator = Validator::make($request->all(),
             [
-                'first_name'            => 'required|max:100',
-                'last_name'             => 'required|max:100',
-                'phone'                 => 'required|max:20'
+                'fname'            => 'required|max:100',
+                'lname'            => 'required|max:100',
+                'phone'            => 'required|max:20'
             ]
         );
 
@@ -57,8 +56,8 @@ class UserController extends Controller
 
         $user = Auth::user();
 
-        $user->first_name = Input::get('first_name');
-        $user->last_name = Input::get('last_name');
+        $user->first_name = Input::get('fname');
+        $user->last_name = Input::get('lname');
         $user->phone = Input::get('phone');
 
         $user->save();
@@ -75,9 +74,9 @@ class UserController extends Controller
     public function passwordUpdate(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'current-password'      => 'required',
+            'password-current'      => 'required',
             'password'              => 'required|min:6|max:20|same:password',
-            'password-confirmation' => 'required|same:password'
+            'password-confirm' => 'required|same:password'
         ]);
 
         if($validator->fails()){
@@ -87,19 +86,19 @@ class UserController extends Controller
         }
 
         $curentPassword = Auth::user()->password;
-        if(Hash::check(Input::get('current-password'), $curentPassword))
+        if(Hash::check(Input::get('password-current'), $curentPassword))
         {
             $user_id = Auth::user()->id;
             $obj_user = User::find($user_id);
             $obj_user->password = Hash::make(Input::get('password'));
             $obj_user->save();
 
-            Session::flash('message', 'Password Updated!');
+            Session::flash('success', 'success');
 
-            return Redirect::route('user-profile');
+            return Redirect::route('password-edit');
         }
         else{
-            return redirect()->back()->withErrors('Wrong Password!', 'default');
+            return redirect()->back()->withErrors('Kata sandi anda salah!', 'default');
         }
     }
 }

@@ -31,14 +31,22 @@
                                 <div class="custom-container">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
-                                            <p>
-                                                Bayu Indra<br/>
-                                                Jl. Barata Tama 1 / 116<br/>
-                                                Karang Tengah<br/>
-                                                Tangerang<br/>
-                                                Banten, 15157<br/>
-                                            </p>
-                                            <a href="#" class="btn btn-small btn-dark">Ubah</a>
+                                            @if(!empty($addr))
+                                                <p>
+                                                    {{ $addr->name }}<br/>
+                                                    {{ $addr->detail }}<br/>
+                                                    {{ $addr->subdistrict_name }}<br/>
+                                                    {{ $addr->city_name }}<br/>
+                                                    {{ $addr->province_name }}, {{ $addr->postal_code }}<br/>
+                                                </p>
+                                                <a href="{{ route('user-address-edit') }}" class="btn btn-small btn-dark">Ubah</a>
+                                            @else
+                                                <p>
+                                                    Anda belum membuat alamat baru
+                                                </p>
+                                                <a href="{{ route('user-address-create') }}" class="btn btn-small btn-dark">Tambah</a>
+                                            @endif
+
                                         </div>
                                     </div>
                                 </div>

@@ -78,6 +78,6 @@
 <script src="{{ URL::asset('js/frontend/main.js') }}"></script>
 
 <!-- Custom -->
-<script src="{{ URL::asset('js/frontend/custom.js') }}"></script>
+{{--<script src="{{ URL::asset('js/frontend/custom.js') }}"></script>--}}
 </body>
 </html>

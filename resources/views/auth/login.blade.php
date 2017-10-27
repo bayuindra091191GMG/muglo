@@ -21,47 +21,64 @@
                         <div class="faqs">
                             <div class="col-lg-12 col-md-12">
                                 <div class="custom-container" style="text-align: center;">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12">
-                                            <div class="form-group">
-                                                <input id="email" name="email" type="text" class="form-control" placeholder="Email">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12">
-                                            <div class="form-group">
-                                                <input id="password" name="password" type="password" class="form-control" placeholder="Kata Sandi">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12">
-                                            <div class="form-group">
-                                                <div class="pull-left">
-                                                    <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                                                    <label for="remember"> Ingat Saya</label>
+                                    <form role="form" method="POST" action="{{ route('signin') }}">
+                                        {{ csrf_field() }}
+
+                                        @if($errors->count() > 0)
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="alert alert-danger alert-dismissable">
+                                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                        @foreach($errors->all() as $error)
+                                                            {{ $error }}<br/>
+                                                        @endforeach
+                                                    </div>
                                                 </div>
-                                                <a href="#" class="pull-right" style="text-decoration: underline !important;">Lupa Kata Sandi</a>
+                                            </div>
+                                        @endif
+
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <input id="email" name="email" type="text" class="form-control" placeholder="Email" value="{{ old('email') }}">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12">
-                                            <div class="form-group">
-                                                <a href="#" class="btn btn-small btn-dark">Masuk ke Muglo</a>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <input id="password" name="password" type="password" class="form-control" placeholder="Kata Sandi">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <hr/>
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12">
-                                            <div class="form-group">
-                                                Belum punya akun?<br/>
-                                                <a href="#" style="text-decoration: underline !important;">Daftar Sekarang</a>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <div class="pull-left">
+                                                        <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                                                        <label for="remember"> Ingat Saya</label>
+                                                    </div>
+                                                    <a href="#" class="pull-right" style="text-decoration: underline !important;">Lupa Kata Sandi</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <input type="submit" class="btn btn-small btn-dark" value="Masuk ke Muglo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    Belum punya akun?<br/>
+                                                    <a href="#" style="text-decoration: underline !important;">Daftar Sekarang</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

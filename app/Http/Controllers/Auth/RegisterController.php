@@ -54,10 +54,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'fname'     => 'required|string|max:255',
+            'lname'     => 'required|string|max:255',
+            'email'     => 'required|string|email|max:255|unique:users',
+            'password'  => 'required|string|min:6|confirmed',
         ]);
     }
 
@@ -73,8 +73,8 @@ class RegisterController extends Controller
 
         return User::create([
             'id' =>Uuid::generate(),
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
+            'first_name' => $data['fname'],
+            'last_name' => $data['lname'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'email_token' => base64_encode($data['email']),
@@ -93,11 +93,18 @@ class RegisterController extends Controller
         $validator = Validator::make($request->all(),
             [
                 'email'                 => 'required|email|max:100|unique:users',
-                'first_name'            => 'required|max:100',
-                'last_name'             => 'required|max:100',
+                'fname'                 => 'required|max:100',
+                'lname'                 => 'required|max:100',
                 'phone'                 => 'required|max:20',
                 'password'              => 'required|min:6|max:20|same:password',
                 'password_confirmation' => 'required|same:password'
+            ],
+            [
+                'email.email'           => 'Format email anda salah',
+                'email.required'        => 'Email harus diisi',
+                'fname.required'        => 'Nama depan harus diisi',
+                'lname.required'        => 'Nama belakang harus diisi',
+                'phone.required'        => 'Nomor ponsel harus diisi'
             ]
         );
 

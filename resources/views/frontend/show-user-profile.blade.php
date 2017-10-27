@@ -33,7 +33,7 @@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="email">Email:</label>
-                                                <input id="email" type="text" class="form-control" readonly value="bayuindra091191@gmail.com">
+                                                <input id="email" type="text" class="form-control" readonly value="{{ $user->email }}">
                                             </div>
                                         </div>
                                     </div>
@@ -41,13 +41,13 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="form-group">
                                                 <label for="fname">Nama Depan:</label>
-                                                <input id="fname" type="text" class="form-control" readonly value="Bayu">
+                                                <input id="fname" type="text" class="form-control" readonly value="{{ $user->first_name }}">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <div class="form-group">
                                                 <label for="lname">Nama Belakang:</label>
-                                                <input id="lname" type="text" class="form-control" readonly value="Indra">
+                                                <input id="lname" type="text" class="form-control" readonly value="{{ $user->last_name }}">
                                             </div>
                                         </div>
                                     </div>
@@ -55,7 +55,7 @@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="phone">Nomor Telepon:</label>
-                                                <input id="phone" type="text" class="form-control" readonly value="081315908000">
+                                                <input id="phone" type="text" class="form-control" readonly value="{{ $user->phone }}">
                                             </div>
                                         </div>
                                     </div>

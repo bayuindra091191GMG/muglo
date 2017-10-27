@@ -79,10 +79,6 @@ Route::prefix('payment/purchase')->group(function(){
     Route::get('checkout/success/{paymentMethod}', 'MidtransController@checkoutSuccess')->name('checkout-success');
 });
 
-// End Frontend Routing
-
-Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
-
 // User Data
 Route::prefix('user')->group(function(){
     Route::get('/', 'Frontend\UserController@index')->name('user-profile-show');
@@ -98,8 +94,11 @@ Route::prefix('user/address')->group(function(){
     Route::get('/create', 'Frontend\UserAddressController@create')->name('user-address-create');
     Route::post('/create', 'Frontend\UserAddressController@store')->name('user-address-store');
     Route::get('/edit', 'Frontend\UserAddressController@edit')->name('user-address-edit');
-    Route::post('/edit', 'Frontend\UserAddressController@update')->name('user-address-update');
+    Route::post('/edit/save', 'Frontend\UserAddressController@update')->name('user-address-update');
 });
+// End Frontend Routing
+
+Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 
 // Transaction
 Route::prefix('transaction')->group(function(){
@@ -113,6 +112,7 @@ Route::get('invoice/{id}','Frontend\TransactionController@invoice')->name('invoi
 
 
 // Rajaongkir
+Route::get('rajaongkir/city/{provinceId}', 'Frontend\UserAddressController@getCity');
 Route::get('rajaongkir/subdistrict/{cityId}', 'Frontend\UserAddressController@getSubdistrict');
 
 // Backend Routing
