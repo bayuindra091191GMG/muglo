@@ -8,8 +8,13 @@
             <div class="language"> <a href="#." class="active">IN</a> <a href="#.">EN</a> </div>
             <div class="top-links">
                 <ul>
-                    <li><a href="#.">AKUN SAYA</a></li>
-                    <li><a href="#.">PEMBELIAN SAYA</a></li>
+                    @if(auth()->check())
+                        <li><a href="{{ route('user-profile-show') }}">AKUN SAYA</a></li>
+                        <li><a href="#.">PEMBELIAN SAYA</a></li>
+                    @else
+                        <li><a href="{{ route('login') }}">MASUK</a></li>
+                        <li><a href="/register">DAFTAR</a></li>
+                    @endif
                     <li class="font-montserrat">MATA UANG:
                         <select class="selectpicker">
                             <option>IDR</option>

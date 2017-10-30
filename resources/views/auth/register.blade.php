@@ -7,7 +7,7 @@
         <!--======= SUB BANNER =========-->
         <section class="sub-banner animate fadeInUp" data-wow-delay="0.4s">
             <div class="container">
-                <div class="logo margin-b-20"> <a href="#."><img src="{{ asset('frontend_images/logomuglo.png') }}" style="width: auto; height: 45px;" alt=""></a> </div>
+                <div class="logo margin-b-20"> <a href="{{ route('landing') }}"><img src="{{ asset('frontend_images/logomuglo.png') }}" style="width: auto; height: 45px;" alt=""></a> </div>
                 <h4>Masuk Muglo</h4>
             </div>
         </section>

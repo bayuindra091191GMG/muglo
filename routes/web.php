@@ -17,19 +17,9 @@ Auth::routes();
 // HOMEPAGE
 Route::get('/', 'Frontend\HomeController@index')->name('landing');
 
-// Login Frontend
+// Auth Frontend
 Route::get('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/signin', 'Auth\LoginController@authenticate')->name('signin');
-
-
-/*
-
-Route::get('/register', function (){
-    return view('frontend/register');
-});
-Route::post('/register', 'Auth\RegisterController@create');
-
-Route::get('/', 'Frontend\HomeController@Home')->name('home');*/
 
 // Product
 Route::get('product/category/{categoryId}-{categoryName}', 'Frontend\ProductController@products')->name('products');
