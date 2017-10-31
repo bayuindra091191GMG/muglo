@@ -36,7 +36,8 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Product List</h2>
+                            @include('admin.partials._success')
+                            <h2>Daftar Produk</h2>
                             <div class="nav navbar-right">
                                 <a href="{{ route('product-create') }}" class="btn btn-app">
                                     <i class="fa fa-plus"></i> Add
@@ -49,18 +50,18 @@
                                 <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Name</th>
-                                    <th>Category</th>
-                                    <th>Weight</th>
-                                    <th>Normal Price</th>
-                                    <th>Discount</th>
-                                    <th>Flat Discount</th>
-                                    <th>Final Price</th>
+                                    <th>Nama</th>
+                                    <th>Kategori</th>
+                                    <th>Berat</th>
+                                    <th>Harga Normal</th>
+                                    <th>Diskon Persentase</th>
+                                    <th>Diskon Angka</th>
+                                    <th>Harga Bersih</th>
                                     <th>Stock</th>
-                                    <th>Created Date</th>
-                                    <th>Featured Photo</th>
+                                    <th>Gambar</th>
+                                    <th>Tanggal Buat Baru</th>
                                     <th>Status</th>
-                                    <th>Option</th>
+                                    <th>Opsi</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -113,7 +114,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="/admin/product/edit/{{ $product->id }}" class="btn btn-primary">Edit</a>
+                                            <a href="/admin/product/edit/{{ $product->id }}" class="btn btn-primary">Ubah</a>
                                         </td>
                                     </tr>
                                     @php ($idx++)

@@ -19,38 +19,43 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Edit Product</h2>
+                            <h2>Ubah Produk</h2>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
 
                             {!! Form::open(array('action' => array('Admin\ProductController@update', $product->id), 'method' => 'POST', 'role' => 'form', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal form-label-left', 'novalidate')) !!}
-
                             {!! csrf_field() !!}
 
+                            @if(count($errors))
+                                <div class="form-group">
+                                    <div class="col-md-3 col-sm-3 col-xs-12"></div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 alert alert-danger alert-dismissible fade in" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                                        </button>
+                                        <ul>
+                                            @foreach($errors->all() as $error)
+                                                <li> {{ $error }} </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endif
+
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Product Name <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nama Produk <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input id="name" class="form-control col-md-7 col-xs-12"  name="name" required="required" type="text" value="{{ $product->name }}">
                                 </div>
                             </div>
-                            @if ($errors->has('name'))
-                                <div class="form-group">
-                                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="alert alert-danger">
-                                            {{ $errors->first('name') }}
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
+
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Category <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Kategori <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select id="category" name="category" class="form-control col-md-7 col-xs-1">
-                                        <option value="-1">Select category</option>
+                                        <option value="-1">Pilih Kategori</option>
                                         @foreach($categories as $category)
                                             @if($category->id == $product->category_id)
                                                 <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
@@ -62,71 +67,49 @@
                                 </div>
                             </div>
 
-                            @if ($errors->has('category'))
-                                <div class="form-group">
-                                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="alert alert-danger">
-                                            {{ $errors->first('category') }}
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Price <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Harga <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12 price-format">
                                     <input id="price" name="price" required class="form-control col-md-7 col-xs-12" value="{{ $product->getOriginal('price') }}">
                                 </div>
                             </div>
 
-                            @if ($errors->has('price'))
-                                <div class="form-group">
-                                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="alert alert-danger">
-                                            {{ $errors->first('price') }}
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Set Discount
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Opsi Diskon
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="btn-group" data-toggle="buttons">
 
                                         @if(!empty($product->discount))
                                             <label class="btn btn-default">
-                                                <input type="radio" name="options" value="none" id="disc-none-opt"> No Discount
+                                                <input type="radio" name="options" value="none" id="disc-none-opt"> Tidak Diskon
                                             </label>
                                             <label class="btn btn-default active">
-                                                <input type="radio" name="options" value="percent" id="disc-percent-opt" checked> Percentage
+                                                <input type="radio" name="options" value="percent" id="disc-percent-opt" checked> Persentase
                                             </label>
                                             <label class="btn btn-default">
-                                                <input type="radio" name="options" value="flat" id="disc-flat-opt"> Flat Amount
+                                                <input type="radio" name="options" value="flat" id="disc-flat-opt"> Angka
                                             </label>
                                         @elseif(!empty($product->discount_flat))
                                             <label class="btn btn-default">
-                                                <input type="radio" name="options" value="none" id="disc-none-opt" checked> No Discount
+                                                <input type="radio" name="options" value="none" id="disc-none-opt" checked> Tidak Diskon
                                             </label>
                                             <label class="btn btn-default">
-                                                <input type="radio" name="options" value="percent" id="disc-percent-opt"> Percentage
+                                                <input type="radio" name="options" value="percent" id="disc-percent-opt"> Persentase
                                             </label>
                                             <label class="btn btn-default active">
-                                                <input type="radio" name="options" value="flat" id="disc-flat-opt" checked> Flat Amount
+                                                <input type="radio" name="options" value="flat" id="disc-flat-opt" checked> Angka
                                             </label>
                                         @else
                                             <label class="btn btn-default active">
-                                                <input type="radio" name="options" value="none" id="disc-none-opt" checked> No Discount
+                                                <input type="radio" name="options" value="none" id="disc-none-opt" checked> Tidak Diskon
                                             </label>
                                             <label class="btn btn-default">
-                                                <input type="radio" name="options" value="percent" id="disc-percent-opt"> Percentage
+                                                <input type="radio" name="options" value="percent" id="disc-percent-opt"> Persentase
                                             </label>
                                             <label class="btn btn-default">
-                                                <input type="radio" name="options" value="flat" id="disc-flat-opt"> Flat Amount
+                                                <input type="radio" name="options" value="flat" id="disc-flat-opt"> Angka
                                             </label>
                                         @endif
 
@@ -136,7 +119,7 @@
 
                             @if(!empty($product->discount))
                             <div id="disc-percent" class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Discount Percentage
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Diskon Persentase
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input id="discount-percent" name="discount-percent" class="form-control col-md-7 col-xs-12" value="{{ $product->discount }}">
@@ -144,7 +127,7 @@
                             </div>
 
                             <div id="disc-flat" class="item form-group" style="display: none;">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Discount Flat Amount
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Diskon Angka
                                 </label>
                                 <div class="price-format col-md-6 col-sm-6 col-xs-12">
                                     <input id="discount-flat" name="discount-flat" class="form-control col-md-7 col-xs-12" value="{{ $product->getOriginal('discount_flat') }}">
@@ -152,7 +135,7 @@
                             </div>
                             @elseif(!empty($product->discount_flat))
                                 <div id="disc-percent" class="item form-group" style="display: none;">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Discount Percentage
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Diskon Persentase
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input id="discount-percent" name="discount-percent" class="form-control col-md-7 col-xs-12" value="{{ $product->discount }}">
@@ -160,7 +143,7 @@
                                 </div>
 
                                 <div id="disc-flat" class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Discount Flat Amount
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Diskon Angka
                                     </label>
                                     <div class="price-format col-md-6 col-sm-6 col-xs-12">
                                         <input id="discount-flat" name="discount-flat" class="form-control col-md-7 col-xs-12" value="{{ $product->getOriginal('discount_flat') }}">
@@ -168,7 +151,7 @@
                                 </div>
                             @else
                                 <div id="disc-percent" class="item form-group" style="display: none;">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Discount Percentage
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Diskon Persentase
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input id="discount-percent" name="discount-percent" class="form-control col-md-7 col-xs-12" value="{{ $product->discount }}">
@@ -176,7 +159,7 @@
                                 </div>
 
                                 <div id="disc-flat" class="item form-group" style="display: none;">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Discount Flat Amount
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Diskon Angka
                                     </label>
                                     <div class="price-format col-md-6 col-sm-6 col-xs-12">
                                         <input id="discount-flat" name="discount-flat" class="form-control col-md-7 col-xs-12" value="{{ $product->getOriginal('discount_flat') }}">
@@ -184,68 +167,24 @@
                                 </div>
                             @endif
 
-                            @if ($errors->has('discount-percent'))
-                                <div class="form-group">
-                                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="alert alert-danger">
-                                            {{ $errors->first('discount-percent') }}
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-
-                            @if ($errors->has('discount-flat'))
-                                <div class="form-group">
-                                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="alert alert-danger">
-                                            {{ $errors->first('discount-flat') }}
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Weight in Gram <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Berat Dalam Gram <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12 price-format">
                                     <input id="weight" name="weight" required class="form-control col-md-7 col-xs-12" value="{{ $product->getOriginal('weight') }}">
                                 </div>
                             </div>
 
-                            @if ($errors->has('weight'))
-                                <div class="form-group">
-                                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="alert alert-danger">
-                                            {{ $errors->first('weight') }}
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Stock
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Stok
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input id="qty" name="qty" class="form-control col-md-7 col-xs-12" value="{{ $product->quantity }}">
                                 </div>
                             </div>
 
-                            @if ($errors->has('qty'))
-                                <div class="form-group">
-                                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="alert alert-danger">
-                                            {{ $errors->first('qty') }}
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" style="padding-top: 0;">Featured Photo<br/>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" style="padding-top: 0;">Gambar Utama<br/>
                                     <span style="color: red;">recommended image ratio 3:4 or exact 270x370 pixel</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -254,20 +193,9 @@
                                 </div>
                             </div>
 
-                            @if ($errors->has('product-featured'))
-                                <div class="form-group">
-                                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="alert alert-danger">
-                                            {{ $errors->first('product-featured') }}
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-
                             @if(!$imgPhotos->isEmpty())
                                 <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" style="padding-top: 0;">Current Photos<br/>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" style="padding-top: 0;">Gambar<br/>
                                         <span style="color: red;">recommended image ratio 3:4 or exact 270x370 pixel</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -291,23 +219,13 @@
                             @endif
 
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Add New Photos
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Tambah Gambar
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     {!! Form::file('product-photos[]', array('id' => 'product-photos', 'class' => 'file-loading', 'multiple' )) !!}
                                 </div>
                             </div>
 
-                            @if ($errors->has('product-photos'))
-                                <div class="form-group">
-                                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="alert alert-danger">
-                                            {{ $errors->first('product-photos') }}
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Status <span class="required">*</span>
                                 </label>
@@ -317,6 +235,7 @@
                                         @if($product->status_id == 1)
                                             <option value="1" selected>Publish</option>
                                             <option value="0">Unpublish</option>
+                                            <option value="2">Hapus</option>
                                         @else
                                             <option value="1">Publish</option>
                                             <option value="0" selected>Unpublish</option>
@@ -326,7 +245,7 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Description
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Deskripsi Tambahan
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <textarea rows="5" id="description" name="description" class="form-control col-md-7 col-xs-12" style="resize: vertical;">{{ $product->description }}</textarea>
@@ -338,8 +257,8 @@
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
-                                    <a href="{{ route('product-list') }}" class="btn btn-primary">Cancel</a>
-                                    <button id="send" type="submit" class="btn btn-success">Save</button>
+                                    <a href="{{ route('product-list') }}" class="btn btn-primary">Batal</a>
+                                    <button id="send" type="submit" class="btn btn-success">Simpan</button>
                                 </div>
                             </div>
 

@@ -11,13 +11,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\libs\Utilities;
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\TransactionDetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use Webpatser\Uuid\Uuid;
@@ -146,6 +149,9 @@ class ProductController extends Controller
                     $idx++;
                 }
             }
+
+            Session::flash('message', 'Produk baru '. $product->name. ' telah dibuat!');
+
             return redirect::route('product-list');
         }
     }
@@ -173,6 +179,47 @@ class ProductController extends Controller
     public function update(Request $request, $id){
 
         try{
+            $product = Product::find($id);
+
+            if(Input::get('status') == '2'){
+                $oldName = $product->name;
+
+                // Check transaction
+                $trxDetails = TransactionDetail::where('product_id', $id)->get();
+                if($trxDetails->count() > 0){
+                    return redirect()
+                        ->back()
+                        ->withErrors("Product cannot be deleted")
+                        ->withInput();
+                }
+
+                // Check cart
+                $carts = Cart::where('product_id', $id)->get();
+
+                if($carts->count() > 0){
+                    foreach($carts as $cart){
+                        $cart->delete();
+                    }
+                }
+
+                $images = ProductImage::where('product_id', $id)->get();
+
+                if($images->count() > 0){
+                    foreach($images as $img){
+                        $deletedPath = storage_path('app/public/product/'. $img->path);
+                        if(file_exists($deletedPath)) unlink($deletedPath);
+
+                        $img->delete();
+                    }
+                }
+
+                $product->delete();
+
+                Session::flash('message', 'Produk '. $oldName. ' telah dihapus!');
+
+                return redirect::route('product-list');
+            }
+
             $validator = Validator::make($request->all(),[
                 'category'              => 'required|option_not_default',
                 'name'                  => 'required',
@@ -189,7 +236,7 @@ class ProductController extends Controller
                 );
             }
             else{
-                $product = Product::find($id);
+
                 $product->name = Input::get('name');
                 $product->category_id = Input::get('category');
 
@@ -332,6 +379,8 @@ class ProductController extends Controller
                         $idx++;
                     }
                 }
+
+                Session::flash('message', 'Produk '. $product->name. ' telah disimpan!');
 
                 return redirect::route('product-list');
             }

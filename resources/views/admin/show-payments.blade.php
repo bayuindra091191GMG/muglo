@@ -20,7 +20,8 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Payment Status</h2>
+                            @include('admin.partials._success')
+                            <h2>Status Pembayaran</h2>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
@@ -28,15 +29,15 @@
                                 <thead>
                                 <tr>
                                     <th>Invoice</th>
-                                    <th>Customer Name</th>
-                                    <th>Payment Method</th>
-                                    <th>Sender Name</th>
-                                    <th>Transfer Amount</th>
-                                    <th>Total Payment</th>
-                                    <th>Transfer Date</th>
-                                    <th>Confirm Date</th>
+                                    <th>Nama Pembeli</th>
+                                    <th>Metode Pembayaran</th>
+                                    <th>Nama Pengirim</th>
+                                    <th>Jumlah Transfer</th>
+                                    <th>Total Pembayarab</th>
+                                    <th>Tanggal Transfer</th>
+                                    <th>Tanggal Pembayaran Terkonfirmasi</th>
                                     <th>Status</th>
-                                    <th>Option</th>
+                                    <th>Opsi</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -81,9 +82,9 @@
                                         <td>
                                             <a href="/admin/transaction/detail/{{ $trx->id }}" class="btn btn-primary">Detail</a>
                                             @if(!empty($trans))
-                                                <a onclick="modalPop('{{ $trans->id }}', 'transfer', '/admin/payment/confirm/')" class="btn btn-success">Confirm</a>
+                                                <a onclick="modalPop('{{ $trans->id }}', 'transfer', '/admin/payment/confirm/')" class="btn btn-success">Konfirmasi</a>
                                             @endif
-                                            <a onclick="modalPop('{{ $trx->id }}', 'cancel', '/admin/payment/cancel/')" class="btn btn-danger">Delete</a>
+                                            <a onclick="modalPop('{{ $trx->id }}', 'cancel', '/admin/payment/cancel/')" class="btn btn-danger">Batalkan</a>
                                         </td>
                                     </tr>
                                 @endforeach

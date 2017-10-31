@@ -20,6 +20,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
+                            @include('admin.partials._success')
                             <h2>New Order</h2>
                             <div class="clearfix"></div>
                         </div>
@@ -29,15 +30,15 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Invoice</th>
-                                    <th>Customer Name</th>
-                                    <th>Payment Method</th>
-                                    <th>Delivery</th>
-                                    <th>Total Price</th>
-                                    <th>Delivery Fee</th>
-                                    <th>Payment Code</th>
-                                    <th>Total Payment</th>
-                                    <th>Order Date</th>
-                                    <th>Option</th>
+                                    <th>Nama Pembeli</th>
+                                    <th>Metode Pembayaran</th>
+                                    <th>Agen Pengiriman</th>
+                                    <th>Total Harga</th>
+                                    <th>Ongkos Kirim</th>
+                                    <th>Kode Transfer</th>
+                                    <th>Total Pembayaran</th>
+                                    <th>Tanggal Pemesanan</th>
+                                    <th>Opsi</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -60,8 +61,8 @@
                                         </td>
                                         <td>Rp {{ $trx->total_payment }}</td>
                                         <td>
-                                            <a onclick="modalPop('{{ $trx->id }}', 'accept', '/admin/neworder/accept/')" class="btn btn-success">Accept</a>
-                                            <a onclick="rejectModalPop('{{ $trx->id }}')" class="btn btn-danger">Reject</a>
+                                            <a onclick="modalPop('{{ $trx->id }}', 'accept', '/admin/neworder/accept/')" class="btn btn-success">Terima</a>
+                                            <a onclick="rejectModalPop('{{ $trx->id }}')" class="btn btn-danger">Tolak</a>
                                             <a href="/admin/transaction/detail/{{ $trx->id }}" class="btn btn-primary">Detail</a>
                                         </td>
                                     </tr>
