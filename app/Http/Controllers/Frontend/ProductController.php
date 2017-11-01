@@ -27,366 +27,166 @@ use Webpatser\Uuid\Uuid;
 
 class ProductController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:user_admins');
-    }
+    //
+    public function products($categoryId, $categoryName){
 
-    public function index(){
-        $products = Product::all()->sortByDesc('created_on');
+        $products = Product::where('status_id', '=', 1);
 
-        return View('admin.show-products', compact('products'));
-    }
+        if($categoryId > 0){
+            $products = $products->where([['category_id', '=', $categoryId], ['status_id', '=', 1]]);
+            $selectedCategory = Category::find($categoryId);
+        }
+        else
+        {
+            $selectedCategory = new Category([
+                'id' => 0,
+                'name' => 'All'
+            ]);
+        }
 
-    public function create(){
-        $categories = Category::all();
+        if(!empty(request()->max) && !empty(request()->min)){
+            $products = $products->whereBetween('price_discounted', [floatval(request()->min), floatval(request()->max)]);
+        }
+        else if(!empty(request()->max && empty(request()->min))){
+            $products = $products->where('price_discounted', '<=', floatval(request()->max));
+        }
+        else if(empty(request()->max && !empty(request()->min))){
+            $products = $products->where('price_discounted', '>=', floatval(request()->min));
+        }
 
-        return View('admin.create-product', compact('categories'));
-    }
-
-    public function store(Request $request){
-
-        $validator = Validator::make($request->all(),[
-            'category'              => 'required|option_not_default',
-            'name'                  => 'required',
-            'price'                 => 'required',
-            'weight'                => 'required',
-            'qty'                   => 'required',
-            'product-featured'      => 'required|image|mimes:jpeg,jpg,png'
-        ],[
-            'option_not_default'    => 'Select a category'
-        ]);
-
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
+        if(!empty(request()->sort)){
+            $sort = request()->sort;
+            if($sort == '1'){
+                // Newest
+                $products->orderByDesc('created_on');
+            }
+            else if($sort == '2'){
+                // Lowest-Highest Price
+                $products->orderBy('price_discounted');
+            }
+            else if($sort == '3'){
+                // Highest-Lowest Price
+                $products->orderByDesc('price_discounted');
+            }
+            else if($sort == '4'){
+                // A-Z
+                $products->orderBy('name');
+            }
         }
         else{
-            $price = $request->input('price');
-            $priceDouble = (double) str_replace('.','', $price);
-            $weight = (double) str_replace('.','', Input::get('weight'));
-
-            $dateTimeNow = Carbon::now('Asia/Jakarta');
-
-            $product = Product::create([
-                'id'            => Uuid::generate(),
-                'category_id'   => Input::get('category'),
-                'name'          => Input::get('name'),
-                'price'         => $priceDouble,
-                'weight'        => $weight,
-                'quantity'      => Input::get('qty'),
-                'created_on'    => $dateTimeNow->toDateTimeString(),
-                'status_id'     => 1
-            ]);
-
-            if(Input::get('options') == 'percent'){
-                $discountPercent = (double) Input::get('discount-percent');
-                $product->discount = $discountPercent;
-
-                $discountAmount = $priceDouble / 100 * $discountPercent;
-                $product->price_discounted = $priceDouble - $discountAmount;
-            }
-            else if(Input::get('options') == 'flat'){
-                $discountFlat = (double) str_replace('.','', Input::get('discount-flat'));
-                $product->discount_flat = $discountFlat;
-
-                $product->price_discounted = $priceDouble - $discountFlat;
-            }
-            else{
-                $product->price_discounted = $priceDouble;
-            }
-
-            if(!empty(Input::get('description'))){
-                $product->description = Input::get('description');
-            }
-
-            $product->save();
-            $savedId = $product->id;
-
-            if(!empty($request->file('product-featured'))){
-                $img = Image::make($request->file('product-featured'));
-
-                // Get image extension
-                $extStr = $img->mime();
-                $ext = explode('/', $extStr, 2);
-
-                $filename = $savedId.'_'. Carbon::now('Asia/Jakarta')->format('Ymdhms'). '_0.'. $ext[1];
-
-                $img->save(public_path('storage/product/'. $filename));
-
-                $productImgFeatured = ProductImage::create([
-                    'product_id'    => $savedId,
-                    'path'          => $filename,
-                    'featured'      => 1
-                ]);
-
-                $productImgFeatured->save();
-            }
-
-            if(!empty($request->file('product-photos'))){
-                $idx = 1;
-                foreach($request->file('product-photos') as $img){
-                    error_log('index: '. $idx);
-                    $photo = Image::make($img);
-
-                    // Get image extension
-                    $extStr = $photo->mime();
-                    $ext = explode('/', $extStr, 2);
-
-                    $filename = $savedId.'_'. Carbon::now('Asia/Jakarta')->format('Ymdhms'). '_'. $idx. '.'. $ext[1];
-
-
-                    $photo->save(public_path('storage/product/'. $filename));
-
-                    $productPhoto = ProductImage::create([
-                        'product_id'    => $savedId,
-                        'path'          => $filename,
-                        'featured'      => 0
-                    ]);
-
-                    $productPhoto->save();
-                    $idx++;
-                }
-            }
-
-            Session::flash('message', 'Produk baru '. $product->name. ' telah dibuat!');
-
-            return redirect::route('product-list');
+            $products->orderByDesc('created_on');
         }
-    }
 
-    public function edit($id){
-        $product = Product::findorFail($id);
+        $productCount = $products->count();
+        $products = $products->paginate(9);
 
-        $imgFeatured = null;
-        if($product->product_image->count() > 0){
-            $imgFeatured = $product->product_image()->where('featured', 1)->first()->path;
-        }
-        $imgPhotos = $product->product_image()->where('featured', 0)->get();
         $categories = Category::all();
 
         $data = [
-            'product'       => $product,
-            'imgFeatured'   => $imgFeatured,
-            'imgPhotos'     => $imgPhotos,
-            'categories'    => $categories
+            'products'          => $products,
+            'productCount'      => $productCount,
+            'categories'        => $categories,
+            'selectedCategory'  => $selectedCategory,
+            'filterMaxPrice'    => request()->max ?? null,
+            'filterMinPrice'    => request()->min ?? null,
+            'filterSort'        => request()->sort ?? null
         ];
 
-        return view('admin.edit-product')->with($data);
+        return View('frontend.show-products')->with($data);
     }
 
-    public function update(Request $request, $id){
+    //
+    public function ProductShow($id){
+        $product = Product::find($id);
+        $photos = $product->product_image()->where('featured',0)->get();
+        $recommendedProducts = Product::where('category_id', '=', $product->category_id)
+            ->where('status_id',1)
+            ->inRandomOrder()
+            ->take(6)
+            ->get();
 
-        try{
-            $product = Product::find($id);
+        $colors = $product->product_properties()->where('name','color')->get();
+        $sizes = $product->product_properties()->where('name','size')->get();
+        $weights = $product->product_properties()->where('name','weight')->orderBy('description')->get();
+        $qtys = $product->product_properties()->where('name','qty')->get();
 
-            if(Input::get('status') == '2'){
-                $oldName = $product->name;
+        $data =[
+            'product'               => $product,
+            'photos'                => $photos,
+            'recommendedProducts'   => $recommendedProducts,
+            'colors'                => $colors,
+            'sizes'                 => $sizes,
+            'weights'               => $weights,
+            'qtys'                  => $qtys
+        ];
 
-                // Check transaction
-                $trxDetails = TransactionDetail::where('product_id', $id)->get();
-                if($trxDetails->count() > 0){
-                    return redirect()
-                        ->back()
-                        ->withErrors("Product cannot be deleted")
-                        ->withInput();
-                }
+        return View('frontend.show-product')->with($data);
+    }
 
-                // Check cart
-                $carts = Cart::where('product_id', $id)->get();
+    public function search($key){
 
-                if($carts->count() > 0){
-                    foreach($carts as $cart){
-                        $cart->delete();
-                    }
-                }
+        $products = Product::where('status_id', '=', 1)
+            ->where('name','LIKE','%'. $key. '%');
 
-                $images = ProductImage::where('product_id', $id)->get();
+        if(!empty(request()->category) && request()->category != '-1'){
+            $products = $products->where('category_id', intval(request()->category));
+        }
 
-                if($images->count() > 0){
-                    foreach($images as $img){
-                        $deletedPath = storage_path('app/public/product/'. $img->path);
-                        if(file_exists($deletedPath)) unlink($deletedPath);
+        if(!empty(request()->max) && !empty(request()->min)){
+            $products = $products->whereBetween('price_discounted', [floatval(request()->min), floatval(request()->max)]);
+        }
+        else if(!empty(request()->max && empty(request()->min))){
+            $products = $products->where('price_discounted', '<=', floatval(request()->max));
+        }
+        else if(empty(request()->max && !empty(request()->min))){
+            $products = $products->where('price_discounted', '>=', floatval(request()->min));
+        }
 
-                        $img->delete();
-                    }
-                }
-
-                $product->delete();
-
-                Session::flash('message', 'Produk '. $oldName. ' telah dihapus!');
-
-                return redirect::route('product-list');
+        if(!empty(request()->sort)){
+            $sort = request()->sort;
+            if($sort == '1'){
+                // Newest
+                $products->orderByDesc('created_on');
             }
-
-            $validator = Validator::make($request->all(),[
-                'category'              => 'required|option_not_default',
-                'name'                  => 'required',
-                'price'                 => 'required',
-                'weight'                => 'required',
-                'qty'                   => 'required'
-            ],[
-                'option_not_default'    => 'Select a category'
-            ]);
-
-            if ($validator->fails()) {
-                $this->throwValidationException(
-                    $request, $validator
-                );
+            else if($sort == '2'){
+                // Lowest-Highest Price
+                $products->orderBy('price_discounted');
             }
-            else{
-
-                $product->name = Input::get('name');
-                $product->category_id = Input::get('category');
-
-                $status = Input::get('status');
-                $product->status_id = $status === '1' ? 1 : 2;
-
-                $price = $request->input('price');
-                $priceDouble = (double) str_replace('.','', $price);
-                $weight = (double) str_replace('.','', Input::get('weight'));
-
-                $product->price = $priceDouble;
-                $product->weight = $weight;
-                $product->quantity = Input::get('qty');
-
-                if(Input::get('options') == 'percent'){
-                    $discountPercent = (double) Input::get('discount-percent');
-                    $product->discount = $discountPercent;
-
-                    $discountAmount = $priceDouble / 100 * $discountPercent;
-                    $product->price_discounted = $priceDouble - $discountAmount;
-
-                    // Set other null
-                    $product->discount_flat = null;
-                }
-                else if(Input::get('options') == 'flat'){
-                    $discountFlat = (double) str_replace('.','', Input::get('discount-flat'));
-                    $product->discount_flat = $discountFlat;
-
-                    $product->price_discounted = $priceDouble - $discountFlat;
-
-                    // Set other null
-                    $product->discount_flat = null;
-                }
-                else if(Input::get('options' == 'none')){
-                    // Set all null
-                    $product->discount = null;
-                    $product->discount_flat = null;
-                    $product->price_discounted = $priceDouble;
-                }
-
-                if(!empty(Input::get('description'))){
-                    $product->description = Input::get('description');
-                }else{
-                    $product->description = null;
-                }
-
-                $product->save();
-
-                // Image handling
-                $savedId = $product->id;
-
-                if(!empty(Input::get('img_featured_changed') && Input::get('img_featured_changed') === 'new')){
-                    // Change old value of featured image
-
-                    if($product->product_image->count() > 0){
-                        $currentImgFeatured = $product->product_image()->where('featured',1)->first();
-                        $currentImgFeatured->featured = 0;
-                        $currentImgFeatured->save();
-                    }
-
-                    $img = Image::make($request->file('product-featured'));
-
-                    // Get image extension
-                    $extStr = $img->mime();
-                    $ext = explode('/', $extStr, 2);
-
-                    $filename = $savedId.'_'. Carbon::now('Asia/Jakarta')->format('Ymdhms'). '_0.'. $ext[1];
-
-                    $img->save(public_path('storage/product/'. $filename));
-
-                    $productImgFeatured = ProductImage::create([
-                        'product_id'    => $savedId,
-                        'path'          => $filename,
-                        'featured'      => 1
-                    ]);
-
-                    $productImgFeatured->save();
-                }
-
-                error_log("Deleted: ". Input::get('deleted_img_id'));
-
-                // Delete product images
-                if(!empty(Input::get('deleted_img_id'))){
-                    $deletedIdTmp = Input::get('deleted_img_id');
-
-                    if(strpos($deletedIdTmp,',')){
-                        $deletedIdList = explode(',', $deletedIdTmp);
-                        foreach($deletedIdList as $deletedId){
-                            $productImage = ProductImage::find($deletedId);
-
-                            $deletedPath = storage_path('app/public/product/'. $productImage->path);
-                            if(file_exists($deletedPath)) unlink($deletedPath);
-
-                            $productImage->delete();
-                        }
-                    }
-                    else{
-                        $productImage = ProductImage::find($deletedIdTmp);
-                        $productImage->delete();
-                    }
-                }
-
-                // Change featured value of existing product images
-                if(!empty(Input::get('img_featured_changed') && Input::get('img_featured_changed') != 'new')){
-                    // Change old value of featured image
-
-                    if($product->product_image->count() > 0){
-                        $currentImgFeatured = $product->product_image()->where('featured',1)->first();
-                        $currentImgFeatured->featured = 0;
-                        $currentImgFeatured->save();
-                    }
-
-                    $image = ProductImage::find(Input::get('img_featured_changed'));
-                    $image->featured = 1;
-                    $image->save();
-                }
-
-                if(!empty($request->file('product-photos'))){
-                    $idx = 1;
-                    foreach($request->file('product-photos') as $img){
-                        error_log('index: '. $idx);
-                        $photo = Image::make($img);
-
-                        // Get image extension
-                        $extStr = $photo->mime();
-                        $ext = explode('/', $extStr, 2);
-
-                        $filename = $savedId.'_'. Carbon::now('Asia/Jakarta')->format('Ymdhms'). '_'. $idx. '.'. $ext[1];
-
-
-                        $photo->save(public_path('storage/product/'. $filename));
-
-                        $productPhoto = ProductImage::create([
-                            'product_id'    => $savedId,
-                            'path'          => $filename,
-                            'featured'      => 0
-                        ]);
-
-                        $productPhoto->save();
-                        $idx++;
-                    }
-                }
-
-                Session::flash('message', 'Produk '. $product->name. ' telah disimpan!');
-
-                return redirect::route('product-list');
+            else if($sort == '3'){
+                // Highest-Lowest Price
+                $products->orderByDesc('price_discounted');
+            }
+            else if($sort == '4'){
+                // A-Z
+                $products->orderBy('name');
             }
         }
-        catch(\Exception $ex){
-            Utilities::ExceptionLog($ex);
+
+        $productCount = $products->count();
+
+        $products = $products->paginate(9);
+        $categories = Category::all();
+        $selectedCategory = new Category([
+            'id' => 0,
+            'name' => 'All'
+        ]);
+
+        if(!empty(request()->category) && request()->category != '-1'){
+            $selectedCategory = Category::find(request()->category);
         }
+
+        $data = [
+            'products'          => $products,
+            'productCount'      => $productCount,
+            'categories'        => $categories,
+            'selectedCategory'  => $selectedCategory,
+            'filterCategory'    => request()->category ?? null,
+            'filterMaxPrice'    => request()->max ?? null,
+            'filterMinPrice'    => request()->min ?? null,
+            'filterSort'        => request()->sort ?? null,
+            'searchKey'         => $key
+        ];
+
+        return View('frontend.show-search-results')->with($data);
     }
 }

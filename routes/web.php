@@ -32,12 +32,12 @@ Route::get('example/product/detail', 'Frontend\ProductController@exampleProductD
 Route::get('cart', 'Frontend\CartController@index')->name('cart-list');
 Route::post('/add-cart', [
     'uses' => 'Frontend\CartController@AddToCart',
-    'as' => 'addCart'
+    'as' => 'cart-add'
 ]);
 Route::get('delete-cart/{cartId}', 'Frontend\CartController@DeleteCart')->name('delete-cart');
 Route::post('/edit-cart', [
     'uses' => 'Frontend\CartController@EditQuantityCart',
-    'as' => 'editCart'
+    'as' => 'cart-edit-qty'
 ]);
 
 // Payment

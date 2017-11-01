@@ -57,34 +57,65 @@ function deleteCart(cartId){
 }
 
 function editCartQuantity(cartId){
-var quantity = $('#cart_quantity_'+cartId).val();
-var productSubtotal = '#product-subtotal-' + cartId;
-if(quantity){
-    $.ajax({
-        url     : urlLinkEdit,
-        method  : 'POST',
-        dataType: 'JSON',
-        data    : {
-            cart_id  : cartId,
-            quantity: quantity
-        },
-        headers:
-        {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success : function(response){
-            var newSinglePrice = "Rp. " + response.singlePrice;
-            $(productSubtotal).html(newSinglePrice);
+    var quantity = $('#cart_quantity_' + cartId).val();
+    var rowId = "cart_item_" + cartId;
+    var productSubtotal = $("#" + rowId + "_total_price span");
+    if(quantity){
+        $.ajax({
+            url     : editCartQtyUrl,
+            method  : 'POST',
+            dataType: 'JSON',
+            data    : {
+                cart_id  : cartId,
+                quantity : quantity
+            },
+            headers:
+            {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success : function(response){
+                productSubtotal.html("Rp. " + response.singlePrice);
+                $("#cart-grand-total").html("TOTAL: Rp " + response.totalPrice);
+            },
+            error:function(){
 
-            var newtotalPrice = "Rp. " + response.totalPrice;
-            $('#sub-total-price').html(newtotalPrice);
-            $('#total-price').html(newtotalPrice);
-        },
-        error:function(){
-
-        }
-    });
+            }
+        });
+    }
 }
+
+// function editCartQuantity(cartId){
+//     var qty = $('#cart_quantity_' + cartId).val();
+//     if(qty.trim().length){
+//         var rowId = "cart_item_" + cartId;
+//         var price = $("#" + rowId + "_price").data("price");
+//         var priceDouble = parseFloat(price);
+//         var qtyInt = parseInt(qty);
+//         var subtotal = priceDouble * qtyInt;
+//         var subtotalId = $("#" + rowId + "_total_price");
+//         subtotalId.attr("data-total-price", subtotal);
+//         subtotalId.data("total-price", subtotal);
+//
+//         $("#" + rowId + "_total_price span").html(addCommas(subtotal));
+//
+//         var total = 0;
+//         $(".cart-subtotal").each(function(){
+//             total += parseFloat($(this).data("total-price"));
+//         })
+//         $("#cart-grand-total").html("TOTAL: " + addCommas(total));
+//     }
+// }
+
+function addCommas(nStr) {
+    nStr += '';
+    x = nStr.split(',');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+    }
+    return "Rp " + x1 + x2;
 }
 
 // autoNumeric
@@ -125,19 +156,6 @@ function handleChangePayment(myRadio){
         $("#grand-total-value").val(newGrandTotalValue);
         $("#grand-total-price").html(newGrandTotal);
     }
-}
-
-
-function addCommas(nStr) {
-    nStr += '';
-    x = nStr.split(',');
-    x1 = x[0];
-    x2 = x.length > 1 ? '.' + x[1] : '';
-    var rgx = /(\d+)(\d{3})/;
-    while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + '.' + '$2');
-    }
-    return "Rp " + x1 + x2;
 }
 
 // NOUISLIDER

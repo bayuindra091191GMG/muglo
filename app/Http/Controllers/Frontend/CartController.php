@@ -20,23 +20,21 @@ class CartController
 {
     //
     public function index(){
-//        if (Auth::check())
-//        {
-//            $userId = Auth::user()->id;
-//
-//            $carts = Cart::where('user_id', $userId)->get();
-//
-//            $totalPriceTem = Cart::where('user_id', $userId)->sum('total_price');
-//            $totalPrice = number_format($totalPriceTem, 0, ",", ".");
-//
-//            return view('frontend.carts', compact('carts','totalPrice', 'totalPriceTem'));
-//        }
-//        else
-//        {
-//            return redirect()->route('login');
-//        }
+        if (Auth::check())
+        {
+            $userId = Auth::user()->id;
 
-        return view('frontend.show-cart');
+            $carts = Cart::where('user_id', $userId)->get();
+
+            $totalPriceTem = Cart::where('user_id', $userId)->sum('total_price');
+            $totalPrice = number_format($totalPriceTem, 0, ",", ".");
+
+            return view('frontend.show-cart', compact('carts','totalPrice', 'totalPriceTem'));
+        }
+        else
+        {
+            return redirect()->route('login');
+        }
     }
 
     //

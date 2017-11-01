@@ -16,6 +16,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $product_id
  * @property string $user_id
  * @property int $quantity
+ * @property float $price
  * @property float $total_price
  * @property int $courier_id
  * @property int $delivery_type_id
@@ -37,6 +38,7 @@ class Cart extends Eloquent
 
 	protected $casts = [
 		'quantity' => 'int',
+        'price' => 'float',
 		'total_price' => 'float',
         'delivery_fee' => 'float',
         'admin_fee' => 'float',
@@ -47,6 +49,7 @@ class Cart extends Eloquent
 		'product_id',
 		'user_id',
 		'quantity',
+        'price',
 		'total_price',
         'courier_id',
         'delivery_type_id',

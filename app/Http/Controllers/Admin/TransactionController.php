@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Session;
 
 class TransactionController extends Controller
 {
@@ -53,6 +54,8 @@ class TransactionController extends Controller
 
         Mail::to($trx->user->email)->send(new OrderAccepted());
 
+        Session::flash('message', 'Berhasil menerima pemesanan!');
+
         return redirect::route('new-order-list');
     }
 
@@ -64,6 +67,8 @@ class TransactionController extends Controller
             $trx->reject_note = Input::get('reject-reason');
         }
         $trx->save();
+
+        Session::flash('message', 'Pemesanan telah ditolak! Mohon hubungi pembeli untuk proses refund');
 
         return redirect::route('new-order-list');
     }
@@ -88,6 +93,8 @@ class TransactionController extends Controller
         $trx->status_id = 5;
         $trx->save();
 
+        Session::flash('message', 'Berhasil verifikasi pembayaran!');
+
         return redirect::route('payment-list');
     }
 
@@ -96,6 +103,8 @@ class TransactionController extends Controller
         $trx->status_id = 10;
         $trx->finish_date = Carbon::now('Asia/Jakarta')->toDateTimeString();
         $trx->save();
+
+        Session::flash('message', 'Pembayaran telah ditolak!');
 
         return redirect::route('payment-list');
     }
@@ -112,6 +121,8 @@ class TransactionController extends Controller
         $trx->tracking_code = Input::get('tracking-code');
         $trx->status_id = 9;
         $trx->save();
+
+        Session::flash('message', 'Berhasil konfirmasi nomor resi pengiriman!');
 
         return redirect::route('delivery-list');
     }

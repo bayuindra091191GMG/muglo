@@ -18,8 +18,6 @@
         <!--======= PAGES INNER =========-->
         <section class="section-p-30px pages-in chart-page">
             <div class="container">
-
-
                 <div class="shopping-cart text-center">
                     <div class="cart-head">
                         <ul class="row">
@@ -48,80 +46,85 @@
                     </div>
 
                     <!-- Cart Details -->
-                    <ul class="row cart-details">
-                        <li class="col-sm-6">
-                            <div class="media">
-                                <!-- Media Image -->
-                                <div class="media-left media-middle"> <a href="#." class="item-img"> <img class="media-object" src="{{ asset('frontend_images/week-img-2.jpg') }}" alt=""> </a> </div>
+                    @foreach($carts as $cart)
+                        @php ( $rowId = "cart_item_".$cart->id )
+                        @php ( $qtyId = "cart_quantity_".$cart->id )
+                        <ul class="row cart-details" id="{{ $rowId }}">
+                            <li class="col-sm-6">
+                                <div class="media">
+                                    <!-- Media Image -->
+                                    <div class="media-left media-middle"> <a href="#." class="item-img"> <img class="media-object" src="{{ asset('frontend_images/week-img-2.jpg') }}" alt=""> </a> </div>
 
-                                <!-- Item Name -->
-                                <div class="media-body">
-                                    <div class="position-center-center">
-                                        <h6>LOOSE-FIT TRENCH COAT</h6>
+                                    <!-- Item Name -->
+                                    <div class="media-body">
+                                        <div class="position-center-center">
+                                            <h6>{{ $cart->product->name }}</h6>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
 
-                        <!-- QTY -->
-                        <li class="col-sm-1">
-                            <div class="position-center-center">
-                                <input type="text" value="02">
-                            </div>
-                        </li>
+                            <!-- QTY -->
+                            <li class="col-sm-1">
+                                <div class="position-center-center">
+                                    <input type="text" id="{{ $qtyId }}" value="{{ $cart->quantity }}" onkeyup="editCartQuantity('{{ $cart->id }}')">
+                                </div>
+                            </li>
 
-                        <!-- PRICE -->
-                        <li class="col-sm-2">
-                            <div class="position-center-center"> <span> 129.00 USD</span> </div>
-                        </li>
-                        <!-- TOTAL PRICE -->
-                        <li class="col-sm-2">
-                            <div class="position-center-center"> <span>258.00 USD</span> </div>
-                        </li>
+                            <!-- PRICE -->
+                            <li class="col-sm-2">
+                                <div class="position-center-center" id="{{ $rowId. '_price' }}" data-price="{{ $cart->getOriginal('price') }}"> <span>Rp {{ $cart->price }}</span> </div>
+                            </li>
+                            <!-- TOTAL PRICE -->
+                            <li class="col-sm-2">
+                                <div class="position-center-center cart-subtotal" id="{{ $rowId. '_total_price' }}" data-total-price="{{ $cart->getOriginal('total_price') }}"> <span id="">Rp {{ $cart->total_price }}</span> </div>
+                            </li>
 
-                        <!-- EDIT AND REMOVE -->
-                        <li class="col-sm-1">
-                            <div class="position-center-center"> <a href="#."><i class="fa fa-times"></i></a> </div>
-                        </li>
-                    </ul>
+                            <!-- EDIT AND REMOVE -->
+                            <li class="col-sm-1">
+                                <div class="position-center-center"> <a href="#."><i class="fa fa-times"></i></a> </div>
+                            </li>
+                        </ul>
+                    @endforeach
+
 
                     <!-- Cart Details -->
-                    <ul class="row cart-details">
-                        <li class="col-sm-6">
-                            <div class="media">
-                                <!-- Media Image -->
-                                <div class="media-left media-middle"> <a href="#." class="item-img"> <img class="media-object" src="{{ asset('frontend_images/week-img-3.jpg') }}" alt=""> </a> </div>
+                    {{--<ul class="row cart-details">--}}
+                        {{--<li class="col-sm-6">--}}
+                            {{--<div class="media">--}}
+                                {{--<!-- Media Image -->--}}
+                                {{--<div class="media-left media-middle"> <a href="#." class="item-img"> <img class="media-object" src="{{ asset('frontend_images/week-img-3.jpg') }}" alt=""> </a> </div>--}}
 
-                                <!-- Item Name -->
-                                <div class="media-body">
-                                    <div class="position-center-center">
-                                        <h6>LOOSE-FIT TRENCH COAT</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                                {{--<!-- Item Name -->--}}
+                                {{--<div class="media-body">--}}
+                                    {{--<div class="position-center-center">--}}
+                                        {{--<h6>LOOSE-FIT TRENCH COAT</h6>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</li>--}}
 
-                        <!-- QTY -->
-                        <li class="col-sm-1">
-                            <div class="position-center-center">
-                                <input type="text" value="02">
-                            </div>
-                        </li>
+                        {{--<!-- QTY -->--}}
+                        {{--<li class="col-sm-1">--}}
+                            {{--<div class="position-center-center">--}}
+                                {{--<input type="text" value="02">--}}
+                            {{--</div>--}}
+                        {{--</li>--}}
 
-                        <!-- PRICE -->
-                        <li class="col-sm-2">
-                            <div class="position-center-center"> <span> 129.00 USD</span> </div>
-                        </li>
-                        <!-- TOTAL PRICE -->
-                        <li class="col-sm-2">
-                            <div class="position-center-center"> <span>258.00 USD</span> </div>
-                        </li>
+                        {{--<!-- PRICE -->--}}
+                        {{--<li class="col-sm-2">--}}
+                            {{--<div class="position-center-center"> <span> 129.00 USD</span> </div>--}}
+                        {{--</li>--}}
+                        {{--<!-- TOTAL PRICE -->--}}
+                        {{--<li class="col-sm-2">--}}
+                            {{--<div class="position-center-center"> <span>258.00 USD</span> </div>--}}
+                        {{--</li>--}}
 
-                        <!-- EDIT AND REMOVE -->
-                        <li class="col-sm-1">
-                            <div class="position-center-center"> <a href="#."><i class="fa fa-times"></i></a> </div>
-                        </li>
-                    </ul>
+                        {{--<!-- EDIT AND REMOVE -->--}}
+                        {{--<li class="col-sm-1">--}}
+                            {{--<div class="position-center-center"> <a href="#."><i class="fa fa-times"></i></a> </div>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
 
                     <!-- BTN INFO -->
                     <div class="btn-sec">
@@ -176,8 +179,8 @@
 
                             <!-- SUB TOTAL -->
                             <div class="col-sm-4">
-                                <div class="grand-total"> <span>SUB TOTAL: 258.00 USD</span>
-                                    <h4>GRAND: <span> 258.00 USD </span></h4>
+                                <div class="grand-total">
+                                    <h4 id="cart-grand-total">TOTAL: Rp {{ $totalPrice }}</h4>
                                     <a href="#." class="btn">PROCEED TO CHECK OUT</a>
                                 </div>
                             </div>
@@ -187,4 +190,7 @@
             </div>
         </section>
     </div>
+    <script>
+        var editCartQtyUrl = '{{ route('cart-edit-qty') }}';
+    </script>
 @endsection
