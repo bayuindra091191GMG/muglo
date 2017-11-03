@@ -69,10 +69,6 @@ function editCartQuantity(cartId){
                 cart_id  : cartId,
                 quantity : quantity
             },
-            headers:
-            {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
             success : function(response){
                 productSubtotal.html("Rp. " + response.singlePrice);
                 $("#cart-grand-total").html("TOTAL: Rp " + response.totalPrice);

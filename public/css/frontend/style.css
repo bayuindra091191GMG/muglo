@@ -2889,7 +2889,7 @@ header .ownmenu .look-book .media-body a {
       END OF DEADON
 ========================================================*/
 .end-season {
-	background: url(../images/bg/bg-7.jpg) fixed no-repeat;
+	background: url(../../frontend_images/bg/bg-7.jpg) fixed no-repeat;
 	background-size: cover;
 }
 .end-season h5 {

@@ -105,12 +105,16 @@ class CartController
 
     //
     public function EditQuantityCart(Request $request){
+        error_log('CHECK');
+
         //userId sesuai dengan session
         $user = Auth::user();
         $userId = $user->id;
 
         $cartId   = $request['cart_id'];
         $quantity   = $request['quantity'];
+
+        error_log($cartId. '_'. $quantity);
 
         $cart = Cart::find($cartId);
 
@@ -120,6 +124,7 @@ class CartController
         $newSinglePriceFormated = number_format($newSinglePrice, 0, ",", ".");
 
         $cart->quantity = $quantity;
+        $cart->price = $price;
         $cart->total_price = $newSinglePrice;
         $cart->save();
 
@@ -127,7 +132,7 @@ class CartController
         $newTotalPriceFormated = number_format($totalPriceTem, 0, ",", ".");
 
         //edit session data
-        $carts = Cart::where('user_id', 'like', $userId)->get();
+        $carts = Cart::where('user_id', $userId)->get();
         $cartTotal = $carts->count();
         Session::put('cartList', $carts);
         Session::put('cartTotal', $cartTotal);
@@ -136,6 +141,5 @@ class CartController
             'totalPrice' => $newTotalPriceFormated,
             'singlePrice' => $newSinglePriceFormated
         ]);
-//        return ['totalPrice' => $newTotalPriceFormated,'singlePrice' => $newSinglePriceFormated];
     }
 }

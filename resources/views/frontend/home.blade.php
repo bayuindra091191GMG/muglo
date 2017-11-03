@@ -267,11 +267,11 @@
 								<li class="col-sm-3">
 									<div class="items-in">
 										<!-- Image -->
-										<img src="{{ asset('frontend_images/new-item-1.jpg') }}" alt="">
+										<img src="{{ asset('frontend_images/example/TangerineProduk-01.jpg') }}" alt="">
 										<!-- Hover Details -->
 										<div class="over-item">
 											<ul class="animated fadeIn">
-												<li> <a href="{{ asset('frontend_images/new-item-1.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+												<li> <a href="{{ asset('frontend_images/example/TangerineProduk-01.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
 												<li> <a href="#."><i class="ion-shuffle"></i></a></li>
 												<li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
 												<li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
@@ -288,11 +288,11 @@
 								<li class="col-sm-3">
 									<div class="items-in">
 										<!-- Image -->
-										<img src="{{ asset('frontend_images/new-item-5.jpg') }}" alt="">
+										<img src="{{ asset('frontend_images/example/TangerineProduk-02.jpg') }}" alt="">
 										<!-- Hover Details -->
 										<div class="over-item">
 											<ul class="animated fadeIn">
-												<li> <a href="{{ asset('frontend_images/new-item-5.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+												<li> <a href="{{ asset('frontend_images/example/TangerineProduk-02.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
 												<li> <a href="#."><i class="ion-shuffle"></i></a></li>
 												<li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
 												<li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
@@ -312,11 +312,11 @@
 										<div class="new-tag"> NEW </div>
 
 										<!-- Image -->
-										<img src="{{ asset('frontend_images/new-item-3.jpg') }}" alt="">
+										<img src="{{ asset('frontend_images/example/TangerineProduk-03.jpg') }}" alt="">
 										<!-- Hover Details -->
 										<div class="over-item">
 											<ul class="animated fadeIn">
-												<li> <a href="{{ asset('frontend_images/new-item-3.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+												<li> <a href="{{ asset('frontend_images/example/TangerineProduk-03.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
 												<li> <a href="#."><i class="ion-shuffle"></i></a></li>
 												<li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
 												<li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
@@ -335,11 +335,11 @@
 										<!--  Tags  -->
 										<div class="hot-tag"> HOT </div>
 										<!-- Image -->
-										<img src="{{ asset('frontend_images/new-item-4.jpg') }}" alt="">
+										<img src="{{ asset('frontend_images/example/TangerineProduk-04.jpg') }}" alt="">
 										<!-- Hover Details -->
 										<div class="over-item">
 											<ul class="animated fadeIn">
-												<li> <a href="{{ asset('frontend_images/new-item-4.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+												<li> <a href="{{ asset('frontend_images/example/TangerineProduk-04.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
 												<li> <a href="#."><i class="ion-shuffle"></i></a></li>
 												<li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
 												<li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
@@ -463,11 +463,11 @@
 								<li class="col-sm-3">
 									<div class="items-in">
 										<!-- Image -->
-										<img src="{{ asset('frontend_images/new-item-3.jpg') }}" alt="">
+										<img src="{{ asset('frontend_images/example/TangerineProduk-01.jpg') }}" alt="">
 										<!-- Hover Details -->
 										<div class="over-item">
 											<ul class="animated fadeIn">
-												<li> <a href="{{ asset('frontend_images/new-item-3.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+												<li> <a href="{{ asset('frontend_images/example/TangerineProduk-01.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
 												<li> <a href="#."><i class="ion-shuffle"></i></a></li>
 												<li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
 												<li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
@@ -484,11 +484,11 @@
 								<li class="col-sm-3">
 									<div class="items-in">
 										<!-- Image -->
-										<img src="{{ asset('frontend_images/new-item-1.jpg') }}" alt="">
+										<img src="{{ asset('frontend_images/example/TangerineProduk-01.jpg') }}" alt="">
 										<!-- Hover Details -->
 										<div class="over-item">
 											<ul class="animated fadeIn">
-												<li> <a href="{{ asset('frontend_images/new-item-1.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+												<li> <a href="{{ asset('frontend_images/example/TangerineProduk-01.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
 												<li> <a href="#."><i class="ion-shuffle"></i></a></li>
 												<li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
 												<li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
@@ -764,11 +764,11 @@
 					<!--  New Arrival  -->
 					<div class="items-in">
 						<!-- Image -->
-						<img src="{{ asset('frontend_images/week-img-1.jpg') }}" alt="">
+						<img src="{{ asset('frontend_images/example/TangerineProduk-05.jpg') }}" alt="">
 						<!-- Hover Details -->
 						<div class="over-item">
 							<ul class="animated fadeIn">
-								<li> <a href="{{ asset('frontend_images/week-img-1.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+								<li> <a href="{{ asset('frontend_images/example/TangerineProduk-05.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
 								<li> <a href="#."><i class="ion-shuffle"></i></a></li>
 								<li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
 								<li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
@@ -783,11 +783,11 @@
 					<!--  New Arrival  -->
 					<div class="items-in">
 						<!-- Image -->
-						<img src="{{ asset('frontend_images/week-img-2.jpg') }}" alt="">
+						<img src="{{ asset('frontend_images/example/TangerineProduk-06.jpg') }}" alt="">
 						<!-- Hover Details -->
 						<div class="over-item">
 							<ul class="animated fadeIn">
-								<li> <a href="{{ asset('frontend_images/week-img-2.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+								<li> <a href="{{ asset('frontend_images/example/TangerineProduk-06.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
 								<li> <a href="#."><i class="ion-shuffle"></i></a></li>
 								<li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
 								<li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
@@ -802,11 +802,11 @@
 					<!--  New Arrival  -->
 					<div class="items-in">
 						<!-- Image -->
-						<img src="{{ asset('frontend_images/week-img-3.jpg') }}" alt="">
+						<img src="{{ asset('frontend_images/example/TangerineProduk-07.jpg') }}" alt="">
 						<!-- Hover Details -->
 						<div class="over-item">
 							<ul class="animated fadeIn">
-								<li> <a href="{{ asset('frontend_images/week-img-3.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+								<li> <a href="{{ asset('frontend_images/example/TangerineProduk-07.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
 								<li> <a href="#."><i class="ion-shuffle"></i></a></li>
 								<li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
 								<li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
@@ -823,11 +823,11 @@
 						<!--  Tags  -->
 						<div class="off-tag"> -30% </div>
 						<!-- Image -->
-						<img src="{{ asset('frontend_images/week-img-4.jpg') }}" alt="">
+						<img src="{{ asset('frontend_images/example/TangerineProduk-08.jpg') }}" alt="">
 						<!-- Hover Details -->
 						<div class="over-item">
 							<ul class="animated fadeIn">
-								<li> <a href="{{ asset('frontend_images/week-img-4.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+								<li> <a href="{{ asset('frontend_images/example/TangerineProduk-08.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
 								<li> <a href="#."><i class="ion-shuffle"></i></a></li>
 								<li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
 								<li class="full-w"> <a href="#." class="btn">ADD TO CART</a></li>
@@ -868,12 +868,12 @@
 						<div class="media">
 							<div class="media-left">
 								<!--  Image -->
-								<div class="item-img"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/small-item.jpg') }}" alt=""> </a> </div>
+								<div class="item-img"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/example/TangerineProduk-09.jpg') }}" alt=""> </a> </div>
 							</div>
 							<!--  Details -->
 							<div class="media-body"> <a class="media-heading" href="#.">FLAT SOLE PATENT SANDAL</a> <span class="font-montserrat">129.00 USD</span> <a href="#." class="btn btn-small">ADD TO CART</a>
 								<ul class="main-link">
-									<li> <a href="{{ asset('frontend_images/small-item.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+									<li> <a href="{{ asset('frontend_images/example/TangerineProduk-09.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
 									<li> <a href="#."><i class="ion-shuffle"></i></a></li>
 									<li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
 								</ul>
@@ -884,12 +884,12 @@
 						<div class="media">
 							<div class="media-left">
 								<!--  Image -->
-								<div class="item-img"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/small-item-3.jpg') }}" alt=""> </a> </div>
+								<div class="item-img"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/example/TangerineProduk-10.jpg') }}" alt=""> </a> </div>
 							</div>
 							<!--  Details -->
 							<div class="media-body"> <a class="media-heading" href="#.">FLAT SOLE PATENT SANDAL</a> <span class="font-montserrat">129.00 USD</span> <a href="#." class="btn btn-small">ADD TO CART</a>
 								<ul class="main-link">
-									<li> <a href="{{ asset('frontend_images/small-item-3.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+									<li> <a href="{{ asset('frontend_images/example/TangerineProduk-10.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
 									<li> <a href="#."><i class="ion-shuffle"></i></a></li>
 									<li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
 								</ul>
@@ -905,12 +905,12 @@
 						<div class="media">
 							<div class="media-left">
 								<!--  Image -->
-								<div class="item-img"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/small-item-1.jpg') }}" alt=""> </a> </div>
+								<div class="item-img"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/example/TangerineProduk-11.jpg') }}" alt=""> </a> </div>
 							</div>
 							<!--  Details -->
 							<div class="media-body"> <a class="media-heading" href="#.">FLAT SOLE PATENT SANDAL</a> <span class="font-montserrat">129.00 USD</span> <a href="#." class="btn btn-small">ADD TO CART</a>
 								<ul class="main-link">
-									<li> <a href="{{ asset('frontend_images/small-item-1.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+									<li> <a href="{{ asset('frontend_images/example/TangerineProduk-11.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
 									<li> <a href="#."><i class="ion-shuffle"></i></a></li>
 									<li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
 								</ul>
@@ -921,12 +921,12 @@
 						<div class="media">
 							<div class="media-left">
 								<!--  Image -->
-								<div class="item-img"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/small-item-4.jpg') }}" alt=""> </a> </div>
+								<div class="item-img"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/example/TangerineProduk-12.jpg') }}" alt=""> </a> </div>
 							</div>
 							<!--  Details -->
 							<div class="media-body"> <a class="media-heading" href="#.">FLAT SOLE PATENT SANDAL</a> <span class="font-montserrat">129.00 USD</span> <a href="#." class="btn btn-small">ADD TO CART</a>
 								<ul class="main-link">
-									<li> <a href="{{ asset('frontend_images/small-item-4.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+									<li> <a href="{{ asset('frontend_images/example/TangerineProduk-12.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
 									<li> <a href="#."><i class="ion-shuffle"></i></a></li>
 									<li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
 								</ul>
@@ -942,12 +942,12 @@
 						<div class="media">
 							<div class="media-left">
 								<!--  Image -->
-								<div class="item-img"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/small-item-2.jpg') }}" alt=""> </a> </div>
+								<div class="item-img"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/example/TangerineProduk-13.jpg') }}" alt=""> </a> </div>
 							</div>
 							<!--  Details -->
 							<div class="media-body"> <a class="media-heading" href="#.">FLAT SOLE PATENT SANDAL</a> <span class="font-montserrat">129.00 USD</span> <a href="#." class="btn btn-small">ADD TO CART</a>
 								<ul class="main-link">
-									<li> <a href="{{ asset('frontend_images/small-item-2.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+									<li> <a href="{{ asset('frontend_images/example/TangerineProduk-13.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
 									<li> <a href="#."><i class="ion-shuffle"></i></a></li>
 									<li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
 								</ul>
@@ -958,12 +958,12 @@
 						<div class="media">
 							<div class="media-left">
 								<!--  Image -->
-								<div class="item-img"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/small-item-5.jpg') }}" alt=""> </a> </div>
+								<div class="item-img"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/example/TangerineProduk-14.jpg') }}" alt=""> </a> </div>
 							</div>
 							<!--  Details -->
 							<div class="media-body"> <a class="media-heading" href="#.">FLAT SOLE PATENT SANDAL</a> <span class="font-montserrat">129.00 USD</span> <a href="#." class="btn btn-small">ADD TO CART</a>
 								<ul class="main-link">
-									<li> <a href="{{ asset('frontend_images/small-item-5.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
+									<li> <a href="{{ asset('frontend_images/example/TangerineProduk-14.jpg') }}" data-lighter><i class="ion-search"></i></a></li>
 									<li> <a href="#."><i class="ion-shuffle"></i></a></li>
 									<li> <a href="#."><i class="fa fa-heart-o"></i></a></li>
 								</ul>
@@ -990,7 +990,7 @@
 						<!--  Posts 1 -->
 						<li class="col-sm-4 animate fadeInLeft" data-wow-delay="0.4s">
 							<!--  Image -->
-							<img class="img-responsive" src="{{ asset('frontend_images/blog-small-1.jpg') }}" alt=""> <span class="tags">FASHION NEWS</span> <a href="#." class="tittle-post font-playfair">Mighty Healthy 2013 Spring/Summer</a>
+							<img class="img-responsive" src="{{ asset('frontend_images/example/TangerineProduk-15.jpg') }}" alt=""> <span class="tags">FASHION NEWS</span> <a href="#." class="tittle-post font-playfair">Mighty Healthy 2013 Spring/Summer</a>
 							<p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens danadelion.</p>
 							<!--  Post Info -->
 							<ul class="info">
@@ -1003,7 +1003,7 @@
 						<!--  Posts 2 -->
 						<li class="col-sm-4 animate fadeInUp" data-wow-delay="0.4s">
 							<!--  Image -->
-							<img class="img-responsive" src="{{ asset('frontend_images/blog-small-2.jpg') }}" alt=""> <span class="tags">TRENDING NEWS</span> <a href="#." class="tittle-post font-playfair">No colors are the best ones.</a>
+							<img class="img-responsive" src="{{ asset('frontend_images/example/TangerineProduk-15.jpg') }}" alt=""> <span class="tags">TRENDING NEWS</span> <a href="#." class="tittle-post font-playfair">No colors are the best ones.</a>
 							<p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens danadelion.</p>
 							<!--  Post Info -->
 							<ul class="info">
@@ -1016,7 +1016,7 @@
 						<!--  Posts 2 -->
 						<li class="col-sm-4 animate fadeInRight" data-wow-delay="0.4s">
 							<!--  Image -->
-							<img class="img-responsive" src="{{ asset('frontend_images/blog-small-3.jpg') }}" alt=""> <span class="tags">MOTION GRAPHIC</span> <a href="#." class="tittle-post font-playfair">All in Black Venna</a>
+							<img class="img-responsive" src="{{ asset('frontend_images/example/TangerineProduk-15.jpg') }}" alt=""> <span class="tags">MOTION GRAPHIC</span> <a href="#." class="tittle-post font-playfair">All in Black Venna</a>
 							<p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens danadelion.</p>
 							<!-- Post Info -->
 							<ul class="info">

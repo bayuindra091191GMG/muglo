@@ -24,7 +24,7 @@
     <link href="{{ URL::asset('css/frontend/datatable/dataTables.bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- FONTS -->
-    <link href="{{ URL::asset('css/font-awesome/font-awesome.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ URL::asset('css/frontend/font-awesome.min.css') }}" rel="stylesheet" media="all">
 
 
     <!-- Funkyradio -->
