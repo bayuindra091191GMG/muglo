@@ -40,11 +40,17 @@ class UserAddressController extends Controller
         $collect2 = RajaOngkir::getCity($addr->province_id);
         $cities = $collect2->rajaongkir->results;
 
+        $redirect = 'default';
+        if(!empty(request()->redirect)){
+            $redirect = 'checkout';
+        }
+
         $data = [
             'provinces'         => $provinces,
             'cities'            => $cities,
             'addr'              => $addr,
-            'subdistricts'      => $subdistricts
+            'subdistricts'      => $subdistricts,
+            'redirect'          => $redirect
         ];
 
         return view('frontend.edit-user-address')->with($data);
@@ -93,16 +99,28 @@ class UserAddressController extends Controller
 
         $data->save();
 
+        if(!empty(Input::get('redirect')) && Input::get('redirect') == 'checkout'){
+            return redirect()->route('step1');
+        }
+
         return redirect()->route('user-address-show');
     }
 
     public function create()
     {
         $provinces = Province::all();
-//        $cities = City::all();
-//
-//        return view('frontend.user-address-create', compact('provinces', 'cities'));
-        return View('frontend.create-user-address', compact('provinces'));
+
+        $redirect = 'default';
+        if(!empty(request()->redirect)){
+            $redirect = 'checkout';
+        }
+
+        $data = [
+            'provinces'     => $provinces,
+            'redirect'      => $redirect
+        ];
+
+        return View('frontend.create-user-address')->with($data);
     }
 
     public function store(Request $request)
@@ -145,6 +163,10 @@ class UserAddressController extends Controller
         $data->status_id = 1;
 
         $data->save();
+
+        if(!empty(Input::get('redirect')) && Input::get('redirect') == 'checkout'){
+            return redirect()->route('step1');
+        }
 
         return redirect()->route('user-address-show');
     }

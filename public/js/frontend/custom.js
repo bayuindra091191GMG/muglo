@@ -154,6 +154,31 @@ function handleChangePayment(myRadio){
     }
 }
 
+function selectShippingAgent(e){
+    if(e.value != "-1"){
+        $("#checkout-shipping-section").show();
+        var fee = $("#checkout-shipping-option option:selected").data('fee');
+        $("#checkout-shipping-cost").html(addCommas(fee));
+
+        var totalPrice = $("#checkout-total-price").data("total-price");
+        var totalPayment = parseFloat(totalPrice) + parseFloat(fee);
+        $("#checkout-total-payment").html(addCommas(totalPayment));
+
+        var agentId = $("#checkout-shipping-option option:selected").data('agent-id');
+        var shippingId = $("#checkout-shipping-option option:selected").data('shipping-id');
+        $("#courier_id").val(agentId);
+        $("#delivery_type_id").val(shippingId);
+    }
+    else{
+        $("#checkout-shipping-section").hide();
+        var totalPrice = $("#checkout-total-price").data("total-price");
+        $("#checkout-total-payment").html(addCommas(totalPrice));
+
+        $("#courier_id").val("-1");
+        $("#delivery_type_id").val("-1");
+    }
+}
+
 // NOUISLIDER
 //  Price Filter ( noUiSlider Plugin)
 if($("#price-range").length){

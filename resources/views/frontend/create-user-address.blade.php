@@ -103,6 +103,9 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    {{ Form::hidden('redirect', $redirect, array('id' => 'redirect')) }}
+
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">

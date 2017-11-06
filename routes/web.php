@@ -45,8 +45,8 @@ Route::prefix('payment/purchase')->group(function(){
     Route::get('/step1', 'Frontend\PaymentController@step1')->name('step1');
     Route::get('/step2', 'Frontend\PaymentController@step2')->name('step2');
     Route::get('/step3', 'Frontend\PaymentController@step3')->name('step3');
-    Route::post('/checkout2-submit', [
-        'uses' => 'Frontend\PaymentController@CheckoutProcess2Submit',
+    Route::post('/step1/submit', [
+        'uses' => 'Frontend\PaymentController@step1Submit',
         'as' => 'checkout2Submit'
     ]);
     Route::get('checkout-3', 'Frontend\PaymentController@CheckoutProcess3')->name('checkout3');

@@ -16,6 +16,7 @@ use App\Mail\NewOrderAdmin;
 use App\Mail\NewOrderCustomer;
 use App\Models\Address;
 use App\Models\Courier;
+use App\Models\Custom\DeliveryFee;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use App\Models\User;
@@ -24,6 +25,7 @@ use App\Models\DeliveryType;
 use App\Notifications\TransactionNotify;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
@@ -34,73 +36,149 @@ use Webpatser\Uuid\Uuid;
 
 class PaymentController extends Controller
 {
-//    public function __construct()
-//    {
-//        $this->middleware('auth');
-//    }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     //set address for shipping
     public function step1(){
-//        $id = Auth::user()->id;
-//        if(!Cart::where('user_id', $id)->exists()){
-//            return Redirect::route('cart-list');
-//        }
-//
-//        $Addressdata = Address::where('user_id', $id)->first();
-//
-//        return View('frontend.checkout-step1', compact('Addressdata'));
-        return View('frontend.checkout-step1');
+        $user = Auth::user();
+
+        $carts = Cart::where('user_id', $user->id)->get();
+        if($carts->count() == 0){
+            return Redirect::route('cart-list');
+        }
+
+        // Get total price
+        $totalPrice = 0;
+        foreach ($carts as $cart){
+            $totalPrice += $cart->getOriginal('total_price');
+        }
+
+        // Get total payment
+        $totalPayment = $totalPrice;
+        if(!empty($carts->first()->getOriginal('delivery_fee'))){
+            $totalPayment += $carts->first()->getOriginal('delivery_fee');
+        }
+
+        $totalPayment = number_format($totalPayment, 0, ",", ".");
+
+        $addr = Address::where('user_id', $user->id)->first();
+
+        $couriers = Courier::all();
+        $deliveryTypes = DeliveryType::all();
+
+        $courierThrow = "";
+        $temp = 1;
+        //get courier code ex jne:tiki:pos
+        foreach($couriers as $courier){
+            if($temp < $couriers->count()){
+                $courierThrow = $courierThrow.$courier->code.":";
+            }
+            else{
+                $courierThrow = $courierThrow.$courier->code;
+            }
+            $temp++;
+        }
+
+        //get product total weight
+        $totalWeight = 0;
+
+        foreach($carts as $cart){
+            $totalWeight += ($cart->product->weight * $cart->quantity);
+        }
+
+        //rajaongkir process
+        $collect = RajaOngkir::getCost('151', 'city', $addr->city_id, 'city', (string)$totalWeight, $courierThrow);
+        $results = $collect->rajaongkir->results;
+
+        $deliveries = new Collection();
+        foreach ($deliveryTypes as $deliveryType){
+            $delivery = new DeliveryFee();
+            $delivery->setAgentId($deliveryType->courier_id);
+            $delivery->setAgent($deliveryType->courier->code);
+            $delivery->setAgentDesc($deliveryType->courier->description);
+            $delivery->setShippingId($deliveryType->id);
+            $delivery->setShipping($deliveryType->code);
+            $delivery->setShippingDesc($deliveryType->description);
+            $deliveries->push($delivery);
+        }
+
+
+        foreach($results as $result){
+            foreach ($result->costs as $cost){
+                foreach($deliveries as $delivery){
+                    if($delivery->getAgent() == $result->code && $delivery->getShipping() == $cost->service){
+                        $delivery->setFee($cost->cost[0]->value);
+                    }
+                }
+            }
+        }
+
+        $data = [
+            'addr'          => $addr,
+            'deliveries'    => $deliveries,
+            'user'          => $user,
+            'carts'         => $carts,
+            'totalPrice'    => $totalPrice,
+            'totalPayment'  => $totalPayment
+        ];
+
+        return View('frontend.checkout-step1')->with($data);
+//        return View('frontend.checkout-step1');
     }
 
 
     //show shipping list
     public function step2(){
-//        $couriers = Courier::all();
-//        $deliveryTypes = DeliveryType::all();
-//
-//        $courierThrow = "";
-//        $temp = 1;
-//        //get courier code ex jne:tiki:pos
-//        foreach($couriers as $courier){
-//            if($temp < $couriers->count()){
-//                $courierThrow = $courierThrow.$courier->code.":";
-//            }
-//            else{
-//                $courierThrow = $courierThrow.$courier->code;
-//            }
-//            $temp++;
-//        }
-//        //address login user
-//        $id = Auth::user()->id;
-//        $Addressdata = Address::where('user_id', $id)->first();
-//
-//        //get product total weight
-//        $totalWeight = 0;
-//        $carts = Cart::where('user_id', 'like', $id)->get();
-//        foreach($carts as $cart){
-//            $totalWeight += ($cart->product->weight * $cart->quantity);
-//        }
-//
-//        //rajaongkir process
-//        $collect = RajaOngkir::getCost('151', 'city', $Addressdata->city_id, 'city', (string)$totalWeight, $courierThrow);
-//        $results = $collect->rajaongkir->results;
-//
-//        $resultCollection = collect();
-//        foreach ($deliveryTypes as $deliveryType){
-//            $resultCollection->put($deliveryType->courier->code."-".$deliveryType->code, $deliveryType->courier->code."-".$deliveryType->code);
-//        }
-//
-//        foreach($results as $result){
-//            foreach ($result->costs as $cost){
-//                if($resultCollection->contains($result->code."-".$cost->service)){
-//                    $resultCollection[$result->code."-".$cost->service] = $cost->cost[0]->value;
-//                }
-//
-//            }
-//        }
-//        return view('frontend.checkout-step2', compact('resultCollection', 'deliveryTypes'));
+        $couriers = Courier::all();
+        $deliveryTypes = DeliveryType::all();
 
-        return view('frontend.checkout-step2');
+        $courierThrow = "";
+        $temp = 1;
+        //get courier code ex jne:tiki:pos
+        foreach($couriers as $courier){
+            if($temp < $couriers->count()){
+                $courierThrow = $courierThrow.$courier->code.":";
+            }
+            else{
+                $courierThrow = $courierThrow.$courier->code;
+            }
+            $temp++;
+        }
+        //address login user
+        $id = Auth::user()->id;
+        $Addressdata = Address::where('user_id', $id)->first();
+
+        //get product total weight
+        $totalWeight = 0;
+        $carts = Cart::where('user_id', 'like', $id)->get();
+        foreach($carts as $cart){
+            $totalWeight += ($cart->product->weight * $cart->quantity);
+        }
+
+        //rajaongkir process
+        $collect = RajaOngkir::getCost('151', 'city', $Addressdata->city_id, 'city', (string)$totalWeight, $courierThrow);
+        $results = $collect->rajaongkir->results;
+
+        $resultCollection = collect();
+        foreach ($deliveryTypes as $deliveryType){
+            $resultCollection->put($deliveryType->courier->code."-".$deliveryType->code, $deliveryType->courier->code."-".$deliveryType->code);
+        }
+
+        foreach($results as $result){
+            foreach ($result->costs as $cost){
+                if($resultCollection->contains($result->code."-".$cost->service)){
+                    $resultCollection[$result->code."-".$cost->service] = $cost->cost[0]->value;
+                }
+
+            }
+        }
+
+        return view('frontend.checkout-step2', compact('resultCollection', 'deliveryTypes'));
+
+//        return view('frontend.checkout-step2');
     }
 
     public function step3(){
@@ -108,7 +186,7 @@ class PaymentController extends Controller
     }
 
     //submit shipping and add data to DB
-    public function CheckoutProcess2Submit(Request $request){
+    public function step1Submit(Request $request){
         if(empty(Input::get('shippingRadio'))){
             return redirect()->route('checkout2');
         }

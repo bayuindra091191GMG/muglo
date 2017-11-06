@@ -67,6 +67,10 @@
     display:block;
 }
 
+#checkout-shipping .bootstrap-select.btn-group .dropdown-menu{
+    position: relative;
+}
+
 /* RESPONSIVE */
 @media screen and (max-width: 479px){
     .header-style-2.header-style-3 .logo{

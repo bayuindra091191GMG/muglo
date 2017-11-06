@@ -52,31 +52,55 @@
                                 <div class="row margin-b-20">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="custom-container">
-                                            <div>
-                                                <h6>Detail Pembeli</h6>
-                                                Rumah<br/>
-                                                Jl. Barata Tama 1 No. 116 RT 04/07 Karang Tengah<br/>
-                                                Depan rumah ada box telpon umum warna biru<br/>
-                                                Kecamatan Ciledug, Kota Tangerang<br/>
-                                                Banten, 15157<br/>
-                                                081315908000
-                                            </div>
-                                            <div>
-                                                <a href="#" class="btn btn-small btn-dark">Ubah Alamat</a>
-                                            </div>
+                                            @if(!empty($addr))
+                                                <div>
+                                                    <h6>Detail Pembeli</h6>
+                                                    {{ $addr->name }}<br/>
+                                                    {{ $addr->detail }}<br/>
+                                                    {{ $addr->subdistrict_name }}, {{ $addr->city_name }}<br/>
+                                                    {{ $addr->province_name }}, {{ $addr->postal_code }}<br/>
+                                                    {{ $user->phone }}
+                                                </div>
+                                                <div>
+                                                    <a href="{{ route('user-address-edit', ['redirect' => 'checkout']) }}" class="btn btn-small btn-dark">Ubah Alamat</a>
+                                                </div>
+                                            @else
+                                                <div>
+                                                    <h6>Belum ada alamat</h6>
+                                                </div>
+                                                <div>
+                                                    <a href="{{ route('user-address-create', ['redirect' => 'checkout']) }}" class="btn btn-small btn-dark">Tambah Alamat</a>
+                                                </div>
+                                            @endif
+
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row margin-b-20">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div class="custom-container">
+                                        <div class="custom-container" id="checkout-shipping">
                                             <ul>
                                                 <li>
                                                     <label> KURIR
-                                                        <select class="selectpicker">
-                                                            <option>JNE - Rp 18.000</option>
-                                                            <option>TIKI - Rp 15.000</option>
-                                                            <option>POS - Rp 10.000</option>
+                                                        <select id="checkout-shipping-option" class="selectpicker" onchange="selectShippingAgent(this)">
+                                                            <option value="-1">Pilih agen pengiriman</option>
+
+                                                            @if(!empty($carts->first()->delivery_fee))
+                                                                @php( $courierCode =  $carts->first()->courier->code )
+                                                                @php( $shippingCode = $carts->first()->deliveryType->code )
+                                                                @foreach($deliveries as $delivery)
+                                                                    @php( $feeStr = number_format($delivery->getFee(), 0, ",", ".") )
+                                                                    <option value="{{ $delivery->getAgentId() }},{{ $delivery->getShippingId() }}" data-agent-id="{{ $delivery->getAgentId() }}" data-shipping-id="{{ $delivery->getShippingId() }}" data-fee="{{ $delivery->getFee() }}" @if($courierCode == $delivery->getAgent() && $shippingCode == $delivery->getShipping()) selected @endif>{{ $delivery->getAgentDesc() }} - {{ $delivery->getShippingDesc() }} - Rp {{ $feeStr }}</option>
+                                                                @endforeach
+                                                            @else
+                                                                @foreach($deliveries as $delivery)
+                                                                    @php( $feeStr = number_format($delivery->getFee(), 0, ",", ".") )
+                                                                    <option value="{{ $delivery->getAgentId() }},{{ $delivery->getShippingId() }}" data-agent-id="{{ $delivery->getAgentId() }}" data-shipping-id="{{ $delivery->getShippingId() }}" data-fee="{{ $delivery->getFee() }}">{{ $delivery->getAgentDesc() }} - {{ $delivery->getShippingDesc() }} - Rp {{ $feeStr }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                            {{--<option>JNE - Rp 18.000</option>--}}
+                                                            {{--<option>TIKI - Rp 15.000</option>--}}
+                                                            {{--<option>POS - Rp 10.000</option>--}}
                                                         </select>
                                                     </label>
                                                 </li>
@@ -92,15 +116,43 @@
                                     <h5>PESANAN ANDA</h5>
                                     <div class="order-detail">
                                         <p>PRODUK <span>TOTAL</span></p>
-                                        <div class="item-order">
-                                            <p>DRAEY TRENCH COAT <span class="color"> x1 </span></p>
-                                            <p>COLOR: BLACK </p>
-                                            <p class="text-right">250.00 USD</p>
-                                        </div>
-                                        <p>TOTAL HARGA <span>250.00 USD</span></p>
-                                        <p>ONGKOS KIRIM <span>FREE SHIPPING</span></p>
-                                        <p>TOTAL PESANAN <span>250.00 USD</span></p>
-                                        <a href="#." class="btn btn-small btn-dark pull-right">PILIH METODE PEMBAYARAN</a> </div>
+                                        @foreach($carts as $cart)
+                                            <div class="item-order">
+                                                <p>{{ $cart->product->name }} <span class="color"> x{{ $cart->quantity }} </span></p>
+                                                <p class="text-right">Rp {{ $cart->product->price }}</p>
+                                            </div>
+                                        @endforeach
+                                        {{--<div class="item-order">--}}
+                                            {{--<p>DRAEY TRENCH COAT <span class="color"> x1 </span></p>--}}
+                                            {{--<p>COLOR: BLACK </p>--}}
+                                            {{--<p class="text-right">250.00 USD</p>--}}
+                                        {{--</div>--}}
+                                        @php( $totalPriceStr = number_format($totalPrice, 0, ",", ".") )
+                                        <p>TOTAL HARGA <span id="checkout-total-price" data-total-price="{{ $totalPrice }}">Rp {{ $totalPriceStr }}</span></p>
+
+                                        @if(!empty($carts->first()->delivery_fee))
+                                            <p id="checkout-shipping-section">
+                                                ONGKOS KIRIM <span id="checkout-shipping-cost">Rp {{ $carts->first()->delivery_fee }}</span>
+                                            </p>
+                                        @else
+                                            <p id="checkout-shipping-section" style="display: none;">
+                                                ONGKOS KIRIM <span id="checkout-shipping-cost">Rp 500.000</span>
+                                            </p>
+                                        @endif
+
+                                        <p>TOTAL PESANAN <span id="checkout-total-payment">Rp {{ $totalPayment }}</span></p>
+                                        {!! Form::open(array('action' => 'Frontend\PaymentController@step1Submit', 'method' => 'POST', 'role' => 'form')) !!}
+
+                                        @if(!empty($carts->first()->delivery_fee))
+                                            {{ Form::hidden('courier_id', $carts->first()->courier_id , array('id' => 'courier_id')) }}
+                                            {{ Form::hidden('delivery_type_id', $carts->first()->delivery_type_id, array('id' => 'delivery_type_id')) }}
+                                        @else
+                                            {{ Form::hidden('courier_id', '' , array('id' => 'courier_id')) }}
+                                            {{ Form::hidden('delivery_type_id', '', array('id' => 'delivery_type_id')) }}
+                                        @endif
+
+                                            <input type="submit" class="btn btn-small btn-dark pull-right" value="PILIH METODE PEMBAYARAN">
+                                        {!! Form::close() !!}
                                     </div>
                                     {{--<div class="pay-meth">--}}
                                         {{--<h5>PAYMENT METHODS</h5>--}}

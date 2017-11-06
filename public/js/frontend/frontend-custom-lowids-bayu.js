@@ -104,3 +104,8 @@ function sortFilter(e){
 
     window.location = url;
 }
+
+function selectShippingAgent(e){
+    var fee = e.find(':selected').data('fee');
+    alert(fee);
+}
