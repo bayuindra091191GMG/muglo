@@ -17,6 +17,7 @@ use App\Mail\NewOrderCustomer;
 use App\Models\Address;
 use App\Models\Courier;
 use App\Models\Custom\DeliveryFee;
+use App\Models\PaymentMethod;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use App\Models\User;
@@ -30,6 +31,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rules\In;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Webpatser\Uuid\Uuid;
@@ -132,53 +135,36 @@ class PaymentController extends Controller
 
     //show shipping list
     public function step2(){
-        $couriers = Courier::all();
-        $deliveryTypes = DeliveryType::all();
+        $user = Auth::user();
 
-        $courierThrow = "";
-        $temp = 1;
-        //get courier code ex jne:tiki:pos
-        foreach($couriers as $courier){
-            if($temp < $couriers->count()){
-                $courierThrow = $courierThrow.$courier->code.":";
-            }
-            else{
-                $courierThrow = $courierThrow.$courier->code;
-            }
-            $temp++;
-        }
-        //address login user
-        $id = Auth::user()->id;
-        $Addressdata = Address::where('user_id', $id)->first();
+        $carts = Cart::where('user_id', $user->id)->get();
 
-        //get product total weight
-        $totalWeight = 0;
-        $carts = Cart::where('user_id', 'like', $id)->get();
-        foreach($carts as $cart){
-            $totalWeight += ($cart->product->weight * $cart->quantity);
+        // Get total price
+        $totalPrice = 0;
+        foreach ($carts as $cart){
+            $totalPrice += $cart->getOriginal('total_price');
         }
 
-        //rajaongkir process
-        $collect = RajaOngkir::getCost('151', 'city', $Addressdata->city_id, 'city', (string)$totalWeight, $courierThrow);
-        $results = $collect->rajaongkir->results;
+        // Get total payment
+        $totalPayment = $totalPrice;
+        $totalPayment += $carts->first()->getOriginal('delivery_fee');
 
-        $resultCollection = collect();
-        foreach ($deliveryTypes as $deliveryType){
-            $resultCollection->put($deliveryType->courier->code."-".$deliveryType->code, $deliveryType->courier->code."-".$deliveryType->code);
-        }
+        $totalPayment = number_format($totalPayment, 0, ",", ".");
 
-        foreach($results as $result){
-            foreach ($result->costs as $cost){
-                if($resultCollection->contains($result->code."-".$cost->service)){
-                    $resultCollection[$result->code."-".$cost->service] = $cost->cost[0]->value;
-                }
+        $methods = PaymentMethod::all();
 
-            }
-        }
+        $addr = Address::where('user_id', $user->id)->first();
 
-        return view('frontend.checkout-step2', compact('resultCollection', 'deliveryTypes'));
+        $data = [
+            'carts'         => $carts,
+            'methods'       => $methods,
+            'totalPrice'    => $totalPrice,
+            'totalPayment'  => $totalPayment,
+            'addr'          => $addr,
+            'user'          => $user
+        ];
 
-//        return view('frontend.checkout-step2');
+        return view('frontend.checkout-step2')->with($data);
     }
 
     public function step3(){
@@ -187,25 +173,34 @@ class PaymentController extends Controller
 
     //submit shipping and add data to DB
     public function step1Submit(Request $request){
-        if(empty(Input::get('shippingRadio'))){
-            return redirect()->route('checkout2');
-        }
 
         $user = Auth::user();
         $userId = $user->id;
 
-        $selectedShipping   = $request['shippingRadio'];
-        $splitedShipping = explode('-', $selectedShipping);
+        if(Address::where('user_id', $userId)->count() == 0){
+            Session::flash('error', 'Isi alamat terlebih dahulu!');
 
-        $carts = Cart::where('user_id', 'like', $userId)->get();
+            return redirect()->route('step1');
+        }
+
+        if(Input::get('courier_id') == '-1' || Input::get('delivery_type_id') == '-1'){
+            Session::flash('error', 'Pilih agen pengiriman!');
+
+            return redirect()->route('step1');
+        }
+
+
+
+        $carts = Cart::where('user_id', $userId)->get();
         foreach ($carts as $cart){
-            $cart->courier_id = $splitedShipping[0];
-            $cart->delivery_type_id = $splitedShipping[1];
-            $cart->delivery_fee = $splitedShipping[2];
+            $cart->courier_id = Input::get('courier_id');
+            $cart->delivery_type_id = Input::get('delivery_type_id');
+            $cart->delivery_fee = Input::get('delivery_fee');
 
             $cart->save();
         }
-        return redirect()->route('checkout3');
+        dd('SUCCESS!');
+//        return redirect()->route('checkout3');
     }
 
     //checkout item, address, shipping and courier, price

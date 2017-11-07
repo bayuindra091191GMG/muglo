@@ -54,16 +54,15 @@
                                         <div class="custom-container">
                                             <div>
                                                 <h6>Detail Pembeli</h6>
-                                                Rumah<br/>
-                                                Jl. Barata Tama 1 No. 116 RT 04/07 Karang Tengah<br/>
-                                                Depan rumah ada box telpon umum warna biru<br/>
-                                                Kecamatan Ciledug, Kota Tangerang<br/>
-                                                Banten, 15157<br/>
-                                                081315908000
+                                                {{ $addr->name }}<br/>
+                                                {{ $addr->detail }}<br/>
+                                                {{ $addr->subdistrict_name }}, {{ $addr->city_name }}<br/>
+                                                {{ $addr->province_name }}, {{ $addr->postal_code }}<br/>
+                                                {{ $user->phone }}
                                             </div>
                                             <hr/>
                                             <div>
-                                                Kurir: JNE YES - Rp 18.000
+                                                Kurir: {{ $carts->first()->courier->description }} {{ $carts->first()->deliveryType->description }} - Rp {{ $carts->first()->delivery_fee }}
                                             </div>
                                             <div>
                                                 <a href="#" class="btn btn-small btn-dark">Ubah Alamat</a>
@@ -78,22 +77,12 @@
                                                 <li>
                                                     <h6 style="margin-bottom: 8px;">Metode Pembayaran</h6>
                                                     <div class="funkyradio">
-                                                        <div class="funkyradio-primary">
-                                                            <input type="radio" name="radio" id="radio1" value="manual" checked/>
-                                                            <label for="radio1">Transfer Bank</label>
-                                                        </div>
-                                                        <div class="funkyradio-primary">
-                                                            <input type="radio" name="radio" id="radio2" value="credit_card"/>
-                                                            <label for="radio2">Kartu Kredit - Biaya Admin 3%</label>
-                                                        </div>
-                                                        <div class="funkyradio-primary">
-                                                            <input type="radio" name="radio" id="radio3" value="bca_va"/>
-                                                            <label for="radio3">Akun Virtual BCA - Biaya Admin Rp 4.000</label>
-                                                        </div>
-                                                        <div class="funkyradio-primary">
-                                                            <input type="radio" name="radio" id="radio4" value="permata_va"/>
-                                                            <label for="radio4">Akun Virtual Permata - Biaya Admin Rp 4.000</label>
-                                                        </div>
+                                                        @foreach($methods as $method)
+                                                            <div class="funkyradio-primary">
+                                                                <input type="radio" name="payment" data-fee="{{ $method->fee ?? 0 }}" data-code="{{ $method->code }}" id="{{ 'radio_'. $method->id }}" value="{{ $method->id }}" @if($method->code == 'manual') checked @endif/>
+                                                                <label for="{{ 'radio_'. $method->id }}">{{ $method->description }} @if($method->code != 'manual') - Rp {{ $method->fee }} @endif @if($method->code == 'credit_card') + 3% @endif</label>
+                                                            </div>
+                                                        @endforeach
                                                     </div>
                                                 </li>
                                                 <li class=" margin-t-20">
@@ -111,15 +100,19 @@
                                     <h5>PESANAN ANDA</h5>
                                     <div class="order-detail">
                                         <p>PRODUK <span>TOTAL</span></p>
-                                        <div class="item-order">
-                                            <p>DRAEY TRENCH COAT <span class="color"> x1 </span></p>
-                                            <p>COLOR: BLACK </p>
-                                            <p class="text-right">250.00 USD</p>
-                                        </div>
-                                        <p>TOTAL HARGA <span>250.00 USD</span></p>
-                                        <p>ONGKOS KIRIM <span>FREE SHIPPING</span></p>
-                                        <p>ADMIN FEE <span id="checkout-admin-fee">Rp 4.000</span></p>
-                                        <p>TOTAL PESANAN <span>250.00 USD</span></p>
+                                        @foreach($carts as $cart)
+                                            <div class="item-order">
+                                                <p>{{ $cart->product->name }} <span class="color"> x{{ $cart->quantity }} </span></p>
+                                                <p class="text-right">Rp {{ $cart->product->price }}</p>
+                                            </div>
+                                        @endforeach
+
+                                        @php( $totalPriceStr = number_format($totalPrice, 0, ",", ".") )
+                                        <p>TOTAL HARGA <span id="checkout-total-price" data-total-price="{{ $totalPrice }}">Rp {{ $totalPriceStr }}</span></p>
+                                        <p>ONGKOS KIRIM <span id="checkout-shipping-cost" data-delivery-fee="{{ $carts->first()->getOriginal('delivery_fee') }}">Rp {{ $carts->first()->delivery_fee }}</span></p>
+                                        <p id="checkout-admin-fee-section" style="display: none;">BIAYA ADMIN <span id="checkout-admin-fee" data-admin-fee="4000">Rp 4.000</span></p>
+                                        <p>TOTAL PESANAN <span id="checkout-total-payment">Rp {{ $totalPayment }}</span></p>
+                                    </div>
                                 </div>
                                 {{--<div class="pay-meth">--}}
                                 {{--<h5>PAYMENT METHODS</h5>--}}

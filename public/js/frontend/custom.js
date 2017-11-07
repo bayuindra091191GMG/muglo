@@ -154,6 +154,35 @@ function handleChangePayment(myRadio){
     }
 }
 
+$('input[type=radio][name=payment]').change(function() {
+    var totalPrice = $("#checkout-total-price").data("total-price");
+    var deliveryFee = $("#checkout-shipping-cost").data("delivery-fee");
+
+    if($(this).data("code") === "manual"){
+        $("#checkout-admin-fee-section").hide();
+        var totalPayment = parseFloat(totalPrice) + parseFloat(deliveryFee);
+        $("#checkout-total-payment").html(addCommas(totalPayment));
+    }
+    else{
+        var adminFee = $(this).data("fee");
+
+        var totalPayment = 0;
+        if($(this).data("code") === "credit_card"){
+            var tmp = parseFloat(totalPrice) + parseFloat(deliveryFee);
+            adminFee = (tmp * 3/100) + parseFloat(adminFee);
+            totalPayment = tmp + adminFee;
+        }
+        else{
+            totalPayment = parseFloat(totalPrice) + parseFloat(deliveryFee) + parseFloat(adminFee);
+        }
+
+        $("#checkout-admin-fee-section").show();
+        $("#checkout-admin-fee").html(addCommas(adminFee));
+
+        $("#checkout-total-payment").html(addCommas(totalPayment));
+    }
+});
+
 function selectShippingAgent(e){
     if(e.value != "-1"){
         $("#checkout-shipping-section").show();
@@ -168,6 +197,7 @@ function selectShippingAgent(e){
         var shippingId = $("#checkout-shipping-option option:selected").data('shipping-id');
         $("#courier_id").val(agentId);
         $("#delivery_type_id").val(shippingId);
+        $("#delivery_fee").val(fee);
     }
     else{
         $("#checkout-shipping-section").hide();
@@ -176,6 +206,7 @@ function selectShippingAgent(e){
 
         $("#courier_id").val("-1");
         $("#delivery_type_id").val("-1");
+        $("#delivery_fee").val("0");
     }
 }
 

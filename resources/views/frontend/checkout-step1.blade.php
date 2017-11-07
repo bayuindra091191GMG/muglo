@@ -45,8 +45,20 @@
 
                     <!-- SHOPPING INFORMATION -->
                     <div class="cart-ship-info">
-                        <div class="row">
 
+                        @if(\Illuminate\Support\Facades\Session::has('error'))
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                                        </button>
+                                        <strong>{{ \Illuminate\Support\Facades\Session::get('error') }}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+                        <div class="row">
                             <!-- ESTIMATE SHIPPING & TAX -->
                             <div class="col-sm-7">
                                 <div class="row margin-b-20">
@@ -146,9 +158,11 @@
                                         @if(!empty($carts->first()->delivery_fee))
                                             {{ Form::hidden('courier_id', $carts->first()->courier_id , array('id' => 'courier_id')) }}
                                             {{ Form::hidden('delivery_type_id', $carts->first()->delivery_type_id, array('id' => 'delivery_type_id')) }}
+                                            {{ Form::hidden('delivery_fee', $carts->first()->delivery_fee, array('id' => 'delivery_fee')) }}
                                         @else
-                                            {{ Form::hidden('courier_id', '' , array('id' => 'courier_id')) }}
-                                            {{ Form::hidden('delivery_type_id', '', array('id' => 'delivery_type_id')) }}
+                                            {{ Form::hidden('courier_id', '-1' , array('id' => 'courier_id')) }}
+                                            {{ Form::hidden('delivery_type_id', '-1', array('id' => 'delivery_type_id')) }}
+                                            {{ Form::hidden('delivery_fee', '0', array('id' => 'delivery_fee')) }}
                                         @endif
 
                                             <input type="submit" class="btn btn-small btn-dark pull-right" value="PILIH METODE PEMBAYARAN">
