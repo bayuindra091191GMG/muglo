@@ -6,7 +6,7 @@
         <!--======= SUB BANNER =========-->
         <section class="sub-banner">
             <div class="container">
-                <h4>PEMBAYARAN</h4>
+                <h4>PEMBAYARAN TRANSFER BANK</h4>
 
                 <!-- Breadcrumb -->
                 <ol class="breadcrumb">
@@ -52,44 +52,18 @@
                                 <div class="row margin-b-20">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="custom-container">
-                                            <div>
-                                                <h6>Detail Pembeli</h6>
-                                                {{ $addr->name }}<br/>
-                                                {{ $addr->detail }}<br/>
-                                                {{ $addr->subdistrict_name }}, {{ $addr->city_name }}<br/>
-                                                {{ $addr->province_name }}, {{ $addr->postal_code }}<br/>
-                                                {{ $user->phone }}
-                                            </div>
-                                            <hr/>
-                                            <div>
-                                                Kurir: {{ $carts->first()->courier->description }} {{ $carts->first()->deliveryType->description }} - Rp {{ $carts->first()->delivery_fee }}
-                                            </div>
-                                            <div>
-                                                <a href="#" class="btn btn-small btn-dark">Ubah Alamat</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row margin-b-20">
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div class="custom-container">
                                             {!! Form::open(array('action' => 'Frontend\PaymentController@step2Submit', 'method' => 'POST', 'role' => 'form')) !!}
                                             {{ csrf_field() }}
 
                                             <ul>
                                                 <li>
-                                                    <h6 style="margin-bottom: 8px;">Metode Pembayaran</h6>
-                                                    <div class="funkyradio">
-                                                        @foreach($methods as $method)
-                                                            <div class="funkyradio-primary">
-                                                                <input type="radio" name="payment" data-fee="{{ $method->fee ?? 0 }}" data-code="{{ $method->code }}" id="{{ 'radio_'. $method->id }}" value="{{ $method->id }}" @if($method->code == 'manual') checked @endif/>
-                                                                <label for="{{ 'radio_'. $method->id }}">{{ $method->description }} @if($method->code != 'manual') - Rp {{ $method->fee }} @endif @if($method->code == 'credit_card') + 3% @endif</label>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
+                                                    <h6 style="margin-bottom: 25px;">INFORMASI REKENING BANK</h6>
                                                 </li>
+                                                @foreach($banks as $bank)
+                                                    <li>{{ $bank->bank_name }} - {{  $bank->acc_number }} atas nama {{ $bank->acc_name }}</li>
+                                                @endforeach
                                                 <li class=" margin-t-20">
-                                                    {{--<a href="#." class="btn btn-small btn-dark">BAYAR SEKARANG</a>--}}
+                                                    {{ Form::hidden('payment', $methodId , array('id' => 'payment')) }}
                                                     <input type="submit" class="btn btn-small btn-dark" value="BAYAR SEKARANG">
                                                 </li>
                                             </ul>

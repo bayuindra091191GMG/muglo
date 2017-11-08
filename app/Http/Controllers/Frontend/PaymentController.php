@@ -10,11 +10,13 @@ namespace App\Http\Controllers\Frontend;
 
 use App\libs\Midtrans;
 use App\libs\RajaOngkir;
+use App\libs\TransactionUnit;
 use App\libs\Utilities;
 use App\Http\Controllers\Controller;
 use App\Mail\NewOrderAdmin;
 use App\Mail\NewOrderCustomer;
 use App\Models\Address;
+use App\Models\BankAccount;
 use App\Models\Courier;
 use App\Models\Custom\DeliveryFee;
 use App\Models\PaymentMethod;
@@ -167,6 +169,42 @@ class PaymentController extends Controller
         return view('frontend.checkout-step2')->with($data);
     }
 
+    public function step2Bank(){
+        $user = Auth::user();
+
+        $carts = Cart::where('user_id', $user->id)->get();
+
+        // Get total price
+        $totalPrice = 0;
+        foreach ($carts as $cart){
+            $totalPrice += $cart->getOriginal('total_price');
+        }
+
+        // Get total payment
+        $totalPayment = $totalPrice;
+        $totalPayment += $carts->first()->getOriginal('delivery_fee');
+
+        $totalPayment = number_format($totalPayment, 0, ",", ".");
+
+        // Get bank datum
+        $banks = BankAccount::all();
+
+        // Get selected method
+        $method = PaymentMethod::where('code', '=', 'manual')->first();
+
+        $data = [
+            'carts'         => $carts,
+            'totalPrice'    => $totalPrice,
+            'totalPayment'  => $totalPayment,
+            'user'          => $user,
+            'banks'         => $banks,
+            'methodId'      => $method->id
+        ];
+
+        return View('frontend.checkout-step2-bank')->with($data);
+    }
+
+
     public function step3(){
         return View('frontend.checkout-success');
     }
@@ -189,8 +227,6 @@ class PaymentController extends Controller
             return redirect()->route('step1');
         }
 
-
-
         $carts = Cart::where('user_id', $userId)->get();
         foreach ($carts as $cart){
             $cart->courier_id = Input::get('courier_id');
@@ -199,8 +235,141 @@ class PaymentController extends Controller
 
             $cart->save();
         }
-        dd('SUCCESS!');
-//        return redirect()->route('checkout3');
+
+        return redirect()->route('step2');
+    }
+
+    public function step2Submit(Request $request){
+        try{
+            if(!Auth::check()){
+                return Redirect::route('login');
+            }
+            $user = Auth::user();
+            $userId = $user->id;
+
+            if(empty(Input::get('payment'))){
+                return redirect()->route('checkout4');
+            }
+
+            $method = PaymentMethod::find(Input::get('payment'));
+
+            if($method->code == 'manual'){
+                return redirect()->route('step2-bank');
+            }
+
+            // Get unique order id
+            $orderId = uniqid();
+
+            $adminFee = 0;
+            $carts = Cart::where('user_id', $userId)->get();
+            if($method->code == 'credit_card'){
+                $totalPayment = 0;
+                foreach($carts as $cart){
+                    $totalPayment += $cart->total_price;
+                }
+                $totalPayment += $carts->first()->delivery_fee;
+                $adminFee = $totalPayment * 3 / 100 + $method->fee;
+            }
+            else{
+                $adminFee = $method->fee;
+            }
+
+            foreach($carts as $cart){
+                $cart->payment_method = $method->id;
+                $cart->admin_fee = $adminFee;
+                $cart->save();
+            }
+
+            $cartsToMidtrans = $carts;
+
+            if($method->code == 'bank_transfer'){
+
+                TransactionUnit::createTransaction($userId, $orderId);
+
+                Session::forget('cartList');
+                Session::forget('cartTotal');
+                Session::pull('cartList');
+                Session::pull('cartTotal');
+            }
+
+            //set data to request
+            $transactionDataArr = Midtrans::setRequestData($userId, $method->code, $cartsToMidtrans, $orderId);
+
+            //sending to midtrans
+            $redirectUrl = Midtrans::sendRequest($transactionDataArr);
+
+            return redirect($redirectUrl);
+        }
+        catch (\Exception $ex){
+            Utilities::ExceptionLog('checkoutMidtrans EX = '. $ex);
+        }
+    }
+
+    public function step2BankSubmit(Request $request){
+        try{
+            if(!Auth::check()){
+                return Redirect::route('login');
+            }
+            $user = Auth::user();
+            $userId = $user->id;
+
+            if(empty(Input::get('payment'))){
+                return redirect()->route('checkout4');
+            }
+
+            $method = PaymentMethod::find(Input::get('payment'));
+
+            // Get unique order id
+            $orderId = uniqid();
+
+            $adminFee = 0;
+            $carts = Cart::where('user_id', $userId)->get();
+            if($method->code == 'credit_card'){
+                $totalPayment = 0;
+                foreach($carts as $cart){
+                    $totalPayment += $cart->total_price;
+                }
+                $totalPayment += $carts->first()->delivery_fee;
+                $adminFee = $totalPayment * 3 / 100 + $method->fee;
+            }
+            else{
+                $adminFee = $method->fee;
+            }
+
+            foreach($carts as $cart){
+                $cart->payment_method = $method->id;
+                $cart->admin_fee = $adminFee;
+                $cart->save();
+            }
+
+            $cartsToMidtrans = $carts;
+
+            if($method->code == 'bank_transfer'){
+
+                TransactionUnit::createTransaction($userId, $orderId);
+
+                Session::forget('cartList');
+                Session::forget('cartTotal');
+                Session::pull('cartList');
+                Session::pull('cartTotal');
+            }
+            else if($method->code == 'manual'){
+                TransactionUnit::createTransaction($userId, $orderId);
+
+                return redirect()->route('checkout-step-success', ['id' => $orderId]);
+            }
+
+            //set data to request
+            $transactionDataArr = Midtrans::setRequestData($userId, $method->code, $cartsToMidtrans, $orderId);
+
+            //sending to midtrans
+            $redirectUrl = Midtrans::sendRequest($transactionDataArr);
+
+            return redirect($redirectUrl);
+        }
+        catch (\Exception $ex){
+            Utilities::ExceptionLog('checkoutMidtrans EX = '. $ex);
+        }
     }
 
     //checkout item, address, shipping and courier, price

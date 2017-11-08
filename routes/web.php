@@ -43,17 +43,15 @@ Route::post('/edit-cart', [
 // Payment
 Route::prefix('payment/purchase')->group(function(){
     Route::get('/step1', 'Frontend\PaymentController@step1')->name('step1');
-    Route::get('/step2', 'Frontend\PaymentController@step2')->name('step2');
-    Route::get('/step3', 'Frontend\PaymentController@step3')->name('step3');
     Route::post('/step1/submit', [
         'uses' => 'Frontend\PaymentController@step1Submit',
         'as' => 'step1-submit'
     ]);
-    Route::get('checkout-3', 'Frontend\PaymentController@CheckoutProcess3')->name('checkout3');
-    Route::get('checkout-4', 'Frontend\PaymentController@CheckoutProcess4')->name('checkout4');
-    Route::get('checkout-success/{userId}', 'MidtransController@success');
-    Route::get('checkout-failed', 'Frontend\PaymentController@CheckoutProcessFailed')->name('checkout-failed');
-    Route::get('checkout-bank', 'Frontend\PaymentController@CheckoutProcessBank')->name('checkout-bank');
+    Route::get('/step2', 'Frontend\PaymentController@step2')->name('step2');
+    Route::get('/success/{id}', 'MidtransController@success')->name('checkout-step-success');
+    Route::get('/payment/notification/{id}', 'MidtransController@notification');
+    Route::get('/failed/{id}', 'MidtransController@failed')->name('checkout-step-failed');
+    Route::get('/step2/bank', 'Frontend\PaymentController@step2Bank')->name('step2-bank');
     Route::post('/checkout-bank-submit', [
         'uses' => 'Frontend\PaymentController@CheckoutProcessBankSubmit',
         'as' => 'checkoutBankSubmit'
@@ -66,7 +64,6 @@ Route::prefix('payment/purchase')->group(function(){
         'uses' => 'MidtransController@notification',
         'as' => 'checkoutNotification'
     ]);
-    Route::get('checkout/success/{paymentMethod}', 'MidtransController@checkoutSuccess')->name('checkout-success');
 });
 
 // User Data

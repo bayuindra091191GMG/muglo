@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Fri, 15 Sep 2017 02:42:49 +0000.
+ * Date: Wed, 08 Nov 2017 07:33:12 +0000.
  */
 
 namespace App\Models;
@@ -13,7 +13,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * Class StoreDatum
  * 
  * @property int $id
- * @property string $address
+ * @property string $address_name
+ * @property string $address_detail
  * @property int $province_id
  * @property int $city_id
  * @property int $subdistrict_id
@@ -33,7 +34,8 @@ class StoreDatum extends Eloquent
 	];
 
 	protected $fillable = [
-		'address',
+		'address_name',
+		'address_detail',
 		'province_id',
 		'city_id',
 		'subdistrict_id',

@@ -38,21 +38,19 @@ class Midtrans
                 $arrItem = array_add($arrItem, 'name', $cart->Product->name);
                 array_push($itemArr, $arrItem);
 
-                $selectedCourier = $cart->Courier->description;
-                $selectedDeliveryType = $cart->DeliveryType->description;
-                $ShippingPrice = (int)$cart->getOriginal('delivery_fee');
-
                 //set order id and admin fee to cart DB
                 $adminFee = $cart->getOriginal('admin_fee');
             }
+
+            $deliveryFee = $carts->first()->getOriginal('delivery_fee');
 
             $transactionDetailsArr = array_add($transactionDetailsArr, 'order_id', $orderId);
 
             $arrShipping = [];
             $arrShipping = array_add($arrShipping, 'id', uniqid());
-            $arrShipping = array_add($arrShipping, 'price', $ShippingPrice);
+            $arrShipping = array_add($arrShipping, 'price', $deliveryFee);
             $arrShipping = array_add($arrShipping, 'quantity', 1);
-            $arrShipping = array_add($arrShipping, 'name', 'Ongkos Kirim '.$selectedCourier.'-'.$selectedDeliveryType);
+            $arrShipping = array_add($arrShipping, 'name', 'Ongkos Kirim '. $carts->first()->courier->desription. '-'. $carts->first()->deliveryType->description);
 
             array_push($itemArr, $arrShipping);
 
@@ -64,7 +62,7 @@ class Midtrans
 
             array_push($itemArr, $arrAdminFee);
 
-            $totalPrice += $ShippingPrice;
+            $totalPrice += $deliveryFee;
             $totalPrice += $adminFee;
 
             //transaction_details 2
@@ -83,17 +81,9 @@ class Midtrans
 
             $vtWebArr = array_add($vtWebArr, 'enabled_payments', [$enabledPayments]);
 
-            if($enabledPayments == 'bank_transfer'){
-                $vtWebArr = array_add($vtWebArr, 'finish_redirect_url', $hostUrl. '/checkout/success/bank_transfer');
-                $vtWebArr = array_add($vtWebArr, 'unfinish_redirect_url', $hostUrl. '/checkout-4');
-            }
-            else{
-                $vtWebArr = array_add($vtWebArr, 'finish_redirect_url', $hostUrl. '/checkout-success/'.$userId);
-                $vtWebArr = array_add($vtWebArr, 'unfinish_redirect_url', $hostUrl. '/checkout-failed');
-            }
-
-            $vtWebArr = array_add($vtWebArr, 'error_redirect_url', $hostUrl. '/checkout-failed');
-
+            $vtWebArr = array_add($vtWebArr, 'finish_redirect_url', $hostUrl. '/payment/purchase/success/'. $orderId);
+            $vtWebArr = array_add($vtWebArr, 'unfinish_redirect_url', $hostUrl. '/payment/purchase/failed/'. $orderId);
+            $vtWebArr = array_add($vtWebArr, 'error_redirect_url', $hostUrl. '/payment/purchase/failed/'. $orderId);
 
             $transactionDataArr = [];
             $transactionDataArr = array_add($transactionDataArr, 'payment_type', 'vtweb');

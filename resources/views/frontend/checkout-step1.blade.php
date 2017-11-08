@@ -154,6 +154,7 @@
 
                                         <p>TOTAL PESANAN <span id="checkout-total-payment">Rp {{ $totalPayment }}</span></p>
                                         {!! Form::open(array('action' => 'Frontend\PaymentController@step1Submit', 'method' => 'POST', 'role' => 'form')) !!}
+                                        {{ csrf_field() }}
 
                                         @if(!empty($carts->first()->delivery_fee))
                                             {{ Form::hidden('courier_id', $carts->first()->courier_id , array('id' => 'courier_id')) }}

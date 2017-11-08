@@ -54,7 +54,13 @@
                                         <div class="custom-container">
                                             <div>
                                                 <h6>PEMBAYARAN SUKSES</h6>
-                                                Pembayaran kartu kredit anda telah berhasil diverifikasi
+                                                @if($method == 'credit_card')
+                                                    Pembayaran kartu kredit anda berhasil diverifikasi
+                                                @elseif($method == 'manual')
+                                                    Pembayaran transfer bank anda berhasil diajukan, mohon lakukan pembayaran ke nomor rekening yang sudah diberikan
+                                                @elseif($method == 'bank_transfer')
+                                                    Pembayaran virtual akun anda berhasil diajukan, mohon lakukan pembayaran sesuai instruksi yang sudah diberikan
+                                                @endif
                                             </div>
                                             <div>
                                                 <a href="#" class="btn btn-small btn-dark">LIHAT DAFTAR PESANAN</a>
