@@ -46,7 +46,7 @@
 <!-- LOADER ===========================================-->
 <div id="loader">
     <div class="loader">
-        <div class="position-center-center"> <img src="{{ asset('frontend_images/logomuglo.png') }}" style="width: 300px;" alt="">
+        <div class="position-center-center"> <img src="{{ asset('frontend_images/logotangerine.png') }}" style="width: 300px;" alt="">
 
             <p class="font-playfair text-center">Please Wait...</p>
             <div class="loading">

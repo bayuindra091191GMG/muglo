@@ -37,7 +37,7 @@
     <!-- Logo -->
     <div class="sticky">
         <div class="container">
-            <div class="logo"> <a href="#."><img src="{{ asset('frontend_images/logomuglo.png') }}" style="width: auto; height: 45px;" alt=""></a> </div>
+            <div class="logo"> <a href="#."><img src="{{ asset('frontend_images/logotangerine.png') }}" style="width: auto; height: 45px;" alt=""></a> </div>
 
             <!-- Nav -->
             <!-- Nav -->

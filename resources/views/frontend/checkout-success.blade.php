@@ -63,8 +63,14 @@
                                                 @endif
                                             </div>
                                             <div>
-                                                <a href="#" class="btn btn-small btn-dark">LIHAT DAFTAR PESANAN</a>
-                                                <a href="#" class="btn btn-small btn-dark">BERANDA</a>
+                                                @if($method == 'credit_card')
+                                                    <a href="{{ route('user-order-list') }}" class="btn btn-small btn-dark">LIHAT STATUS PESANAN</a>
+                                                @elseif($method == 'manual')
+                                                    <a href="{{ route('user-payment-list') }}" class="btn btn-small btn-dark">LIHAT STATUS PEMBAYARAN</a>
+                                                @elseif($method == 'bank_transfer')
+                                                    <a href="{{ route('user-payment-list') }}" class="btn btn-small btn-dark">LIHAT STATUS PEMBAYARAN</a>
+                                                @endif
+                                                <a href="{{ route('landing') }}" class="btn btn-small btn-dark">BERANDA</a>
                                             </div>
                                         </div>
                                     </div>

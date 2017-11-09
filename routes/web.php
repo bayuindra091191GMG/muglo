@@ -83,7 +83,6 @@ Route::prefix('user/address')->group(function(){
     Route::get('/edit', 'Frontend\UserAddressController@edit')->name('user-address-edit');
     Route::post('/edit/save', 'Frontend\UserAddressController@update')->name('user-address-update');
 });
-// End Frontend Routing
 
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 
