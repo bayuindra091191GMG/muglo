@@ -1,3 +1,13 @@
+$("#receipt").fileinput({
+    maxFilePreviewSize: 10240,
+    showUpload: false,
+    allowedFileExtensions: ["jpg", "jpeg", "png"]
+});
+
+$("#transfer_date").datepicker({
+    format: "dd/mm/yyyy"
+});
+
 $('#example').DataTable();
 
 function addToCart(productId){

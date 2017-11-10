@@ -7,189 +7,15 @@
 			<div class="tp-banner-box" >
 				<ul>
 					<!-- Slider 1 -->
-					<li data-transition="random" data-slotamount="7"> <img src="{{ asset('frontend_images/slides/slide-10.jpg') }}" data-bgposition="center top" alt="" />
-						<!-- Layer -->
-						<div class="tp-caption sfb font-playfair text-center tp-resizeme rs-parallaxlevel-4"
-							 data-x="90"
-							 data-y="220"
-							 data-speed="700"
-							 data-start="1000"
-							 data-easing="easeOutBack"
-							 data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-							 data-splitin="none"
-							 data-splitout="none"
-							 data-elementdelay="0.1"
-							 data-endelementdelay="0.1"
-							 data-endspeed="300"
-							 data-captionhidden="on"
-							 style="color: #af5875; font-style:italic; font-size: 20px;"> HELLO SPRING/SUMMER 2015 </div>
-						<!-- Layer -->
-						<div class="tp-caption sft font-montserrat text-uppercase tp-resizeme rs-parallaxlevel-4"
-							 data-x="85"
-							 data-y="260"
-							 data-speed="700"
-							 data-start="1700"
-							 data-easing="easeOutBack"
-							 data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-							 data-splitin="none"
-							 data-splitout="none"
-							 data-elementdelay="0.1"
-							 data-endelementdelay="0.1"
-							 data-endspeed="300"
-							 data-captionhidden="on"
-							 style="color: #333333; font-size: 72px; font-weight: bold; "> Navy check </div>
-
-						<!-- Layer -->
-						<div class="tp-caption sfb font-montserrat text-uppercase text-left tp-resizeme rs-parallaxlevel-4"
-							 data-x="90"
-							 data-y="370"
-							 data-speed="700"
-							 data-start="2400"
-							 data-easing="easeOutBack"
-							 data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-							 data-splitin="none"
-							 data-splitout="none"
-							 data-elementdelay="0.1"
-							 data-endelementdelay="0.1"
-							 data-endspeed="300"
-							 data-captionhidden="on"
-							 style="color: #b8b8b8; font-weight: bold; font-size: 13px; letter-spacing: 0px; line-height: 24px;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do<br>
-							eiusmod tempor incididunt ut labore et dolore magna <br>
-							aliqua. Ut enim ad minim veniam, quis nostrud exercitation <br>
-							ullamco laboris . </div>
-
-						<!-- Layer -->
-						<div class="tp-caption sfb tp-resizeme rs-parallaxlevel-4"
-							 data-x="90"
-							 data-y="480"
-							 data-speed="700"
-							 data-start="3000"
-							 data-easing="easeOutBack"
-							 data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-							 data-splitin="none"
-							 data-splitout="none"
-							 data-elementdelay="0.1"
-							 data-endelementdelay="0.1"
-							 data-endspeed="300"
-							 data-captionhidden="on"> <a style="background:#272727; border-color:#272727;" href="#." class="btn btn-1"> Shop Now </a> </div>
+					<li data-transition="random" data-slotamount="7"> <img src="{{ asset('frontend_images/example/banner-example.png') }}" data-bgposition="center top" alt="" />
 					</li>
 
 					<!-- Slider 2 -->
-					<li data-transition="random" data-slotamount="7"> <img src="{{ asset('frontend_images/slides/slide-11.jpg') }}" data-bgposition="center top" alt="" />
-						<!-- Layer -->
-						<div class="tp-caption sfb font-playfair text-center tp-resizeme rs-parallaxlevel-4"
-							 data-x="90"
-							 data-y="220"
-							 data-speed="700"
-							 data-start="1000"
-							 data-easing="easeOutBack"
-							 data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-							 data-splitin="none"
-							 data-splitout="none"
-							 data-elementdelay="0.1"
-							 data-endelementdelay="0.1"
-							 data-endspeed="300"
-							 data-captionhidden="on"
-							 style="color: #272727; font-style:italic; font-size: 20px;"> HELLO SPRING/SUMMER 2015 </div>
-
-						<!-- Layer -->
-						<div class="tp-caption sft font-montserrat text-uppercase tp-resizeme rs-parallaxlevel-4"
-							 data-x="85"
-							 data-y="260"
-							 data-speed="700"
-							 data-start="1700"
-							 data-easing="easeOutBack"
-							 data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-							 data-splitin="none"
-							 data-splitout="none"
-							 data-elementdelay="0.1"
-							 data-endelementdelay="0.1"
-							 data-endspeed="300"
-							 data-captionhidden="on"
-							 style="color: #273e67; font-size: 72px; font-weight: bold; "> SALE OFF 70% </div>
-
-						<!-- Layer -->
-						<div class="tp-caption sfb font-montserrat text-uppercase text-left tp-resizeme rs-parallaxlevel-4"
-							 data-x="90"
-							 data-y="370"
-							 data-speed="700"
-							 data-start="2400"
-							 data-easing="easeOutBack"
-							 data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-							 data-splitin="none"
-							 data-splitout="none"
-							 data-elementdelay="0.1"
-							 data-endelementdelay="0.1"
-							 data-endspeed="300"
-							 data-captionhidden="on"
-							 style="color: #272727; font-weight: bold; font-size: 18px; letter-spacing: 7px; line-height: 24px;"> Noisy May Cadance Lace Up Tee</div>
-
-						<!-- Layer -->
-						<div class="tp-caption sfb tp-resizeme rs-parallaxlevel-4"
-							 data-x="90"
-							 data-y="480"
-							 data-speed="700"
-							 data-start="3000"
-							 data-easing="easeOutBack"
-							 data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-							 data-splitin="none"
-							 data-splitout="none"
-							 data-elementdelay="0.1"
-							 data-endelementdelay="0.1"
-							 data-endspeed="300"
-							 data-captionhidden="on"> <a style="background: #272727;  border-color:#272727;" href="#." class="btn btn-1">Shop Now</a> </div>
+					<li data-transition="random" data-slotamount="7"> <img src="{{ asset('frontend_images/example/banner-example.png') }}" data-bgposition="center top" alt="" />
 					</li>
 
 					<!-- Slider 3 -->
-					<li data-transition="random" data-slotamount="7"> <img src="{{ asset('frontend_images/slides/slide-12.jpg') }}" data-bgposition="center center" alt="" />
-
-						<!-- Layer -->
-						<div class="tp-caption font-montserrat text-center text-uppercase sft tp-resizeme rs-parallaxlevel-4"
-							 data-x="550"
-							 data-y="center" data-voffset="-80"
-							 data-speed="700"
-							 data-start="1000"
-							 data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-							 data-easing="Back.easeOut"
-							 data-splitin="none"
-							 data-splitout="none"
-							 data-elementdelay="0.1"
-							 data-endelementdelay="0.1"
-							 data-endspeed="300"
-							 data-captionhidden="on"
-							 style="color: #272727; font-size: 24px; font-weight: bold; letter-spacing: 0px; padding:20px 0; "> J Brand 811 Mid Rise Ankle Skinny Jeans <br>
-							With Raw Hem & Ripped Knees </div>
-
-						<!-- Layer -->
-						<div class="tp-caption font-montserrat text-center text-uppercase sfb tp-resizeme rs-parallaxlevel-4"
-							 data-x="650"
-							 data-y="center" data-voffset="0"
-							 data-speed="700"
-							 data-start="1700"
-							 data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-							 data-easing="Back.easeOut"
-							 data-splitin="none"
-							 data-splitout="none"
-							 data-elementdelay="0.1"
-							 data-endelementdelay="0.1"
-							 data-endspeed="300"
-							 data-captionhidden="on"
-							 style="color: #272727; font-size: 14px; font-weight: bold; letter-spacing: 7px; padding:10px 0; border-top:1px solid #272727; border-bottom:1px solid #272727;"> FREE SHIPPING WORLDWIDE </div>
-
-						<!-- Layer -->
-						<div class="tp-caption sfb tp-resizeme rs-parallaxlevel-4"
-							 data-x="750"
-							 data-y="430"
-							 data-speed="700"
-							 data-start="2400"
-							 data-easing="easeOutBack"
-							 data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-							 data-splitin="none"
-							 data-splitout="none"
-							 data-elementdelay="0.1"
-							 data-endelementdelay="0.1"
-							 data-endspeed="300"
-							 data-captionhidden="on"> <a style="background: #272727;  border-color:#272727;" href="#." class="btn btn-1">Shop Now</a> </div>
+					<li data-transition="random" data-slotamount="7"> <img src="{{ asset('frontend_images/example/banner-example.png') }}" data-bgposition="center center" alt="" />
 					</li>
 				</ul>
 			</div>
@@ -242,16 +68,16 @@
 				<div class="tittle tittle-3 animate fadeInUp" data-wow-delay="0.4s">
 					<h5>NEW TREND</h5>
 					<hr>
-					<p>Treding fashion</p>
+					<p>Trending mug</p>
 				</div>
 
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs" role="tablist animate fadeInUp" data-wow-delay="0.4s">
-					<li role="presentation" class="active"><a href="#men" aria-controls="men" role="tab" data-toggle="tab">MEN’S</a></li>
-					<li role="presentation"><a href="#women" aria-controls="women" role="tab" data-toggle="tab">WOMAN</a></li>
-					<li role="presentation"><a href="#access" aria-controls="access" role="tab" data-toggle="tab">ACCESSORIES</a></li>
-					<li role="presentation"><a href="#shoes" aria-controls="shoes" role="tab" data-toggle="tab">SHOES</a></li>
-					<li role="presentation"><a href="#bags" aria-controls="bags" role="tab" data-toggle="tab">BAGS</a></li>
+					<li role="presentation" class="active"><a href="#men" aria-controls="men" role="tab" data-toggle="tab">STYLISH</a></li>
+					<li role="presentation"><a href="#women" aria-controls="women" role="tab" data-toggle="tab">COOL</a></li>
+					<li role="presentation"><a href="#access" aria-controls="access" role="tab" data-toggle="tab">CUTE</a></li>
+					<li role="presentation"><a href="#shoes" aria-controls="shoes" role="tab" data-toggle="tab">MODERN</a></li>
+					<li role="presentation"><a href="#bags" aria-controls="bags" role="tab" data-toggle="tab">CLASSIC</a></li>
 				</ul>
 
 				<!-- Tab panes -->
@@ -974,69 +800,14 @@
 			</div>
 		</section>
 
-		<!--======= Blog =========-->
-		<section class="section-p-60px blog">
-			<div class="container">
-				<!--  Tittle -->
-				<div class="tittle tittle-3 animate fadeInUp" data-wow-delay="0.4s">
-					<h5>RECENT BLOG</h5>
-					<hr>
-					<p>Our Blog</p>
-				</div>
-
-				<!--  Blog Posts -->
-				<div class="blog-posts">
-					<ul class="row">
-						<!--  Posts 1 -->
-						<li class="col-sm-4 animate fadeInLeft" data-wow-delay="0.4s">
-							<!--  Image -->
-							<img class="img-responsive" src="{{ asset('frontend_images/example/TangerineProduk-15.jpg') }}" alt=""> <span class="tags">FASHION NEWS</span> <a href="#." class="tittle-post font-playfair">Mighty Healthy 2013 Spring/Summer</a>
-							<p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens danadelion.</p>
-							<!--  Post Info -->
-							<ul class="info">
-								<li><i class="fa fa-user"></i> admin</li>
-								<li><i class="fa fa-calendar-o"></i> 12 JULY</li>
-								<li><i class="fa fa-eye"></i> 325</li>
-							</ul>
-						</li>
-
-						<!--  Posts 2 -->
-						<li class="col-sm-4 animate fadeInUp" data-wow-delay="0.4s">
-							<!--  Image -->
-							<img class="img-responsive" src="{{ asset('frontend_images/example/TangerineProduk-15.jpg') }}" alt=""> <span class="tags">TRENDING NEWS</span> <a href="#." class="tittle-post font-playfair">No colors are the best ones.</a>
-							<p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens danadelion.</p>
-							<!--  Post Info -->
-							<ul class="info">
-								<li><i class="fa fa-user"></i> admin</li>
-								<li><i class="fa fa-calendar-o"></i> 12 JULY</li>
-								<li><i class="fa fa-eye"></i> 325</li>
-							</ul>
-						</li>
-
-						<!--  Posts 2 -->
-						<li class="col-sm-4 animate fadeInRight" data-wow-delay="0.4s">
-							<!--  Image -->
-							<img class="img-responsive" src="{{ asset('frontend_images/example/TangerineProduk-15.jpg') }}" alt=""> <span class="tags">MOTION GRAPHIC</span> <a href="#." class="tittle-post font-playfair">All in Black Venna</a>
-							<p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens danadelion.</p>
-							<!-- Post Info -->
-							<ul class="info">
-								<li><i class="fa fa-user"></i> admin</li>
-								<li><i class="fa fa-calendar-o"></i> 12 JULY</li>
-								<li><i class="fa fa-eye"></i> 325</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</section>
-
 		<!--======= BOXES =========-->
 		<section class="section-p-60px no-padding-b">
 			<div class="container">
 				<div class="row">
+					<div class="col-md-4 animate fadeInLeft" data-wow-delay="0.4s"></div>
 
 					<!-- Shop Location -->
-					<div class="col-md-4 animate fadeInLeft" data-wow-delay="0.4s">
+					<div class="col-md-4 animate fadeInUp" data-wow-delay="0.4s">
 						<div class="boxes-in">
 							<h5>SHOP LOCATION</h5>
 							<hr>
@@ -1058,54 +829,7 @@
 						</div>
 					</div>
 
-					<!-- NEWSLETTER -->
-					<div class="col-md-4 animate fadeInUp" data-wow-delay="0.4s">
-						<div class="boxes-in">
-							<h5>NEWSLETTER</h5>
-							<hr>
-							<div class="small-letter">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
-								<input type="email" placeholder="ENTER EMAIL ADDRESS...">
-								<button type="submit" class="btn">SUBSCRIBLE</button>
-							</div>
-						</div>
-					</div>
-
-					<!-- TESTIMONIAL -->
-					<div class="col-md-4 animate fadeInRight" data-wow-delay="0.4s">
-						<div class="boxes-in">
-							<h5>TESTIMONIAL</h5>
-							<hr>
-
-							<!-- TESTIMONIAL SLIDER -->
-							<div class="testi-slides">
-
-								<!-- SLIDER -->
-								<div class="slides">
-									<div class="avatar"> <img src="{{ asset('frontend_images/avatar-1.jpg') }}" alt=""> </div>
-									<p>“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.”</p>
-									<h6>TYRION LANNISTER</h6>
-									<p>Founder-Ceo. Dell Corp</p>
-								</div>
-
-								<!-- SLIDER -->
-								<div class="slides">
-									<div class="avatar"> <img src="{{ asset('frontend_images/avatar-2.jpg') }}" alt=""> </div>
-									<p>“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.”</p>
-									<h6>TYRION LANNISTER</h6>
-									<p>Founder-Ceo. Dell Corp</p>
-								</div>
-
-								<!-- SLIDER -->
-								<div class="slides">
-									<div class="avatar"> <img src="{{ asset('frontend_images/avatar-3.jpg') }}" alt=""> </div>
-									<p>“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.”</p>
-									<h6>TYRION LANNISTER</h6>
-									<p>Founder-Ceo. Dell Corp</p>
-								</div>
-							</div>
-						</div>
-					</div>
+					<div class="col-md-4 animate fadeInRight" data-wow-delay="0.4s"></div>
 				</div>
 			</div>
 		</section>
@@ -1117,7 +841,6 @@
 				<div class="tittle tittle-3 animate fadeInUp" data-wow-delay="0.4s">
 					<h5>OUR BANDS</h5>
 					<hr>
-					<p>Treding blog</p>
 				</div>
 
 				<!--  Client Logo Slider -->

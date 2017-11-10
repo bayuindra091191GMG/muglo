@@ -15,6 +15,10 @@
     <!-- CSS -->
     <link href="{{ URL::asset('css/frontend/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/frontend/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+
+    <!-- Fileinput -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+
     <link href="{{ URL::asset('css/frontend/main.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/frontend/style.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/frontend/responsive.css') }}" rel="stylesheet" media="all">
@@ -29,6 +33,7 @@
 
     <!-- Funkyradio -->
     <link href="{{ URL::asset('css/frontend/funkyradio.css') }}" rel="stylesheet" media="all">
+
 
     <!-- Custom CSS -->
     <link href="{{ URL::asset('css/frontend/custom.css') }}" rel="stylesheet" media="all">
@@ -97,6 +102,9 @@
 <!-- Datatables -->
 <script src="{{ URL::asset('js/frontend/datatable/jquery.dataTables.min.js') }}"></script>
 <script src="{{ URL::asset('js/frontend/datatable/dataTables.bootstrap.min.js') }}"></script>
+
+<!-- Fileinput -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/fileinput.min.js"></script>
 
 <!-- Custom -->
 <script src="{{ URL::asset('js/frontend/custom.js') }}"></script>

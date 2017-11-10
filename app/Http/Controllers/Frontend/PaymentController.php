@@ -423,35 +423,41 @@ class PaymentController extends Controller
         return view('frontend.checkout-step4', compact('totalPrice', 'shipping', 'grandTotal'));
     }
 
-//    //bank transfer
-//    public function CheckoutProcessBank(){
-//        return view('frontend.checkout-step4-bank');
-//    }
-//
-//    //bank transfer process
-//    public function CheckoutProcessBankSubmit(Request $request){
-//        $user = Auth::user();
-//        $userId = $user->id;
-//
-//        $validator = Validator::make($request->all(),[
-//            'sender_name'                   => 'required',
-//            'transfer_date'                  => 'required',
-//            'receiver_bank'                 => 'required',
-//            'transfer_amount'                => 'required'
-//        ]);
-//
-//        if ($validator->fails()) {
-//            $this->throwValidationException(
-//                $request, $validator
-//            );
-//        }
-//        else {
-//
-//        }
-//
-//        //return ke page transaction
-//        return redirect()->route('checkout4');
-//    }
+    // Show manual bank transfer confirmation form
+    public function bankConfirm($id){
+        $banks = BankAccount::all();
+        $trxId = $id;
+
+        $data = [
+            'banks'     => $banks,
+            'trxId'     => $trxId
+        ];
+
+        return view('frontend.bank-confirm')->with($data);
+    }
+
+    public function bankConfirmSubmit(Request $request, $id){
+        $user = Auth::user();
+
+        $validator = Validator::make($request->all(),[
+            'bank_name'         => 'required',
+            'sender_name'       => 'required',
+            'receiver_bank'     => 'required|option_not_default',
+            'transfer_date'     => 'required',
+            'transfer_amount'   => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+
+
+        //return ke page transaction
+        return redirect()->route('checkout4');
+    }
 
     //payment online failed
     public function CheckoutProcessFailed(){

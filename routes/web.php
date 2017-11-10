@@ -66,6 +66,12 @@ Route::prefix('payment/purchase')->group(function(){
     ]);
 });
 
+// Bank Transfer Confirm
+Route::prefix('confirm/transfer')->group(function(){
+    Route::get('/{id}', 'Frontend\PaymentController@bankConfirm')->name('bank-confirm');
+    Route::post('/submit', 'Frontend\PaymentController@bankConfirmSubmit');
+});
+
 // User Data
 Route::prefix('user')->group(function(){
     Route::get('/', 'Frontend\UserController@index')->name('user-profile-show');
