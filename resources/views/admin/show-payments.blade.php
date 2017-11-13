@@ -25,7 +25,7 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                            <table id="datatable-global" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
                                     <th>Invoice</th>
@@ -33,7 +33,7 @@
                                     <th>Metode Pembayaran</th>
                                     <th>Nama Pengirim</th>
                                     <th>Jumlah Transfer</th>
-                                    <th>Total Pembayarab</th>
+                                    <th>Total Pembayaran</th>
                                     <th>Tanggal Transfer</th>
                                     <th>Tanggal Pembayaran Terkonfirmasi</th>
                                     <th>Status</th>

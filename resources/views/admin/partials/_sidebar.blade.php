@@ -12,7 +12,7 @@
                 <img src="{{ URL::asset('admin_images/user.png') }}" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
-                <span>Welcome,</span>
+                <span>Selamat Datang,</span>
                 <h2>{{ \Illuminate\Support\Facades\Auth::guard('user_admins')->user()->first_name }}</h2>
             </div>
         </div>
@@ -25,26 +25,26 @@
             <div class="menu_section">
                 <ul class="nav side-menu">
                     <li>
-                        <a href="{{ route('admin-dashboard') }}"><i class="fa fa-home"></i> Dashboard </a>
+                        <a href="{{ route('admin-dashboard') }}"><i class="fa fa-home"></i> Dashbor </a>
                     </li>
                     <li>
                         <a href="{{ route('new-order-list') }}">
-                            <i class="fa fa-exclamation-triangle"></i> New Order
+                            <i class="fa fa-exclamation-triangle"></i> Pemesanan Baru
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('payment-list') }}">
-                            <i class="fa fa-money"></i> Payment Status
+                            <i class="fa fa-money"></i> Status Pembayaran
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('customer-list') }}">
-                            <i class="fa fa-users"></i> Customer List
+                            <i class="fa fa-users"></i> Daftar Pelanggan
                         </a>
                     </li>
-                    <li><a><i class="fa fa-tags"></i> Product <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-tags"></i> Produk <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ route('product-list') }}">Show</a></li>
+                            <li><a href="{{ route('product-list') }}">Daftar</a></li>
                             <li><a href="{{ route('product-create') }}">Create</a></li>
                         </ul>
                     </li>

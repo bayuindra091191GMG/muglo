@@ -86,30 +86,30 @@
                                                 <input type="radio" name="options" value="none" id="disc-none-opt"> Tidak Diskon
                                             </label>
                                             <label class="btn btn-default active">
-                                                <input type="radio" name="options" value="percent" id="disc-percent-opt" checked> Persentase
+                                                <input type="radio" name="options" value="percent" id="disc-percent-opt" checked> Diskon Persentase
                                             </label>
                                             <label class="btn btn-default">
-                                                <input type="radio" name="options" value="flat" id="disc-flat-opt"> Angka
+                                                <input type="radio" name="options" value="flat" id="disc-flat-opt"> Diskon Angka
                                             </label>
                                         @elseif(!empty($product->discount_flat))
                                             <label class="btn btn-default">
                                                 <input type="radio" name="options" value="none" id="disc-none-opt" checked> Tidak Diskon
                                             </label>
                                             <label class="btn btn-default">
-                                                <input type="radio" name="options" value="percent" id="disc-percent-opt"> Persentase
+                                                <input type="radio" name="options" value="percent" id="disc-percent-opt"> Diskon Persentase
                                             </label>
                                             <label class="btn btn-default active">
-                                                <input type="radio" name="options" value="flat" id="disc-flat-opt" checked> Angka
+                                                <input type="radio" name="options" value="flat" id="disc-flat-opt" checked> Diskon Angka
                                             </label>
                                         @else
                                             <label class="btn btn-default active">
                                                 <input type="radio" name="options" value="none" id="disc-none-opt" checked> Tidak Diskon
                                             </label>
                                             <label class="btn btn-default">
-                                                <input type="radio" name="options" value="percent" id="disc-percent-opt"> Persentase
+                                                <input type="radio" name="options" value="percent" id="disc-percent-opt"> Diskon Persentase
                                             </label>
                                             <label class="btn btn-default">
-                                                <input type="radio" name="options" value="flat" id="disc-flat-opt"> Angka
+                                                <input type="radio" name="options" value="flat" id="disc-flat-opt"> Diskon Angka
                                             </label>
                                         @endif
 
@@ -168,7 +168,7 @@
                             @endif
 
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Berat Dalam Gram <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Berat (Gram) <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12 price-format">
                                     <input id="weight" name="weight" required class="form-control col-md-7 col-xs-12" value="{{ $product->getOriginal('weight') }}">
@@ -184,7 +184,7 @@
                             </div>
 
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" style="padding-top: 0;">Gambar Utama<br/>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" style="padding-top: 0;">Foto Utama<br/>
                                     <span style="color: red;">recommended image ratio 3:4 or exact 270x370 pixel</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -195,7 +195,7 @@
 
                             @if(!$imgPhotos->isEmpty())
                                 <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" style="padding-top: 0;">Gambar<br/>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" style="padding-top: 0;">Foto<br/>
                                         <span style="color: red;">recommended image ratio 3:4 or exact 270x370 pixel</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -219,7 +219,7 @@
                             @endif
 
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Tambah Gambar
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Tambah Foto
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     {!! Form::file('product-photos[]', array('id' => 'product-photos', 'class' => 'file-loading', 'multiple' )) !!}

@@ -9,7 +9,7 @@
 <script src="{{ URL::asset('js/autoNumeric/autoNumeric.min.js') }}"></script>
 
 <!-- Custom Lowids Scripts -->
-<script src="{{ URL::asset('js/admin/custom-lowids.js') }}"></script>
+<script src="{{ URL::asset('custom-bacustom-backend.js/script>
 
 <!-- FastClick -->
 <script src="{{ URL::asset('js/admin/fastclick/fastclick.js') }}"></script>

@@ -1,3 +1,12 @@
+$("#datatable-global").DataTable({
+    "responsive": {
+        details: {
+            display: $.fn.dataTable.Responsive.display.childRowImmediate,
+            type: ''
+        }
+    }
+})
+
 // Bootstrap File Input
 $("#product-photos").fileinput({
     maxFilePreviewSize: 10240,

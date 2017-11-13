@@ -21,11 +21,11 @@
                     <div class="x_panel">
                         <div class="x_title">
                             @include('admin.partials._success')
-                            <h2>New Order</h2>
+                            <h2>Pemesanan Baru</h2>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                            <table id="datatable-global" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
                                     <th>No</th>
@@ -35,7 +35,6 @@
                                     <th>Agen Pengiriman</th>
                                     <th>Total Harga</th>
                                     <th>Ongkos Kirim</th>
-                                    <th>Kode Transfer</th>
                                     <th>Total Pembayaran</th>
                                     <th>Tanggal Pemesanan</th>
                                     <th>Opsi</th>
@@ -52,13 +51,6 @@
                                         <td>{{ strtoupper($trx->courier) }} {{ $trx->delivery_type }}</td>
                                         <td>Rp {{ $trx->total_price }}</td>
                                         <td>Rp {{ $trx->delivery_fee }}</td>
-                                        <td>
-                                            @if(!empty($trx->payment_code))
-                                                {{ $trx->payment_code }}
-                                            @else
-                                                -
-                                            @endif
-                                        </td>
                                         <td>Rp {{ $trx->total_payment }}</td>
                                         <td>
                                             <a onclick="modalPop('{{ $trx->id }}', 'accept', '/admin/neworder/accept/')" class="btn btn-success">Terima</a>
