@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MUGLO</title>
-    <meta name="keywords" content="Muglo,Mug">
+    <title>TANGERINE</title>
+    <meta name="keywords" content="Tangerine,Mug">
     <meta name="description" content="SEBIAN - Multi Purpose eCommerce HTML5 Template">
     <meta name="author" content="Bayu_Indra">
 
     <!-- FONTS ONLINE -->
-    <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
     <!-- CSS -->
     <link href="{{ URL::asset('css/frontend/bootstrap.min.css') }}" rel="stylesheet">

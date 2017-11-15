@@ -129,27 +129,26 @@
                         <div class="items-short-type animate fadeInUp" data-wow-delay="0.4s">
 
                             <!--======= GRID LIST STYLE =========-->
-                            <div class="grid-list"> <a href="#."><i class="fa fa-th-large"></i></a> <a href="#."><i class="fa fa-th-list"></i></a> </div>
+                            {{--<div class="grid-list"> <a href="#."><i class="fa fa-th-large"></i></a> <a href="#."><i class="fa fa-th-list"></i></a> </div>--}}
 
                             <!--======= SHORT BY =========-->
                             <div class="short-by">
                                 <select class="selectpicker">
-                                    <option>Short by</option>
-                                    <option>Short by</option>
+                                    <option>Sort by</option>
+                                    <option>Sort by</option>
                                 </select>
-                                <p>Showing 1-12 of 30 products</p>
                             </div>
 
                             <!--======= VIEW ITEM NUMBER =========-->
-                            <div class="view-num">
-                                <ul>
-                                    <li>View&nbsp;</li>
-                                    <li><a href="#.">9</a>/</li>
-                                    <li><a href="#.">12</a>/</li>
-                                    <li><a href="#.">24</a>/</li>
-                                    <li><a href="#.">All</a></li>
-                                </ul>
-                            </div>
+                            {{--<div class="view-num">--}}
+                                {{--<ul>--}}
+                                    {{--<li>View&nbsp;</li>--}}
+                                    {{--<li><a href="#.">9</a>/</li>--}}
+                                    {{--<li><a href="#.">12</a>/</li>--}}
+                                    {{--<li><a href="#.">24</a>/</li>--}}
+                                    {{--<li><a href="#.">All</a></li>--}}
+                                {{--</ul>--}}
+                            {{--</div>--}}
                         </div>
 
                         <!--======= Products =========-->

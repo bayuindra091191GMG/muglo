@@ -6,27 +6,23 @@
  * Time: 12:01
  */
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Frontend;
 
 
 use App\Http\Controllers\Controller;
-use App\libs\Utilities;
-use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\ProductImage;
-use App\Models\TransactionDetail;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Validator;
-use Intervention\Image\Facades\Image;
-use Webpatser\Uuid\Uuid;
 
 class ProductController extends Controller
 {
+    public function exampleProducts(){
+        return View('frontend.show-products');
+    }
+
+    public function exampleProduct(){
+        return View('frontend.show-product');
+    }
+
     //
     public function products($categoryId, $categoryName){
 

@@ -25,8 +25,8 @@ Route::post('/signin', 'Auth\LoginController@authenticate')->name('signin');
 Route::get('product/category/{categoryId}-{categoryName}', 'Frontend\ProductController@products')->name('products');
 Route::get('product-detail/{id}', 'Frontend\ProductController@ProductShow')->name('product-detail');
 Route::get('search/{key}', 'Frontend\ProductController@search')->name('product-search');
-Route::get('example/product/list', 'Frontend\ProductController@exampleProductList');
-Route::get('example/product/detail', 'Frontend\ProductController@exampleProductDetail');
+Route::get('example/product/list', 'Frontend\ProductController@exampleProducts');
+Route::get('example/product/detail', 'Frontend\ProductController@exampleProduct');
 
 // Cart
 Route::get('cart', 'Frontend\CartController@index')->name('cart-list');
@@ -110,7 +110,7 @@ Route::get('rajaongkir/subdistrict/{cityId}', 'Frontend\UserAddressController@ge
 // Backend Routing
 Route::get('/admin', 'Admin\DashboardController@dashboardShow')->name('admin-dashboard');
 
-Route::get('/lowids/login', function (){
+Route::get('/admin/login', function (){
     return view('admin/login');
 })->name('login-admin');
 

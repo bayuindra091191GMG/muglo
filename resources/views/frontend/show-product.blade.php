@@ -44,8 +44,8 @@
                             <div class="col-sm-12"> <span class="code">PRODUCT CODE: SKU: PDID-BC-01.</span>
                                 <div class="some-info no-border"> <br>
                                     <div class="in-stoke"> <i class="fa fa-check-circle"></i> IN STOCK</div>
-                                    <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div>
-                                    <a href="#review"  class="review">(3) Review</a> &nbsp;&nbsp;&nbsp; <a href="#review-form" class="review">Add Your Review</a></div>
+                                    {{--<div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div>--}}
+                                    {{--<a href="#review"  class="review">(3) Review</a> &nbsp;&nbsp;&nbsp; <a href="#review-form" class="review">Add Your Review</a></div>--}}
                                 <hr>
                             </div>
                         </div>
@@ -107,82 +107,82 @@
                     <div class="text-center">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation"><a href="#descr" aria-controls="men" role="tab" data-toggle="tab">DESCRIPTION</a></li>
-                            <li role="presentation" class="active"><a href="#review" aria-controls="women" role="tab" data-toggle="tab">REVIEW (03)</a></li>
+                            <li role="presentation" class="active"><a href="#descr" aria-controls="men" role="tab" data-toggle="tab">DESCRIPTION</a></li>
+                            {{--<li role="presentation" class="active"><a href="#review" aria-controls="women" role="tab" data-toggle="tab">REVIEW (03)</a></li>--}}
                             <li role="presentation"><a href="#tags" aria-controls="access" role="tab" data-toggle="tab">TAGS</a></li>
                         </ul>
                     </div>
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <!-- DESCRIPTION -->
-                        <div role="tabpanel" class="tab-pane fade" id="descr">
+                        <div role="tabpanel" class="tab-pane fade in active" id="descr">
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco,Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectusLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco,Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectusLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.<br>
                                 <br>
                                 Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. </p>
                         </div>
 
                         <!-- REVIEW -->
-                        <div role="tabpanel" class="tab-pane fade  in active" id="review">
-                            <h6>3 REVIEWS FOR SHIP YOUR IDEA</h6>
+                        {{--<div role="tabpanel" class="tab-pane fade  in active" id="review">--}}
+                            {{--<h6>3 REVIEWS FOR SHIP YOUR IDEA</h6>--}}
 
-                            <!-- REVIEW PEOPLE 1 -->
-                            <div class="media">
-                                <div class="media-left">
-                                    <!--  Image -->
-                                    <div class="avatar"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/avatar-1.jpg') }}" alt=""> </a> </div>
-                                </div>
-                                <!--  Details -->
-                                <div class="media-body">
-                                    <p class="font-playfair">“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                        labore et dolore magna aliqua.”</p>
-                                    <h6>TYRION LANNISTER <span class="pull-right">June 7, 2013</span> </h6>
-                                </div>
-                            </div>
+                            {{--<!-- REVIEW PEOPLE 1 -->--}}
+                            {{--<div class="media">--}}
+                                {{--<div class="media-left">--}}
+                                    {{--<!--  Image -->--}}
+                                    {{--<div class="avatar"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/avatar-1.jpg') }}" alt=""> </a> </div>--}}
+                                {{--</div>--}}
+                                {{--<!--  Details -->--}}
+                                {{--<div class="media-body">--}}
+                                    {{--<p class="font-playfair">“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut--}}
+                                        {{--labore et dolore magna aliqua.”</p>--}}
+                                    {{--<h6>TYRION LANNISTER <span class="pull-right">June 7, 2013</span> </h6>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
 
-                            <!-- REVIEW PEOPLE 1 -->
+                            {{--<!-- REVIEW PEOPLE 1 -->--}}
 
-                            <div class="media">
-                                <div class="media-left">
-                                    <!--  Image -->
-                                    <div class="avatar"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/avatar-2.jpg') }}" alt=""> </a> </div>
-                                </div>
-                                <!--  Details -->
-                                <div class="media-body">
-                                    <p class="font-playfair">“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                        labore et dolore magna aliqua.”</p>
-                                    <h6>TYRION LANNISTER <span class="pull-right">June 7, 2013</span> </h6>
-                                </div>
-                            </div>
+                            {{--<div class="media">--}}
+                                {{--<div class="media-left">--}}
+                                    {{--<!--  Image -->--}}
+                                    {{--<div class="avatar"> <a href="#"> <img class="media-object" src="{{ asset('frontend_images/avatar-2.jpg') }}" alt=""> </a> </div>--}}
+                                {{--</div>--}}
+                                {{--<!--  Details -->--}}
+                                {{--<div class="media-body">--}}
+                                    {{--<p class="font-playfair">“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut--}}
+                                        {{--labore et dolore magna aliqua.”</p>--}}
+                                    {{--<h6>TYRION LANNISTER <span class="pull-right">June 7, 2013</span> </h6>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
 
-                            <!-- ADD REVIEW -->
-                            <h6 class="margin-t-40">ADD REVIEW</h6>
-                            <form id="review-form">
-                                <ul class="row">
-                                    <li class="col-sm-6">
-                                        <label> *NAME
-                                            <input type="text" value="" placeholder="">
-                                        </label>
-                                    </li>
-                                    <li class="col-sm-6">
-                                        <label> *EMAIL
-                                            <input type="email" value="" placeholder="">
-                                        </label>
-                                    </li>
-                                    <li class="col-sm-12">
-                                        <label> *YOUR REVIEW
-                                            <textarea></textarea>
-                                        </label>
-                                    </li>
-                                    <li class="col-sm-6">
-                                        <!-- Rating Stars -->
-                                        <div class="stars"> <span>YOUR RATING</span> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                                    </li>
-                                    <li class="col-sm-6">
-                                        <button type="submit" class="btn btn-dark btn-small pull-right no-margin">POST REVIEW</button>
-                                    </li>
-                                </ul>
-                            </form>
-                        </div>
+                            {{--<!-- ADD REVIEW -->--}}
+                            {{--<h6 class="margin-t-40">ADD REVIEW</h6>--}}
+                            {{--<form id="review-form">--}}
+                                {{--<ul class="row">--}}
+                                    {{--<li class="col-sm-6">--}}
+                                        {{--<label> *NAME--}}
+                                            {{--<input type="text" value="" placeholder="">--}}
+                                        {{--</label>--}}
+                                    {{--</li>--}}
+                                    {{--<li class="col-sm-6">--}}
+                                        {{--<label> *EMAIL--}}
+                                            {{--<input type="email" value="" placeholder="">--}}
+                                        {{--</label>--}}
+                                    {{--</li>--}}
+                                    {{--<li class="col-sm-12">--}}
+                                        {{--<label> *YOUR REVIEW--}}
+                                            {{--<textarea></textarea>--}}
+                                        {{--</label>--}}
+                                    {{--</li>--}}
+                                    {{--<li class="col-sm-6">--}}
+                                        {{--<!-- Rating Stars -->--}}
+                                        {{--<div class="stars"> <span>YOUR RATING</span> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>--}}
+                                    {{--</li>--}}
+                                    {{--<li class="col-sm-6">--}}
+                                        {{--<button type="submit" class="btn btn-dark btn-small pull-right no-margin">POST REVIEW</button>--}}
+                                    {{--</li>--}}
+                                {{--</ul>--}}
+                            {{--</form>--}}
+                        {{--</div>--}}
 
                         <!-- TAGS -->
                         <div role="tabpanel" class="tab-pane fade" id="tags"> </div>

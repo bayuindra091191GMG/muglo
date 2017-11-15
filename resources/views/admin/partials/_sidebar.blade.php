@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Lowids</span></a>
+            <a href="{{ route('landing') }}" class="site_title"><i class="fa fa-paw"></i> <span>Tangerine</span></a>
         </div>
 
         <div class="clearfix"></div>
@@ -44,11 +44,11 @@
                     </li>
                     <li><a><i class="fa fa-tags"></i> Produk <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ route('product-list') }}">Daftar</a></li>
-                            <li><a href="{{ route('product-create') }}">Create</a></li>
+                            <li><a href="{{ route('product-list') }}">Daftar Produk</a></li>
+                            <li><a href="{{ route('product-create') }}">Tambah Baru</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-edit"></i> Banner <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-edit"></i> Spanduk Iklan <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a>Slider Banner<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
@@ -60,55 +60,53 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-shopping-cart"></i> Transaction <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-shopping-cart"></i> Transaksi <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ route('delivery-list') }}">Delivery Request</a></li>
-                            <li><a href="{{ route('transaction-list') }}">History</a></li>
+                            <li><a href="{{ route('delivery-list') }}">Konfirmasi Pengiriman</a></li>
+                            <li><a href="{{ route('transaction-list') }}">Daftar Transaksi</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-list"></i> Category <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-list"></i> Kategori <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ route('category-list') }}">Show</a></li>
-                            <li><a href="{{ route('category-create') }}">Create</a></li>
+                            <li><a href="{{ route('category-list') }}">Daftar Kategori</a></li>
+                            <li><a href="{{ route('category-create') }}">Tambah Baru</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-bank"></i> Payment Methods <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-bank"></i> Metode Pembayaran <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ route('payment-method-show') }}">Show</a></li>
-                            <li><a href="{{ route('payment-method-create') }}">Create</a></li>
+                            <li><a href="{{ route('payment-method-show') }}">Daftar Metode Pembayaran</a></li>
+                            <li><a href="{{ route('payment-method-create') }}">Tambah Baru</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-truck"></i> Courier <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-truck"></i> Kurir <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ route('courier-list') }}">Show</a></li>
-                            <li><a href="{{ route('courier-create') }}">Create</a></li>
+                            <li><a href="{{ route('courier-list') }}">Daftar Kurir</a></li>
+                            <li><a href="{{ route('courier-create') }}">Tambah Baru</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-truck"></i> Delivery Type <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-truck"></i> Paket Pengiriman <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ route('delivery-type-list') }}">Show</a></li>
-                            <li><a href="{{ route('delivery-type-create') }}">Create</a></li>
+                            <li><a href="{{ route('delivery-type-list') }}">Daftar Paket Pengiriman</a></li>
+                            <li><a href="{{ route('delivery-type-create') }}">Tambah Baru</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-bar-chart"></i> Reports <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ route('report-form') }}">Show</a></li>
-                        </ul>
+                    <li>
+                        <a href="{{ route('report-form') }}"><i class="fa fa-bar-chart"></i> Reports <span class="fa fa-chevron-down"></span></a>
                     </li>
                     <li><a><i class="fa fa-edit"></i> Status <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ route('status-list') }}">Show</a></li>
-                            <li><a href="{{ route('status-create') }}">Create</a></li>
+                            <li><a href="{{ route('status-list') }}">Daftar Status</a></li>
+                            <li><a href="{{ route('status-create') }}">Tambah Baru</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-user-secret"></i> Admin <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ route('admin-list') }}">Show</a></li>
+                            <li><a href="{{ route('admin-list') }}">Daftar Admin</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-gear"></i> Store Setting <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-gear"></i> Pengaturan Toko <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ route('store-address') }}">Address</a></li>
+                            <li><a href="{{ route('store-address') }}">Alamat</a></li>
                         </ul>
                     </li>
                 </ul>

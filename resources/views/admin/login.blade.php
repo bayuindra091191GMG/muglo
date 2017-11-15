@@ -41,7 +41,7 @@
                 {!! csrf_field() !!}
 
                 <form>
-                    <h1>Login Form</h1>
+                    <h1>Login</h1>
                     <div>
                         @foreach($errors->all() as $error)
                             <span class="help-block">
@@ -72,7 +72,7 @@
 
                         <div>
                             {{--<h1><i class="fa fa-paw"></i> Lowids</h1>--}}
-                            <p>©2017 All Rights Reserved. Lowids by PT Generasi Muda Gigih</p>
+                            <p>©2017 All Rights Reserved. Tangerine by PT Generasi Muda Gigih</p>
                         </div>
                     </div>
                 </form>

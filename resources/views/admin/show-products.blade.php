@@ -40,7 +40,7 @@
                             <h2>Daftar Produk</h2>
                             <div class="nav navbar-right">
                                 <a href="{{ route('product-create') }}" class="btn btn-app">
-                                    <i class="fa fa-plus"></i> Add
+                                    <i class="fa fa-plus"></i> Tambah
                                 </a>
                             </div>
                             <div class="clearfix"></div>
