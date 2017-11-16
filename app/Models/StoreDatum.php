@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Wed, 08 Nov 2017 07:33:12 +0000.
+ * Date: Thu, 16 Nov 2017 04:10:51 +0000.
  */
 
 namespace App\Models;
@@ -16,7 +16,9 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $address_name
  * @property string $address_detail
  * @property int $province_id
+ * @property string $province_name
  * @property int $city_id
+ * @property string $city_name
  * @property int $subdistrict_id
  * @property string $subdistrict_name
  * @property string $postal_code
@@ -37,7 +39,9 @@ class StoreDatum extends Eloquent
 		'address_name',
 		'address_detail',
 		'province_id',
+		'province_name',
 		'city_id',
+		'city_name',
 		'subdistrict_id',
 		'subdistrict_name',
 		'postal_code'

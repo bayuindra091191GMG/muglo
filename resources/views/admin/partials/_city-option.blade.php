@@ -1,4 +1,4 @@
-<option value="-1">Select city</option>
-@foreach($cities as $city)
-    <option value="{{ $city->id }}">{{ $city->name }}</option>
+<option value="-1" selected>Pilih Kota</option>
+@foreach($collect->rajaongkir->results as $city)
+    <option value="{{ $city->city_id }},{{ $city->city_name }}">{{ $city->type }} {{ $city->city_name }}</option>
 @endforeach

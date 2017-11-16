@@ -100,12 +100,11 @@ Route::prefix('transaction')->group(function(){
 });
 Route::get('invoice/{id}','Frontend\TransactionController@invoice')->name('invoice-view');
 
-// End Frontend Routing
-
-
 // Rajaongkir
 Route::get('rajaongkir/city/{provinceId}', 'Frontend\UserAddressController@getCity');
 Route::get('rajaongkir/subdistrict/{cityId}', 'Frontend\UserAddressController@getSubdistrict');
+
+// End Frontend Routing
 
 // Backend Routing
 Route::get('/admin', 'Admin\DashboardController@dashboardShow')->name('admin-dashboard');
@@ -216,11 +215,19 @@ Route::prefix('admin/status')->group(function(){
 });
 
 // Admin Options
-Route::get('/admin/option/address', 'Admin\OptionController@index')->name('store-address');
-Route::post('/admin/option/address/save', 'Admin\OptionController@update');
-Route::get('/admin/option/city', 'Admin\OptionController@getCities');
-Route::get('/admin/option/subdistrict', 'Admin\OptionController@getSubdistricts');
-// report
+Route::prefix('admin/option')->group(function(){
+    Route::get('/address/create', 'Admin\OptionAddressController@create')->name('option-address-create');
+    Route::post('/address/store', 'Admin\OptionAddressController@store');
+    Route::get('/address/edit', 'Admin\OptionAddressController@edit')->name('option-address-edit');
+    Route::post('/address/save', 'Admin\OptionAddressController@update');
+    Route::get('/', 'Admin\OptionController@index')->name('store-option');
+});
+
+// Rajaongkir
+Route::get('admin/rajaongkir/city/{provinceId}', 'Admin\OptionAddressController@getCity');
+Route::get('admin/rajaongkir/subdistrict/{cityId}', 'Admin\OptionAddressController@getSubdistrict');
+
+// Report
 Route::prefix('admin/report')->group(function(){
     Route::get('/form', 'Admin\ReportController@index')->name('report-form');
     Route::post('/', 'Admin\ReportController@request');

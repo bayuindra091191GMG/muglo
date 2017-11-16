@@ -172,8 +172,6 @@ class UserAddressController extends Controller
     }
 
     public function getCity($provinceId){
-        error_log('CHECK');
-
         $client = new Client([
             'base_uri' => 'https://pro.rajaongkir.com/api/city?province='. $provinceId,
             'headers' => [

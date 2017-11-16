@@ -104,10 +104,7 @@
                             <li><a href="{{ route('admin-list') }}">Daftar Admin</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-gear"></i> Pengaturan Toko <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ route('store-address') }}">Alamat</a></li>
-                        </ul>
+                    <li><a href="{{ route('store-option') }}"><i class="fa fa-gear"></i> Pengaturan Toko </a>
                     </li>
                 </ul>
             </div>
