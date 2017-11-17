@@ -22,6 +22,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $quantity
  * @property int $weight
  * @property string description
+ * @property int $sold
  * @property int $status_id
  * @property string $created_by
  * @property \Carbon\Carbon $created_on
@@ -48,6 +49,7 @@ class Product extends Eloquent
 		'price_discounted' => 'float',
 		'quantity' => 'int',
 		'weight' => 'int',
+        'sold' => 'int',
 		'status_id' => 'int'
 	];
 
@@ -67,6 +69,7 @@ class Product extends Eloquent
 		'quantity',
 		'weight',
         'description',
+        'sold',
 		'status_id',
 		'created_by',
 		'created_on',
