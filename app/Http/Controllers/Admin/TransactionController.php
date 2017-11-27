@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\OrderAccepted;
+use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\TransferConfirmation;
 use Carbon\Carbon;
@@ -34,6 +35,17 @@ class TransactionController extends Controller
         return View('admin.show-transactions', compact('transactions'));
     }
 
+    public function indexCustomer($customerId){
+        $transactions = Transaction::where('user_id', $customerId)->orderByDesc('created_on')->get();
+
+        $data = [
+            'transactions'  => $transactions,
+            'customerId'    => $customerId
+        ];
+
+        return View('admin.show-customer-transactions')->with($data);
+    }
+
     public function detail($id){
         $transaction = Transaction::find($id);
 
@@ -53,6 +65,13 @@ class TransactionController extends Controller
         $trx->save();
 
         Mail::to($trx->user->email)->send(new OrderAccepted());
+
+        // Add sold count
+        foreach($trx->transaction_details as $detail){
+            $product = Product::find($detail->product_id);
+            $product->sold =+ 1;
+            $product->save();
+        }
 
         Session::flash('message', 'Berhasil menerima pemesanan!');
 

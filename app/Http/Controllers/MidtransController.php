@@ -16,6 +16,7 @@ use App\Mail\NewOrderAdmin;
 use App\Mail\NewOrderCustomer;
 use App\Models\Address;
 use App\Models\Cart;
+use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use App\Models\User;

@@ -120,7 +120,7 @@ Route::get('/lowids/login/{failed}', function ($failed){
 
 // User
 Route::get('/admin/customer', 'Admin\CustomerController@index')->name('customer-list');
-
+Route::get('/admin/{customerId}/transactions', 'Admin\TransactionController@indexCustomer')->name('customer-transaction-list');
 Route::post('/admin', 'Auth\LoginAdminController@login');
 Route::get('/admin', 'Admin\DashboardController@index')->name('admin-dashboard');
 Route::get('/admin/logout', 'Auth\LoginAdminController@logout')->name('admin-logout');

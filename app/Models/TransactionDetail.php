@@ -23,6 +23,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property float $price_final
  * @property int $quantity
  * @property float $subtotal_price
+ * @property string $note
  * @property string $created_by
  * @property \Carbon\Carbon $created_on
  * @property string $modified_by
@@ -65,6 +66,7 @@ class TransactionDetail extends Eloquent
         'price_final',
         'quantity',
         'subtotal_price',
+        'note',
 		'created_by',
 		'created_on',
 		'modified_by',
